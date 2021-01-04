@@ -51,12 +51,10 @@ export default function LoginComponent({ navigation }) {
     }
 
     //로그인 버튼 함수
-    const btnLogin = ()=>{
-        axios.get(URL.Login, {
-            params: {
-                email: data.email,
-                password: data.password
-            }
+    const btnLogin = () => {
+        axios.post(URL.Login, {
+            email: data.email,
+            password: data.password
         }
         ).then(
             async (response) => {
@@ -84,13 +82,13 @@ export default function LoginComponent({ navigation }) {
     }
 
     //회원가입 버튼 함수
-    const btnSignup = ()=>{
+    const btnSignup = () => {
         navigation.navigate('SignUp');
     }
 
     return (
-        <LoginContainer 
-            navigation={navigation} 
+        <LoginContainer
+            navigation={navigation}
             data={data}
             textInputChange={textInputChange}
             handlePasswordChange={handlePasswordChange}
