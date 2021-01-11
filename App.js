@@ -5,10 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 //import Screens
-import SignUpComponent from './Components/Screens/SignUp/SignUpComponent';
-import LoginComponent from './Components/Screens/Login/LoginComponent';
-import Loading from './Components/Loading';
-import Main from './Components/Main';
+import SignUpContainer from './Containers/Screens/SignUp/SignUpContainer';
+import LoginContainer from './Containers/Screens/Login/LoginContainer';
+import Loading from './Containers/Loading';
+import Main from './Containers/Main';
 
 const Stack = createStackNavigator();
 
@@ -39,8 +39,8 @@ function StackNavigator() {
       mode="modal"
     >
       <Stack.Screen name="Loading" component={Loading} />
-      <Stack.Screen name="Login" component={LoginComponent} />
-      <Stack.Screen name="SignUp" component={SignUpComponent} />
+      <Stack.Screen name="Login" component={LoginContainer} />
+      <Stack.Screen name="SignUp" component={SignUpContainer} />
       <Stack.Screen name="Main" component={Main} />
     </Stack.Navigator>
   );

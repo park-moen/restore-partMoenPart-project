@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import SignUpContainer from '../../../Containers/Screens/SingUp/SignUpContainer'
+import SignUpComponent from '../../../Components/Screens/SingUp/SignUpComponent'
 import axios from 'axios';
 
 import * as URL from '../../../config/strings';
 
-export default function SignUpComponent({ navigation }) {
+export default function SignUpContainer({ navigation }) {
 
     //입력값, 버튼 상태 체크용도
     const [data, setData] = useState({
@@ -137,7 +137,7 @@ export default function SignUpComponent({ navigation }) {
     }
 
     return (
-        <SignUpContainer
+        <SignUpComponent
             navigation={navigation}
             data={data}
             textEmailChange={textEmailChange}
