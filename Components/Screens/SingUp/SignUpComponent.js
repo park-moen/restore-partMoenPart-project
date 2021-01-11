@@ -12,7 +12,7 @@ import InputGender from './InputGender';
 import InputRole from './InputRole';
 import Buttons from './Buttons';
 
-export default function SignUpContainer({ navigation, data,
+export default function SignUpComponent({ navigation, data,
     textEmailChange, textNameChange, textAgeChange, textGenderChange, textRoleChange,
     textPasswordChange, textConrifmPasswordChange, updateChkSecure,
     submitSingUP }) {
