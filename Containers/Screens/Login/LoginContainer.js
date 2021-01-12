@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
 import LoginComponent from '../../../Components/Screens/Login/LoginComponent';
-import axios from 'axios';
 
-import * as URL from '../../../config/strings';
-import * as AsyncStorage from '../../../lib/storage/AsyncStorage';
+import {Login} from '../../../lib/api/TokenActivity';
 
 export default function LoginContainer({ navigation }) {
 
@@ -50,40 +48,18 @@ export default function LoginContainer({ navigation }) {
         })
     }
 
-    //로그인 버튼 함수
-    const btnLogin = () => {
-        axios.post(URL.Login, {
-            email: data.email,
-            password: data.password
-        }
-        ).then(
-            async (response) => {
-                //로그인 여부 저장
-                await AsyncStorage.storeData("isLogged", "YES");
-                console.log("AsyncStorage isLogged 저장 완료");
-
-                // 모든 HTTP 요청 헤더에 Authorization 값 설정
-                console.log("Response : ", response);
-
-                const accessToken = response.data.accessToken;
-                const refreshToken = response.data.refreshToken;
-                AsyncStorage.storeData("accessToken", accessToken);
-                AsyncStorage.storeData("refreshToken", refreshToken);
-
-                //axios 설정값은 앱껏다키면 날아감
-                axios.defaults.headers.common['Authorization'] = accessToken;
-                console.log("axios 헤더의 Authorization은 현재 :", axios.defaults.headers.common['Authorization']);
-                // axios.defaults.headers.common['Cookie'] = `; email=${data.email}`
-
-                //로그인 완료. 메인 화면으로 이동.
-                navigation.navigate('Main');
-            }
-        ).catch((err) => console.log("로그인 에러 : ", err))
-    }
-
     //회원가입 버튼 함수
     const btnSignup = () => {
         navigation.navigate('SignUp');
+    }
+
+    const btnLogin = async() => {
+        // const success = await Login({email:data.email, password:data.password});
+        // console.log("로그인 성공 여부 : ",success);
+        // if(success){
+        //     navigation.navigate('Main');
+        // }
+        Login({email:data.email, password:data.password, navigation:navigation});
     }
 
     return (
