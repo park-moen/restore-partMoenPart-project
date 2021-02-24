@@ -10,6 +10,9 @@ import LoginContainer from './Containers/Screens/Login/LoginContainer';
 import Loading from './Containers/Loading';
 import Main from './Containers/Main';
 
+import NewLectureContainer from './Containers/Screens/Instructor/NewLectureContainer';
+import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureFeeAndEquipments';
+
 const Stack = createStackNavigator();
 
 function StackNavigator() {
@@ -42,6 +45,17 @@ function StackNavigator() {
       <Stack.Screen name="Login" component={LoginContainer} />
       <Stack.Screen name="SignUp" component={SignUpContainer} />
       <Stack.Screen name="Main" component={Main} />
+
+      <Stack.Screen
+        name="NewLecture"
+        component={NewLectureContainer}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="LectureFeeAndEquipments"
+        component={LectureFeeAndEquipments}
+        options={{ headerShown: true }}
+      />
     </Stack.Navigator>
   );
 }
