@@ -1,10 +1,10 @@
-import 'react-native-gesture-handler'; //navigator, production 시 필수.
+import 'react-native-gesture-handler'; // navigator, production 시 필수.
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-//import Screens
+// import Screens
 import SignUpContainer from './Containers/Screens/SignUp/SignUpContainer';
 import LoginContainer from './Containers/Screens/Login/LoginContainer';
 import Loading from './Containers/Loading';
@@ -12,6 +12,8 @@ import Main from './Containers/Main';
 
 import NewLectureContainer from './Containers/Screens/Instructor/NewLectureContainer';
 import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureFeeAndEquipments';
+
+import LectureListRegionContainer from './Containers/Screens/Instructor/LectureListRegionContainer';
 
 const Stack = createStackNavigator();
 
@@ -54,6 +56,11 @@ function StackNavigator() {
       <Stack.Screen
         name="LectureFeeAndEquipments"
         component={LectureFeeAndEquipments}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="LectureListRegion"
+        component={LectureListRegionContainer}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>
