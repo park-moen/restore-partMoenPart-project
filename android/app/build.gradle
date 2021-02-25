@@ -207,6 +207,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    // 네이버 지도 SDK
+    implementation 'com.naver.maps:map-sdk:3.9.1'
 }
 
 // Run this once to be able to run the application with BUCK

@@ -26,6 +26,10 @@ export default function Main({ navigation }) {
     navigation.navigate('LectureScheduleAll', { id: 2 });
   };
 
+  const btnAddLocation = () => {
+    navigation.navigate('LectureLocationAdd');
+  };
+
   return (
     <SafeAreaView
       style={{ flex: 1, justifyContent: 'center', backgroundColor: '#FFF' }}
@@ -39,6 +43,7 @@ export default function Main({ navigation }) {
       <Button title="강의 상세 조회" onPress={btnLectureDetail} />
 
       <Button title="일정 조회" onPress={btnShowSchedule} />
+      <Button title="위치 추갸" onPress={btnAddLocation} />
     </SafeAreaView>
   );
 }
