@@ -14,6 +14,10 @@ export default function Main({ navigation }) {
     navigation.navigate('NewLecture');
   };
 
+  const btnLectureListRegion = () => {
+    navigation.navigate('LectureListRegion');
+  };
+
   return (
     <SafeAreaView
       style={{ flex: 1, justifyContent: 'center', backgroundColor: '#FFF' }}
@@ -22,6 +26,8 @@ export default function Main({ navigation }) {
       <Button title="토큰 재발급" onPress={RefreshToken} />
 
       <Button title="강의 등록" onPress={btnNewLecture} />
+
+      <Button title="강의 목록 조회" onPress={btnLectureListRegion} />
     </SafeAreaView>
   );
 }

@@ -9,3 +9,7 @@ export const TokenRefresh = `${Server}/sign/refresh`;
 
 // Lecture API
 export const NewLectureAPI = `${Server}/lecture/create`;
+export const LectureListRegionAPI = `${Server}/lecture/list/region`;
+export const LectureListRegionAPIFunc = ({ region, page, size }) => {
+  return `${LectureListRegionAPI}?region=${region}&page=${page}&size=${size}`;
+};
