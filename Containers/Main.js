@@ -19,7 +19,11 @@ export default function Main({ navigation }) {
   };
 
   const btnLectureDetail = () => {
-    navigation.navigate('LectureDetail', { id: 38 });
+    navigation.navigate('LectureDetail', { id: 2 });
+  };
+
+  const btnShowSchedule = () => {
+    navigation.navigate('LectureScheduleAll', { id: 2 });
   };
 
   return (
@@ -33,6 +37,8 @@ export default function Main({ navigation }) {
 
       <Button title="강의 목록 조회" onPress={btnLectureListRegion} />
       <Button title="강의 상세 조회" onPress={btnLectureDetail} />
+
+      <Button title="일정 조회" onPress={btnShowSchedule} />
     </SafeAreaView>
   );
 }

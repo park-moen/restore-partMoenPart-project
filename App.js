@@ -16,6 +16,8 @@ import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureFeeA
 import LectureListRegionContainer from './Containers/Screens/Instructor/LectureListRegionContainer';
 import LectureDetailContainer from './Containers/Screens/Instructor/LectureDetailContainer';
 
+import LectureScheduleAll from './Containers/Screens/Instructor/LectureScheduleAll';
+
 const Stack = createStackNavigator();
 
 function StackNavigator() {
@@ -67,6 +69,11 @@ function StackNavigator() {
       <Stack.Screen
         name="LectureDetail"
         component={LectureDetailContainer}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="LectureScheduleAll"
+        component={LectureScheduleAll}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>
