@@ -13,3 +13,7 @@ export const LectureListRegionAPI = `${Server}/lecture/list/region`;
 export const LectureListRegionAPIFunc = ({ region, page, size }) => {
   return `${LectureListRegionAPI}?region=${region}&page=${page}&size=${size}`;
 };
+export const LectureDetailAPI = `${Server}/lecture/detail`;
+export const LectureDetailAPIFunc = ({ id }) => {
+  return `${LectureDetailAPI}?id=${id}`;
+};
