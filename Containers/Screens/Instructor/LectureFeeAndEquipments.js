@@ -63,8 +63,7 @@ export default function LectureFeeAndEquipments({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <ScrollView style={{ flex: 1, margin: 10 }}>
         <TextInputContainer
-          input={lectureFee}
-          setInput={setLectureFee}
+          onTextChange={setLectureFee}
           title="강의 수강료"
           placeholder="수업 가격을 입력하세요."
           style={{ flex: 1, marginBottom: 10 }}

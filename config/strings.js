@@ -17,3 +17,13 @@ export const LectureDetailAPI = `${Server}/lecture/detail`;
 export const LectureDetailAPIFunc = ({ id }) => {
   return `${LectureDetailAPI}?id=${id}`;
 };
+export const LectureAddScheduleAPI = `${Server}/schedule`;
+
+// NaverMap API
+// !---- 전송 시 헤더에 아래의 인증정보 추가 필요.
+// !---- X-NCP-APIGW-API-KEY-ID:{Client ID}
+// !---- X-NCP-APIGW-API-KEY:{Client Secret}
+export const NMapClientID = '6oa9ddyfn0';
+export const NMapClientSecret = 'kpqjd3ACDcdgQNiB3s3Wda0FpR9721EoSVBB5siy';
+export const NMapGeocodingAPI =
+  'https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode';

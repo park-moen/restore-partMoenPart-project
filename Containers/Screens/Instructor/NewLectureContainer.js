@@ -121,8 +121,7 @@ export default function NewLectureContainer({ navigation }) {
         </View>
 
         <TextInputContainer
-          input={lectureTitle}
-          setInput={setLectureTitle}
+          onTextChange={setLectureTitle}
           title="수업 제목"
           placeholder="수업제목을 입력하세요."
           style={{ flex: 1, marginBottom: 10 }}
@@ -133,8 +132,7 @@ export default function NewLectureContainer({ navigation }) {
           setImages={setImage}
         />
         <TextInputContainer
-          input={lectureContent}
-          setInput={setLectureContent}
+          onTextChange={setLectureContent}
           title="수업 내용"
           placeholder="수업내용을 입력하세요."
           style={{ flex: 1, marginBottom: 10 }}

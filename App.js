@@ -16,6 +16,11 @@ import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureFeeA
 import LectureListRegionContainer from './Containers/Screens/Instructor/LectureListRegionContainer';
 import LectureDetailContainer from './Containers/Screens/Instructor/LectureDetailContainer';
 
+import LectureScheduleAll from './Containers/Screens/Instructor/LectureScheduleAll';
+import LectureScheduleAdd from './Containers/Screens/Instructor/LectureScheduleAdd';
+import LectureLocationAdd from './Containers/Screens/Instructor/LectureLocationAdd';
+import NMapSearch from './Containers/Screens/Instructor/NMapSearch';
+
 const Stack = createStackNavigator();
 
 function StackNavigator() {
@@ -67,6 +72,26 @@ function StackNavigator() {
       <Stack.Screen
         name="LectureDetail"
         component={LectureDetailContainer}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="LectureScheduleAll"
+        component={LectureScheduleAll}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="LectureScheduleAdd"
+        component={LectureScheduleAdd}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="LectureLocationAdd"
+        component={LectureLocationAdd}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="NMapSearch"
+        component={NMapSearch}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>

@@ -42,16 +42,14 @@ const RenderEquipments = ({ equipmentList, setEquipmentList }) => {
         key={i}
       >
         <TextInputContainer
-          input={equipmentList[i].name}
-          setInput={onEquipmentNameInput}
+          onTextChange={onEquipmentNameInput}
           title="장비대여"
           hideTitle={true}
           placeholder="장비명을 입력하세요."
           style={styles.textInputContainer}
         />
         <TextInputContainer
-          input={equipmentList[i].price}
-          setInput={onPriceInput}
+          onTextChange={onPriceInput}
           title="장비대여"
           hideTitle={true}
           placeholder="대여료를 입력하세요."

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
@@ -31,15 +31,18 @@ export function TextInputStatic({
   );
 }
 
-function TextInputContainer({
-  input,
-  setInput,
+export default function TextInputContainer({
+  // input,
+  onTextChange = () => {},
   title = 'test',
   hideTitle = false,
   placeholder = 'test',
   style = {},
   multiline = false,
+  hideCheckMark = 'true',
 }) {
+  const [input, setInput] = useState('');
+
   return (
     <View style={{ ...style }}>
       {/* 타이틀 */}
@@ -55,11 +58,12 @@ function TextInputContainer({
           value={input}
           onChangeText={text => {
             console.log('text : ', text);
-            setInput(text);
+            setInput(text); // 내부 상태값 갱신
+            onTextChange(text); // 부모 컴포넌트에도 전달
           }}
         />
         {/* 입력값이 있을 경우에만 체크 마크 띄우도록 */}
-        {input ? (
+        {input && hideCheckMark === 'true' ? (
           <Animatable.View animation="bounceIn">
             <Feather name="check-circle" color="#000" size={25} />
           </Animatable.View>
@@ -73,7 +77,7 @@ const styles = StyleSheet.create({
   staticTextContainer: {
     height: 50,
     padding: 10,
-    borderColor: '#5DCACB', //'gray', //lightgray
+    borderColor: '#5DCACB', // 'gray', //lightgray
     borderWidth: 2,
     borderRadius: 10,
     backgroundColor: 'white',
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: 'row',
     // backgroundColor: '#4CB1F755',
-    borderColor: '#5DCACB', //'gray', //lightgray
+    borderColor: '#5DCACB', // 'gray', //lightgray
     borderWidth: 2,
     alignItems: 'center',
     paddingRight: 10,
@@ -107,5 +111,3 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
 });
-
-export default React.memo(TextInputContainer);
