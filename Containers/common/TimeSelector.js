@@ -89,6 +89,8 @@ export function TimeSelector({
 export default function TimeSelectorContainer({
   onLeftArrowPressed = () => {},
   onRightArrowPressed = () => {},
+  onDateChange = () => {},
+  onDateIndexChange = () => {},
   onSelectTime = () => {},
   onScheduleObjChange = () => {},
   schedules,
@@ -107,6 +109,9 @@ export default function TimeSelectorContainer({
   };
   const onLeftArrowPressedFunc = () => {
     const changedIndex = dateNowPrintedIndex - 1;
+    onDateChange(schedules[changedIndex]); // 부모 컴포넌트에 선택된 날짜 반환하는 함수
+    onDateIndexChange(changedIndex); // 부모 컴포넌트에 선택된 날짜의 인덱스를 반영하는 함수
+    onLeftArrowPressed();
 
     dateNowPrintedIndex > 0
       ? setDateNowPrintedIndex(changedIndex)
@@ -116,6 +121,9 @@ export default function TimeSelectorContainer({
   };
   const onRightArrowPressedFunc = () => {
     const changedIndex = dateNowPrintedIndex + 1;
+    onDateChange(schedules[changedIndex]); // 부모 컴포넌트에 선택된 날짜 반환하는 함수
+    onDateIndexChange(changedIndex); // 부모 컴포넌트에 선택된 날짜의 인덱스를 반영하는 함수
+    onRightArrowPressed();
 
     dateNowPrintedIndex < schedules.length - 1
       ? setDateNowPrintedIndex(changedIndex)
@@ -139,7 +147,7 @@ export default function TimeSelectorContainer({
 
       // 오브젝트화
       // console.log("날짜 배열 : ", schedules, " 현재 선택 : ", schedules[dateNowPrintedIndex]);
-      const copyObjs = Object.assign({}, final);
+      const copyObjs = { ...final };
       const newObjs = Object.assign(copyObjs, {
         [schedules[dateNowPrintedIndex]]: result,
       });
@@ -156,7 +164,7 @@ export default function TimeSelectorContainer({
 
       // 오브젝트화
       // console.log("날짜 배열 : ", schedules, " 현재 선택 : ", schedules[dateNowPrintedIndex]);
-      const copyObjs = Object.assign({}, final);
+      const copyObjs = { ...final };
       const newObjs = Object.assign(copyObjs, {
         [schedules[dateNowPrintedIndex]]: result,
       });

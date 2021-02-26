@@ -5,13 +5,22 @@ export default function Button({
   text = '테스트',
   onPress = () => {},
   buttonColor = 'black',
+  textColor = 'white',
+  buttonStyle = {},
+  fontStyle = {},
 }) {
   return (
     <TouchableOpacity
-      style={{ ...styels.buttonContainer, backgroundColor: buttonColor }}
+      style={{
+        ...styels.buttonContainer,
+        backgroundColor: buttonColor,
+        ...buttonStyle,
+      }}
       onPress={onPress}
     >
-      <Text style={styels.text}>{text}</Text>
+      <Text style={{ ...styels.text, color: textColor, ...fontStyle }}>
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -24,7 +33,6 @@ const styels = StyleSheet.create({
     borderRadius: 20,
   },
   text: {
-    color: 'white',
     fontSize: 20,
     fontWeight: '500',
   },

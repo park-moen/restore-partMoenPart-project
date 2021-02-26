@@ -97,8 +97,7 @@ export default function NMapSearch({ navigation, route }) {
         <TextInputContainer
           hideTitle={true}
           style={styles.searchContainer}
-          input={input}
-          setInput={setInput}
+          onTextChange={setInput}
           placeholder="도로명, 지번, 영문 주소를 입력하세요."
         />
         <View style={styles.searchBarButton}>

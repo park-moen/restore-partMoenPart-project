@@ -17,6 +17,7 @@ export const LectureDetailAPI = `${Server}/lecture/detail`;
 export const LectureDetailAPIFunc = ({ id }) => {
   return `${LectureDetailAPI}?id=${id}`;
 };
+export const LectureAddScheduleAPI = `${Server}/schedule`;
 
 // NaverMap API
 // !---- 전송 시 헤더에 아래의 인증정보 추가 필요.

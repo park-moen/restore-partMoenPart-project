@@ -1,43 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Button,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import LectureCalendar from '../../common/LectureCalendar';
-import TimeSelectorContainer from '../../common/TimeSelector';
-import TextInputContainer from '../../../Containers/common/TextInputContainer';
-import ButtomButtons from '../../../Containers/common/BottomButtons';
+import LectureScheduleAddComponent from '../../../Components/Screens/Instructor/LectureScheduleAddComponent';
+import { LectureAddScheduleAPI } from '../../../config/strings';
+import { makeTimeFormat } from '../../../lib/time';
 
-export default function LectureScheduleAdd({ navigation }) {
-  /* ---- 모달 출력용 ----- */
-  // const data = ['hi', 'h2']; //모달 출력용 배열
-  // const [visible, setVisible] = useState(false); //모달 on/off용 상태
-  /* ------------------- */
-
-  //달력 컴포넌트에서 선택된 날짜 배열 저장용 상태
+export default function LectureScheduleAdd({ navigation, route }) {
+  // 달력 컴포넌트에서 선택된 날짜 배열 저장용 상태
   const [selectedScheduleArray, setSelectedScheduleArray] = useState([]); // ['2020-02-01', '2020-02-02'];
-  //예약가능 시간 관리
-  const [selectedTimes, setSelectedTimes] = useState([]);
-  //날짜별 선택 시간을 오브젝트로 관리
-  const [selectedScheduleObject, setSelectedScheduleObject] = useState({});
-
-  //선택된 날짜 관리
+  // 예약가능 시간 관리
+  const [selectedTimes, setSelectedTimes] = useState([]); // ["05:00", "05:30", "07:00"]
+  // 날짜별 선택 시간을 오브젝트로 관리
+  const [selectedScheduleObject, setSelectedScheduleObject] = useState({}); // {"2021-02-18": ["05:00", "05:30", "07:00"], ... }
+  // 날짜별 장소를 오브젝트로 관리
+  const [locations, setLocations] = useState({}); // {"2021-02-17": {"latitude": 37.56249100503885, "longitude": 126.97587374338121, "name": "잠실수영장"}, ... }
+  // 예약시간 지정하고 있는 현재 날짜 관리
+  const [curDateIndex, setCurDateIndex] = useState(0);
+  /**
+   *
+   * @function 날짜선택
+   */
   const onDateSelct = result => {
-    console.log('부모 컴포넌트 저장된 날짜 : ', result);
+    console.log('selectedScheduleArray : ', result);
     setSelectedScheduleArray(result);
   };
 
-  //선택된 시간 관리 (예약 가능한 시간 지정)
-  const onSelectTime = selectedTimes => {
-    setSelectedTimes(selectedTimes);
+  /**
+   *
+   * @function 시간선택
+   */
+  const onSelectTime = times => {
+    setSelectedTimes(times);
   };
 
+  /**
+   *
+   * @function 날짜별-시간들 오브젝트로 변환
+   */
   const onScheduleObjChange = changedScheduleObject => {
     console.log(
       '부모 컴포넌트에서 날짜 오브젝트 잘 관리되나? : ',
@@ -46,52 +45,114 @@ export default function LectureScheduleAdd({ navigation }) {
     setSelectedScheduleObject(changedScheduleObject);
   };
 
+  /**
+   *
+   * @function 예약시간날짜인덱스변경
+   */
+  const onDateIndexChange = index => setCurDateIndex(index);
+
+  /**
+   *
+   * @function 강의소요시간입력
+   */
+  const onLectureTimeChange = lectureTime => {
+    const copyObjs = { ...locations };
+    const result = Object.assign(copyObjs, {
+      [selectedScheduleArray[curDateIndex]]: {
+        ...copyObjs[selectedScheduleArray[curDateIndex]],
+        lectureTime,
+      },
+    });
+    console.log('날짜별 강의시간 관리 잘 되나? : ', result);
+    setLocations(result);
+  };
+
+  /**
+   *
+   * @function 강의장소 선택
+   */
+  const onBtnLocation = ({ when }) => {
+    const onLocationSelected = ({ picker }) => {
+      const copyObjs = { ...locations };
+      const result = Object.assign(copyObjs, {
+        [when]: { ...copyObjs[when], ...picker },
+      });
+      console.log('날짜별 위치 관리 잘 되나? : ', result);
+      setLocations(result);
+
+      navigation.goBack();
+    };
+
+    navigation.navigate('LectureLocationAdd', {
+      onLocationSelected,
+    });
+  };
+
+  /**
+   *
+   * @function 강의장소 이름 지정
+   */
+  const onLocationNameChange = ({ when, name }) => {
+    const copyObjs = { ...locations };
+    const result = Object.assign(copyObjs, {
+      [when]: { ...copyObjs[when], name },
+    });
+    console.log('날짜별 위치 이름 관리 잘 되나? : ', result);
+    setLocations(result);
+  };
+
+  /**
+   *
+   * @function 하단버튼 맵핑 함수들
+   */
+  const onPressLeft = () => {
+    navigation.goBack();
+  };
+  const onPressRight = async () => {
+    try {
+      const detailReqList = [];
+      selectedScheduleArray.forEach(date => {
+        detailReqList.push({
+          date,
+          startTimes: selectedScheduleObject[date],
+          lectureTime: makeTimeFormat({ minute: locations[date].lectureTime }), // 강의 소요시간 추가 필요
+          location: {
+            latitude: locations[date].latitude,
+            longitude: locations[date].longitude,
+            address: locations[date].name, // 필드는 주소로 되어있는데, 주소 대신 장소이름을 사용할 것임.
+          },
+        });
+      });
+
+      const res = await axios.post(LectureAddScheduleAPI, {
+        lectureId: route.params.id,
+        period: selectedScheduleArray.length,
+        detailReqList,
+      });
+
+      console.log('일정 추가 결과 : ', res);
+      navigation.navigate('LectureScheduleAll');
+    } catch (err) {
+      console.log('일정 추가에 실패하였습니다. ', err);
+    }
+  };
+
+  const func = {
+    onDateSelct,
+    onSelectTime,
+    onScheduleObjChange,
+    onLectureTimeChange,
+    onDateIndexChange,
+    onBtnLocation,
+    onLocationNameChange,
+    onPressLeft,
+    onPressRight,
+  };
+
   return (
-    <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
-      <ScrollView>
-        {/* 달력 */}
-        <LectureCalendar onDateSelct={onDateSelct} />
-
-        {/* 예약 가능 시간 지정 */}
-        {selectedScheduleArray.length != 0 ? (
-          <TimeSelectorContainer
-            onSelectTime={onSelectTime}
-            onScheduleObjChange={onScheduleObjChange}
-            schedules={selectedScheduleArray}
-          />
-        ) : null}
-
-        {/* <TextInputContainer style={{ margin: 10 }} title="수업장소명" />
-                <Button title="일정 열기" onPress={() => { setVisible(!visible) }} />
-                <TimePicker data={data} visible={visible} setVisible={setVisible} /> */}
-        <Button
-          title="장소 선택"
-          onPress={() => {
-            navigation.navigate('LectureLocation');
-          }}
-        />
-      </ScrollView>
-
-      {/* 하단 버튼 */}
-      <ButtomButtons
-        TextLeft="이전"
-        TextRight="등록 완료"
-        onPressLeft={() => {
-          navigation.goBack();
-        }}
-        onPressRight={() => {
-          // navigation.navigate('LectureLocation');
-        }}
-      />
-    </SafeAreaView>
+    <LectureScheduleAddComponent
+      func={func}
+      selectedScheduleArray={selectedScheduleArray}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  scheduleTitle: {
-    height: 30,
-    fontSize: 20,
-    fontWeight: 'bold',
-    paddingLeft: 5,
-  },
-});

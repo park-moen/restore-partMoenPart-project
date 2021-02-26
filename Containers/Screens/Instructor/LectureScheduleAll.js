@@ -64,21 +64,19 @@ export default function LectureScheduleContainer({ navigation, route }) {
         // 랜덤 색상 설정
         const color = `hsl(${360 * Math.random()}, 70%, 60%)`;
 
-        element.scheduleDetails.forEach(element => {
-          console.log('single schedule : ', element);
-          console.log('날짜 : ', element.date);
-          console.log('시간 : ', element.startTimes);
+        element.scheduleDetails.forEach(e => {
+          console.log('single schedule : ', e);
+          console.log('날짜 : ', e.date);
+          console.log('시간 : ', e.startTimes);
 
           console.log('schedules2 : ', schedules2);
-          const tmpArray = schedules2[element.date]
-            ? schedules2[element.date].periods
-            : [];
+          const tmpArray = schedules2[e.date] ? schedules2[e.date].periods : [];
           console.log('tmpArray1 : ', tmpArray);
 
           tmpArray.push({ startingDay: false, endingDay: false, color });
           console.log('tmpArray2 : ', tmpArray);
           const newObjs = Object.assign(schedules2, {
-            [element.date]: { periods: tmpArray },
+            [e.date]: { periods: tmpArray },
           });
           setSchedules2(newObjs);
           console.log('나는야 전체일정 관리 오브젝트 : ', newObjs);
@@ -108,10 +106,9 @@ export default function LectureScheduleContainer({ navigation, route }) {
         <Button
           text="일정 추가"
           onPress={() => {
-            navigation.navigate('LectureScheduleAdd');
+            navigation.navigate('LectureScheduleAdd', { id: route.params.id });
           }}
         />
-        {/* <Button text="버튼 킵" onPress={() => { console.log("test") }}/> */}
       </View>
     </SafeAreaView>
   );
