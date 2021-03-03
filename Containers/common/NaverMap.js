@@ -13,7 +13,7 @@ export default function NaverMap({
 
   return (
     <NaverMapView
-      style={{ width: '100%', height: '100%' }}
+      style={{ flex: 1 }}
       showsMyLocationButton={true}
       center={{ ...center, zoom: 16 }}
       //  onTouch={e => console.warn('onTouch', JSON.stringify(e.nativeEvent))}

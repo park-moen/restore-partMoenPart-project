@@ -1,0 +1,18 @@
+// 유저 로그인
+POST /sign/signin
+Content-Type: application/json;charset=UTF-8
+Host: localhost:8080
+
+{
+  "email" : "t2@test.com",
+  "password" : "1234"
+}
+
+###
+
+// 강의 단건 상세조회
+GET /lecture/detail?id=2
+Content-Type: application/json;charset=UTF-8
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTQ3MDY1MzUsImV4cCI6MTYxNDcxMDEzNX0.ZEN6CHQn0HlHxJh5XSKdLqBeLJqPt8QxWKrQ1HLPlFA
+IsRefreshToken: false
+Host: localhost:8080

@@ -6,6 +6,9 @@ import axios from 'axios';
 import { LectureDetailAPIFunc } from '../../../config/strings';
 import Button from '../../common/Button';
 
+/**
+ * 달력 환경 설정
+ */
 LocaleConfig.locales.kr = {
   monthNames: [
     '1월',
@@ -49,37 +52,36 @@ LocaleConfig.locales.kr = {
 };
 LocaleConfig.defaultLocale = 'kr';
 
-export default function LectureScheduleContainer({ navigation, route }) {
+/**
+ *
+ * @component 강의전체 일정 출력 캘린더 컴포넌트
+ */
+export function LectureSchedule({ lectureId }) {
   const [schedules2, setSchedules2] = useState({});
 
   useEffect(() => {
     const getLectureDetail = async () => {
-      const hi = await axios.get(LectureDetailAPIFunc({ id: route.params.id }));
+      const hi = await axios.get(LectureDetailAPIFunc({ id: lectureId }));
 
       const schedules = hi.data.schedules;
-      console.log('getDetail : ', schedules);
+      // console.log('getDetail : ', schedules);
+
       schedules.forEach((element, index) => {
-        console.log('-----일정-----'); // 일정 하나 (일회차, 다회차 큰 틀에서 하나)
+        // console.log('-----일정-----'); // 일정 하나 (일회차, 다회차 큰 틀에서 하나)
 
         // 랜덤 색상 설정
         const color = `hsl(${360 * Math.random()}, 70%, 60%)`;
 
         element.scheduleDetails.forEach(e => {
-          console.log('single schedule : ', e);
-          console.log('날짜 : ', e.date);
-          console.log('시간 : ', e.startTimes);
+          // console.log('single schedule : ', e);
 
-          console.log('schedules2 : ', schedules2);
           const tmpArray = schedules2[e.date] ? schedules2[e.date].periods : [];
-          console.log('tmpArray1 : ', tmpArray);
 
           tmpArray.push({ startingDay: false, endingDay: false, color });
-          console.log('tmpArray2 : ', tmpArray);
           const newObjs = Object.assign(schedules2, {
             [e.date]: { periods: tmpArray },
           });
           setSchedules2(newObjs);
-          console.log('나는야 전체일정 관리 오브젝트 : ', newObjs);
         });
       });
     };
@@ -88,7 +90,7 @@ export default function LectureScheduleContainer({ navigation, route }) {
   }, []);
 
   return (
-    <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
       <View
         style={{ alignItems: 'center', justifyContent: 'center', margin: 10 }}
       >
@@ -100,16 +102,31 @@ export default function LectureScheduleContainer({ navigation, route }) {
       <Text>일정1</Text>
       <Text>일정2</Text>
       <Text>일정3</Text>
-      <View
-        style={{ flexDirection: 'row', justifyContent: 'center', margin: 15 }}
-      >
-        <Button
-          text="일정 추가"
-          onPress={() => {
-            navigation.navigate('LectureScheduleAdd', { id: route.params.id });
-          }}
-        />
-      </View>
+    </View>
+  );
+}
+
+/**
+ *
+ * @component 강의전체일정 출력 화면
+ */
+export default function LectureScheduleContainer({ navigation, route }) {
+  return (
+    <SafeAreaView
+      style={{
+        backgroundColor: 'white',
+        flex: 1,
+      }}
+    >
+      {/* <View style={{ justifyContent: 'center', margin: 15 }}> */}
+      <LectureSchedule lectureId={route.params.id} />
+      <Button
+        text="일정 추가"
+        onPress={() => {
+          navigation.navigate('LectureScheduleAdd', { id: route.params.id });
+        }}
+      />
+      {/* </View> */}
     </SafeAreaView>
   );
 }
