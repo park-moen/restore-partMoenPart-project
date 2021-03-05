@@ -61,9 +61,8 @@ export function LectureSchedule({ lectureId }) {
 
   useEffect(() => {
     const getLectureDetail = async () => {
-      const hi = await axios.get(LectureDetailAPIFunc({ id: lectureId }));
-
-      const schedules = hi.data.schedules;
+      const res = await axios.get(LectureDetailAPIFunc({ id: lectureId }));
+      const schedules = res.data.schedules;
       // console.log('getDetail : ', schedules);
 
       schedules.forEach((element, index) => {
@@ -81,7 +80,7 @@ export function LectureSchedule({ lectureId }) {
           const newObjs = Object.assign(schedules2, {
             [e.date]: { periods: tmpArray },
           });
-          setSchedules2(newObjs);
+          setSchedules2(JSON.parse(JSON.stringify(newObjs)));
         });
       });
     };
@@ -96,9 +95,7 @@ export function LectureSchedule({ lectureId }) {
       >
         <Text style={{ fontSize: 25 }}>전체 일정</Text>
       </View>
-      {schedules2 === {} ? null : (
-        <Calendar markedDates={schedules2} markingType="multi-period" />
-      )}
+      <Calendar markedDates={schedules2} markingType="multi-period" />
       <Text>일정1</Text>
       <Text>일정2</Text>
       <Text>일정3</Text>
