@@ -1,0 +1,45 @@
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+// Tab Navigatior
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+// Tab Screens
+import What from './What';
+import When from './When';
+import With from './With';
+import Where from './Where';
+
+const Tab = createMaterialTopTabNavigator();
+
+export default function LectureDetailTabNav({ lectureInfo }) {
+  return (
+    <Tab.Navigator style={{ flex: 1 }}>
+      <Tab.Screen
+        name="강의소개"
+        children={() => <What lectureInfo={lectureInfo} />}
+      />
+      <Tab.Screen
+        name="일정"
+        children={() => <When lectureInfo={lectureInfo} />}
+      />
+      <Tab.Screen
+        name="장소"
+        children={() => <Where lectureInfo={lectureInfo} />}
+      />
+      <Tab.Screen
+        name="장비대여"
+        children={() => <With lectureInfo={lectureInfo} />}
+      />
+    </Tab.Navigator>
+  );
+}
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    backgroundColor: 'lightyellow',
+    padding: 10,
+    // height:500,
+  },
+});

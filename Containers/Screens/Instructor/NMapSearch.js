@@ -24,7 +24,6 @@ const SearchedButtonList = ({
 }) => {
   const result = [];
 
-  // console.log('test', addresses);
   addresses.forEach((element, index) => {
     console.log('인덱스 : ', index, ' 값 :  ', element.roadAddress);
     console.log('인덱스 : ', index, ' 값 :  ', element.jibunAddress);
@@ -67,7 +66,6 @@ export default function NMapSearch({ navigation, route }) {
   const [addresses, setAddresses] = useState([]);
 
   const onSearch = async () => {
-    console.log('검색 버튼 누름');
     const result = await axios.get(NMapGeocodingAPI, {
       headers: {
         'X-NCP-APIGW-API-KEY-ID': NMapClientID,

@@ -21,7 +21,6 @@ export default function LectureScheduleAdd({ navigation, route }) {
    * @function 날짜선택
    */
   const onDateSelct = result => {
-    console.log('selectedScheduleArray : ', result);
     setSelectedScheduleArray(result);
   };
 
@@ -36,12 +35,9 @@ export default function LectureScheduleAdd({ navigation, route }) {
   /**
    *
    * @function 날짜별-시간들 오브젝트로 변환
+   * 부모 컴포넌트에 날짜 오브젝트 전달
    */
   const onScheduleObjChange = changedScheduleObject => {
-    console.log(
-      '부모 컴포넌트에서 날짜 오브젝트 잘 관리되나? : ',
-      changedScheduleObject,
-    );
     setSelectedScheduleObject(changedScheduleObject);
   };
 
@@ -54,6 +50,7 @@ export default function LectureScheduleAdd({ navigation, route }) {
   /**
    *
    * @function 강의소요시간입력
+   * 날짜별 강의시간 관리
    */
   const onLectureTimeChange = lectureTime => {
     const copyObjs = { ...locations };
@@ -63,13 +60,13 @@ export default function LectureScheduleAdd({ navigation, route }) {
         lectureTime,
       },
     });
-    console.log('날짜별 강의시간 관리 잘 되나? : ', result);
     setLocations(result);
   };
 
   /**
    *
    * @function 강의장소 선택
+   * 날짜별 위치 위도경도
    */
   const onBtnLocation = ({ when }) => {
     const onLocationSelected = ({ picker }) => {
@@ -77,7 +74,6 @@ export default function LectureScheduleAdd({ navigation, route }) {
       const result = Object.assign(copyObjs, {
         [when]: { ...copyObjs[when], ...picker },
       });
-      console.log('날짜별 위치 관리 잘 되나? : ', result);
       setLocations(result);
 
       navigation.goBack();
@@ -91,13 +87,13 @@ export default function LectureScheduleAdd({ navigation, route }) {
   /**
    *
    * @function 강의장소 이름 지정
+   * 날짜별 위치 이름
    */
   const onLocationNameChange = ({ when, name }) => {
     const copyObjs = { ...locations };
     const result = Object.assign(copyObjs, {
       [when]: { ...copyObjs[when], name },
     });
-    console.log('날짜별 위치 이름 관리 잘 되나? : ', result);
     setLocations(result);
   };
 
