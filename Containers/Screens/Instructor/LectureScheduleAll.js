@@ -56,7 +56,13 @@ LocaleConfig.defaultLocale = 'kr';
  *
  * @component 강의전체 일정 출력 캘린더 컴포넌트
  */
-export function LectureSchedule({ lectureId }) {
+export function LectureSchedule({
+  lectureId,
+  hideTitle = 'false',
+  onDayPress = day => {
+    console.log('selected day : ', day);
+  },
+}) {
   const [schedules2, setSchedules2] = useState({});
 
   useEffect(() => {
@@ -89,16 +95,19 @@ export function LectureSchedule({ lectureId }) {
   }, []);
 
   return (
-    <View style={{ backgroundColor: 'white', flex: 1 }}>
-      <View
-        style={{ alignItems: 'center', justifyContent: 'center', margin: 10 }}
-      >
-        <Text style={{ fontSize: 25 }}>전체 일정</Text>
-      </View>
-      <Calendar markedDates={schedules2} markingType="multi-period" />
-      <Text>일정1</Text>
-      <Text>일정2</Text>
-      <Text>일정3</Text>
+    <View style={{ backgroundColor: 'white' }}>
+      {hideTitle === 'true' ? null : (
+        <View
+          style={{ alignItems: 'center', justifyContent: 'center', margin: 10 }}
+        >
+          <Text style={{ fontSize: 25 }}>전체 일정</Text>
+        </View>
+      )}
+      <Calendar
+        markedDates={schedules2}
+        markingType="multi-period"
+        onDayPress={onDayPress}
+      />
     </View>
   );
 }
