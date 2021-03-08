@@ -14,6 +14,7 @@ import { LectureDetailAPIFunc } from '../../../config/strings';
 import TagList from '../../../Components/common/Tags';
 
 import LectureDetailTabNav from './LectureDetail/LectureDetailTabNav';
+import BottomButtons from '../../common/BottomButtons';
 
 export default function LectureDetailContainer({ navigation, route }) {
   const [lectureInfo, setLectureInfo] = useState({});
@@ -29,34 +30,37 @@ export default function LectureDetailContainer({ navigation, route }) {
   }, []);
 
   return (
-    <ScrollView style={styles.rootContainer}>
-      {/* 강의 이미지 슬라이드 */}
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('../../../asset/lecture1.jpg')}
-          resizeMode="cover"
-          style={styles.iamge}
-        />
-      </View>
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
+      <ScrollView style={styles.rootContainer}>
+        {/* 강의 이미지 슬라이드 */}
+        <View style={styles.imageContainer}>
+          <Image
+            source={require('../../../asset/lecture1.jpg')}
+            resizeMode="cover"
+            style={styles.iamge}
+          />
+        </View>
 
-      {/* 강의 기본내용 */}
-      <View style={styles.tapContainer}>
-        <Text style={styles.title}>{lectureInfo.title}</Text>
-        <Text style={styles.price}>{`₩${lectureInfo.price}`}</Text>
-        <TagList
-          tags={[
-            lectureInfo.groupName,
-            lectureInfo.certificateKind,
-            '장비대여 가능',
-          ]}
-          containerStyle={{ marginTop: 5, marginBottom: 10 }}
-        />
-        {/* <Text style={styles.description}>{lectureInfo.description}</Text> */}
-      </View>
+        {/* 강의 기본내용 */}
+        <View style={styles.tapContainer}>
+          <Text style={styles.title}>{lectureInfo.title}</Text>
+          <Text style={styles.price}>{`₩${lectureInfo.price}`}</Text>
+          <TagList
+            tags={[
+              lectureInfo.groupName,
+              lectureInfo.certificateKind,
+              '장비대여 가능',
+            ]}
+            containerStyle={{ marginTop: 5, marginBottom: 10 }}
+          />
+          {/* <Text style={styles.description}>{lectureInfo.description}</Text> */}
+        </View>
 
-      {/* 강의상세 내용 - 탭뷰 */}
-      <LectureDetailTabNav lectureInfo={lectureInfo} />
-    </ScrollView>
+        {/* 강의상세 내용 - 탭뷰 */}
+        <LectureDetailTabNav lectureInfo={lectureInfo} />
+      </ScrollView>
+      <BottomButtons TextLeft="이전" TextRight="강의신청" />
+    </View>
   );
 }
 

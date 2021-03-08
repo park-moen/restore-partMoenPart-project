@@ -23,10 +23,10 @@ export default function LectureDetailTabNav({ lectureInfo }) {
         name="일정"
         children={() => <When lectureInfo={lectureInfo} />}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="장소"
         children={() => <Where lectureInfo={lectureInfo} />}
-      />
+      /> */}
       <Tab.Screen
         name="장비대여"
         children={() => <With lectureInfo={lectureInfo} />}
