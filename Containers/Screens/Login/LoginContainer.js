@@ -12,25 +12,25 @@ export default function LoginContainer({ navigation }) {
     secureTextEntry: true,
   });
 
-  //이메일 입력 함수
+  // 이메일 입력 함수
   const textInputChange = email => {
     if (email.length !== 0) {
       setData({
         ...data,
-        email: email,
+        email,
         check_textInputChange: true,
       });
     } else {
       setData({
         ...data,
-        email: email,
+        email,
         check_textInputChange: false,
       });
     }
     console.log('[바뀐 이메일은 이거다 : ', email, ']');
   };
 
-  //패스워드 입력 함수
+  // 패스워드 입력 함수
   const handlePasswordChange = pw => {
     setData({
       ...data,
@@ -39,7 +39,7 @@ export default function LoginContainer({ navigation }) {
     console.log('[바뀐 패스워드는 이거다 : ', pw, ']');
   };
 
-  //패스워드 보일지 말지 결정하는 상태 업데이트 함수
+  // 패스워드 보일지 말지 결정하는 상태 업데이트 함수
   const updateSecureTextEntry = () => {
     setData({
       ...data,
@@ -47,7 +47,7 @@ export default function LoginContainer({ navigation }) {
     });
   };
 
-  //회원가입 버튼 함수
+  // 회원가입 버튼 함수
   const btnSignup = () => {
     navigation.navigate('SignUp');
   };
@@ -61,7 +61,7 @@ export default function LoginContainer({ navigation }) {
     Login({
       email: data.email,
       password: data.password,
-      navigation: navigation,
+      navigation,
     });
   };
 

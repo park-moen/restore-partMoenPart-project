@@ -1,0 +1,89 @@
+// 유저 생성
+POST /sign/signup HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/hal+json
+Content-Length: 117
+Host: localhost:8080
+
+{
+  "email" : "t@test.com",
+  "password" : "1234",
+  "userName" : "엘빈",
+  "age" : 24,
+  "gender" : "MALE"
+}
+
+###
+
+// 유저 로그인
+POST /sign/signin
+Content-Type: application/json;charset=UTF-8
+refreshToken:null
+accessToken:null
+Host: localhost:8080
+
+{
+  "email" : "t7@tadsfadf.com",
+  "password" : "1234"
+}
+
+###
+
+// 토큰 재발급
+GET /sign/refresh HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjE1MjE1OTQ3LCJleHAiOjE2MTUzMjM5NDd9.qa9bGvK4iK-AAyZFGurSiYxRwecCeZlNnMXPzq_ORV8
+IsRefreshToken: true
+Host: localhost:8080
+
+###
+
+// 유저 로그아웃
+POST /sign/logout HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDYsImV4cCI6MTYxNTIxOTU0Nn0.0-HAh6cYI7mHlRHTgHzSRbAfslwTsMj3Q4Jgf5-Ip-M
+IsRefreshToken: false
+Content-Length: 328
+Host: localhost:8080
+
+{
+  "accessToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDYsImV4cCI6MTYxNTIxOTU0Nn0.0-HAh6cYI7mHlRHTgHzSRbAfslwTsMj3Q4Jgf5-Ip-M",
+  "refreshToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjE1MjE1OTQ2LCJleHAiOjE2MTUzMjM5NDZ9.1_4BiW0Fc9C59DMtKIdgKdb4luyBcrv2bo11ucfmOW8"
+}
+
+###
+
+// 강사권한 및 강사정보 추가
+POST /sign/addInstructorRole HTTP/1.1
+Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTUyMTU5NDYsImV4cCI6MTYxNTIxOTU0Nn0.nPm-kZeG-CO6fS5D4I9tEK3MLAcTYa_yVkzHWINp0lc
+IsRefreshToken: false
+Host: localhost:8080
+
+--6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Content-Disposition: form-data; name=profile; filename=profile1.png
+Content-Type: image/*
+
+test data
+--6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Content-Disposition: form-data; name=profile; filename=profile2.jpg
+Content-Type: image/*
+
+test data
+--6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Content-Disposition: form-data; name=certificate; filename=certificate1.jpg
+Content-Type: image/*
+
+test data
+--6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Content-Disposition: form-data; name=certificate; filename=certificate2.jpg
+Content-Type: image/*
+
+test data
+--6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Content-Disposition: form-data; name=request; filename=request
+Content-Type: application/json
+
+{"phoneNumber":"01011112222","groupName":"AIDA","description":"강사 소개"}
+--6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm--
+
+###
