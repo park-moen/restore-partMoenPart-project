@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-
-import SignUpComponent from '../../../Components/Screens/SingUp/SignUpComponent';
 import axios from 'axios';
 
+import SignUpComponent from '../../../Components/Screens/SingUp/SignUpComponent';
 import * as URL from '../../../config/strings';
 
 export default function SignUpContainer({ navigation }) {

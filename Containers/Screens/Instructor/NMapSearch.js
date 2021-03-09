@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,18 +10,14 @@ import { View } from 'react-native-animatable';
 import axios from 'axios';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import TextInputContainer from '../../../Containers/common/TextInputContainer';
+import TextInputContainer from '../../common/TextInputContainer';
 import {
   NMapGeocodingAPI,
   NMapClientID,
   NMapClientSecret,
 } from '../../../config/strings';
 
-const SearchedButtonList = ({
-  addresses = [],
-  navigation,
-  onPress = () => {},
-}) => {
+const SearchedButtonList = ({ addresses = [], onPress = () => {} }) => {
   const result = [];
 
   addresses.forEach((element, index) => {
@@ -44,18 +40,16 @@ const SearchedButtonList = ({
           <Ionicons name="location-sharp" size={28} />
         </View>
         <View>
-          <Text style={styles.roadText}>도로명 : {element.roadAddress}</Text>
-          <Text style={styles.jibunText}>지번 : {element.jibunAddress}</Text>
+          <Text style={styles.roadText}>
+            {`도로명 : ${element.roadAddress}`}
+          </Text>
+          <Text style={styles.jibunText}>
+            {`지번 : ${element.jibunAddress}`}
+          </Text>
           {/* <Text style={styles.englishText}>Singil-dong, Yeongdeungpo-gu, Seoul, Republic of Korea</Text> */}
         </View>
       </TouchableOpacity>,
     );
-    /*
-        인덱스 :  0  값 :   서울특별시 영등포구 신길동
-        인덱스 :  0  값 :   서울특별시 영등포구 신길동
-        인덱스 :  0  값 :   Singil-dong, Yeongdeungpo-gu, Seoul, Republic of Korea
-        인덱스 :  0  값 :   126.9214285 37.5112667
-        */
   });
 
   return result;
@@ -76,16 +70,16 @@ export default function NMapSearch({ navigation, route }) {
       },
     });
     // console.log("NMap API result : ", result.data);
-    const addresses = result.data.addresses; //검색된 주소 오브젝트 배열
-    setAddresses(addresses);
-    console.log('addresses : ', addresses);
+    const searchedAddr = result.data.addresses; // 검색된 주소 오브젝트 배열
+    setAddresses(searchedAddr);
+    console.log('addresses : ', searchedAddr);
   };
 
   const onSearchedItemPress = ({ longitude, latitude }) => {
     navigation.goBack();
     route.params.baseLocationChange({
-      longitude: longitude,
-      latitude: latitude,
+      longitude,
+      latitude,
     });
   };
 
@@ -93,7 +87,7 @@ export default function NMapSearch({ navigation, route }) {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.searchBarContainer}>
         <TextInputContainer
-          hideTitle={true}
+          hideTitle
           style={styles.searchContainer}
           onTextChange={setInput}
           placeholder="도로명, 지번, 영문 주소를 입력하세요."
