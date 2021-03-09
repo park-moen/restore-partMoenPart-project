@@ -1,0 +1,17 @@
+// 강의 예약하기
+POST /reservation HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDgsImV4cCI6MTYxNTIxOTU0OH0.9k_jZVoYWh1lZpMd4Ea7Mv1M0cax1cUKjvSPpIRYp0Y
+IsRefreshToken: false
+Content-Type: application/json;charset=UTF-8
+Content-Length: 213
+Host: localhost:8080
+
+{
+  "scheduleId" : 1,
+  "reservationDateList" : [ {
+    "date" : "2021-04-20",
+    "time" : "14:00:00"
+  } ],
+  "equipmentList" : [ "오리발", "슈트" ],
+  "description" : "발 사이즈 260, 옷 사이즈 L"
+}

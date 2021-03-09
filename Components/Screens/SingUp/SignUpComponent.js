@@ -9,7 +9,6 @@ import InputPwdChk from './InputPwdChk';
 import InputName from './InputName';
 import InputAge from './InputAge';
 import InputGender from './InputGender';
-import InputRole from './InputRole';
 import Buttons from './Buttons';
 
 export default function SignUpComponent({
@@ -19,7 +18,6 @@ export default function SignUpComponent({
   textNameChange,
   textAgeChange,
   textGenderChange,
-  textRoleChange,
   textPasswordChange,
   textConrifmPasswordChange,
   updateChkSecure,
@@ -52,8 +50,6 @@ export default function SignUpComponent({
           <InputAge data={data} textAgeChange={textAgeChange} />
           {/* 성별 입력란 */}
           <InputGender data={data} textGenderChange={textGenderChange} />
-          {/* 유저 유형 선택란 */}
-          <InputRole data={data} textRoleChange={textRoleChange} />
 
           {/* 버튼 */}
           <Buttons
