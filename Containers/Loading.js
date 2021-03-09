@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-//로딩 스크린
+const logoImage = require('../images/logo1.png');
+
+// 로딩 스크린
 function Loading({ navigation }) {
-  //1.5초 뒤에 Login 페이지로 전환
+  // 1.5초 뒤에 Login 페이지로 전환
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('Login');
@@ -17,7 +19,7 @@ function Loading({ navigation }) {
       iterationCount="infinite"
       style={styles.logoContainer}
     >
-      <Image source={require('../images/logo1.png')} style={styles.image} />
+      <Image source={logoImage} style={styles.image} />
     </Animatable.View>
   );
 }
