@@ -136,7 +136,7 @@ export default function NewLectureContainer({ navigation }) {
           title="수업 내용"
           placeholder="수업내용을 입력하세요."
           style={{ flex: 1, marginBottom: 10 }}
-          multiline={true}
+          multiline
         />
       </ScrollView>
 

@@ -26,7 +26,7 @@ export default function LectureFeeAndEquipments({ navigation, route }) {
       studentCount: route.params.data.max,
       region: route.params.data.area,
       swimmingPoolId: 1,
-      equipmentList: equipmentList,
+      equipmentList,
     };
 
     const formdata = new FormData();

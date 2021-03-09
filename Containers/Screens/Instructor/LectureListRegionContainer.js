@@ -26,6 +26,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import TagList from '../../../Components/common/Tags';
 import { LectureListRegionAPIFunc } from '../../../config/strings';
 
+
+const sampleImg = require('../../../asset/lecture1.jpg');
+const heartIcon = require('../../../asset/heart-mind.png');
+
 export default function LectureListRegionContainer({ navigation }) {
   const [searchText, setSearchText] = useState('');
   const [lectures, setLectures] = useState([]);
@@ -56,26 +60,7 @@ export default function LectureListRegionContainer({ navigation }) {
   const PrintLectures = () => {
     const array = [];
 
-    // 필터
-    // 지역 region
-    // 종류 classKind (프리다이빙, 스쿠버다이빙)
-    // 출력
-    // 자격증 레벨 certificateKind
-    // 자격단체  groupName
-    // 강의 이미지 배열 imageURL
-    // 수강료 price
-    // 강의제목 title
-
-    // "id" : 5,
-    // "title" : "강의",
-    // "classKind" : "스쿠버 다이빙",
-    // "groupName" : "AIDA",
-    // "certificateKind" : "Level1",
-    // "price" : 100000,
-    // "region" : "서울",
-    // "imageURL" : [ "Image URL 주소" ]
-
-    for (let i = 0; i < lectures.length; i++) {
+    for (let i = 0; i < lectures.length; i+=1) {
       const imageUri = lectures[i].imageURL[0];
       const [heart, setHeart] = useState(false);
       array.push(
@@ -96,7 +81,7 @@ export default function LectureListRegionContainer({ navigation }) {
               }}
             >
               <Image
-                source={require('../../../asset/lecture1.jpg')}
+                source={sampleImg} // source={{ uri: imageUri }} 실제 s3에서 이미지 가져오는 코드
                 style={{
                   width: '100%',
                   height: '100%',
@@ -104,7 +89,6 @@ export default function LectureListRegionContainer({ navigation }) {
                   borderTopRightRadius: 10,
                 }}
               />
-              {/* <Image source={{ uri: imageUri }}  />  실제 s3에서 이미지 가져오는 코드 */}
               <View
                 style={
                   ({
@@ -135,7 +119,7 @@ export default function LectureListRegionContainer({ navigation }) {
                   }}
                 >
                   <Image
-                    source={require('../../../asset/heart-mind.png')}
+                    source={heartIcon}
                     style={{ width: 30, height: 30 }}
                   />
                 </TouchableOpacity>
@@ -167,7 +151,7 @@ export default function LectureListRegionContainer({ navigation }) {
               {`₩${lectures[i].price}`}
             </Text>
           </TouchableOpacity>
-        </View>,
+        </View>
       );
     }
 
@@ -195,7 +179,7 @@ export default function LectureListRegionContainer({ navigation }) {
         <View style={styles.saleContainer}>
           <Text style={styles.saleTitle}>현재 모집중인 강의</Text>
           {lectures.length !== 0 ? (
-            <ScrollView horizontal={true} style={styles.listContainer}>
+            <ScrollView horizontal style={styles.listContainer}>
               <PrintLectures />
             </ScrollView>
           ) : null}
@@ -205,7 +189,7 @@ export default function LectureListRegionContainer({ navigation }) {
         <View style={styles.saleContainer}>
           <Text style={styles.saleTitle}>현재 모집중인 강의</Text>
           {lectures.length !== 0 ? (
-            <ScrollView horizontal={true} style={styles.listContainer}>
+            <ScrollView horizontal style={styles.listContainer}>
               <PrintLectures />
             </ScrollView>
           ) : null}
@@ -215,7 +199,7 @@ export default function LectureListRegionContainer({ navigation }) {
         <View style={styles.saleContainer}>
           <Text style={styles.saleTitle}>현재 모집중인 강의</Text>
           {lectures.length !== 0 ? (
-            <ScrollView horizontal={true} style={styles.listContainer}>
+            <ScrollView horizontal style={styles.listContainer}>
               <PrintLectures />
             </ScrollView>
           ) : null}

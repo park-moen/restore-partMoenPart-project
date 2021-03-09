@@ -5,16 +5,15 @@ import { Avatar } from 'react-native-paper';
 
 import TagList from '../../../../Components/common/Tags';
 
+const sampleProfile = require('../../../../asset/person.jpeg');
+
 /**
  * 강사 프로필 간략 소개
  */
 const InstructorInfo = ({ instructorId }) => {
   return (
     <View style={styles1.container}>
-      <Avatar.Image
-        size={90}
-        source={require('../../../../asset/person.jpeg')}
-      />
+      <Avatar.Image size={90} source={sampleProfile} />
       <View style={styles1.infoContainer}>
         <Text style={styles1.name}>김동자</Text>
         <TagList tags={['AIDA', '평점 4.7', '1000명']} />

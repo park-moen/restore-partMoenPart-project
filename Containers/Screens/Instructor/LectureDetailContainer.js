@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
-  SafeAreaView,
-  Button,
   Image,
   StyleSheet,
   ScrollView,
@@ -16,7 +14,9 @@ import TagList from '../../../Components/common/Tags';
 import LectureDetailTabNav from './LectureDetail/LectureDetailTabNav';
 import BottomButtons from '../../common/BottomButtons';
 
-export default function LectureDetailContainer({ navigation, route }) {
+const sampleImg = require('../../../asset/lecture1.jpg');
+
+export default function LectureDetailContainer({ route }) {
   const [lectureInfo, setLectureInfo] = useState({});
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function LectureDetailContainer({ navigation, route }) {
         {/* 강의 이미지 슬라이드 */}
         <View style={styles.imageContainer}>
           <Image
-            source={require('../../../asset/lecture1.jpg')}
+            source={sampleImg}
             resizeMode="cover"
             style={styles.iamge}
           />

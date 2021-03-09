@@ -18,8 +18,8 @@ Host: localhost:8080
 // 유저 로그인
 POST /sign/signin
 Content-Type: application/json;charset=UTF-8
-refreshToken:null
-accessToken:null
+refreshToken:aaa
+accessToken:aaa
 Host: localhost:8080
 
 {

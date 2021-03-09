@@ -1,9 +1,4 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
-import NaverMap from '../../common/NaverMap';
-
-import ButtomButtons from '../../common/BottomButtons';
-import { TextInputStatic } from '../../common/TextInputContainer';
 
 import LectureLocationAddComponent from '../../../Components/Screens/Instructor/LectureLocationAddComponent';
 

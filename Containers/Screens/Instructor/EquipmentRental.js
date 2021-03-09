@@ -14,7 +14,7 @@ import TextInputContainer from '../../common/TextInputContainer';
 const RenderEquipments = ({ equipmentList, setEquipmentList }) => {
   const array = [];
 
-  for (let i = 0; i < equipmentList.length; i++) {
+  for (let i = 0; i < equipmentList.length; i+=1) {
     const onEquipmentNameInput = input =>
       setEquipmentList(
         equipmentList
@@ -44,14 +44,14 @@ const RenderEquipments = ({ equipmentList, setEquipmentList }) => {
         <TextInputContainer
           onTextChange={onEquipmentNameInput}
           title="장비대여"
-          hideTitle={true}
+          hideTitle
           placeholder="장비명을 입력하세요."
           style={styles.textInputContainer}
         />
         <TextInputContainer
           onTextChange={onPriceInput}
           title="장비대여"
-          hideTitle={true}
+          hideTitle
           placeholder="대여료를 입력하세요."
           style={styles.textInputContainer}
         />

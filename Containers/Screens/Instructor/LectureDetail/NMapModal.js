@@ -1,11 +1,9 @@
 import React from 'react';
 import {
   Modal,
-  StyleSheet,
   TouchableHighlight,
   View,
   Text,
-  Platform,
   TouchableWithoutFeedback,
 } from 'react-native';
 
@@ -82,61 +80,3 @@ export default function NMapModal({
     </Modal>
   );
 }
-
-// const styles = StyleSheet.create({
-//   // 전체 컨테이너 스타일
-//   centeredView: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'flex-start',
-//     marginTop: 22,
-//     flexDirection: 'row',
-//     // height: 500,
-//   },
-
-//   // 팝업될 모달 스타일
-//   modalView: {
-//     flex: 1,
-//     margin: 10,
-//     backgroundColor: 'white',
-//     borderRadius: 20,
-//     alignItems: 'center',
-
-//     // 모달 그림자 설정
-//     ...Platform.select({
-//       ios: {
-//         shadowColor: '#009900',
-//         shadowOffset: {
-//           width: 0,
-//           height: 2,
-//         },
-//         shadowOpacity: 1,
-//         shadowRadius: 5,
-//       },
-//       android: {
-//         elevation: 5,
-//       },
-//     }),
-//   },
-
-//   // 버튼
-//   openButton: {
-//     backgroundColor: '#009900',
-//     borderRadius: 20,
-//     padding: 10,
-//     elevation: 2,
-//   },
-
-//   // 버튼 안의 텍스트
-//   textStyle: {
-//     color: 'white',
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-
-//   // 모달 안의 텍스트
-//   modalText: {
-//     marginBottom: 15,
-//     textAlign: 'center',
-//   },
-// });

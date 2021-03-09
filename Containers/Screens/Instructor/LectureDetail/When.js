@@ -182,7 +182,9 @@ const SchedulesUserSelected = ({ schedules }) => {
           {period > 1 ? (
             <Text
               style={stylesSingleSchedule.titleText}
-            >{`다회차 클래스 (${period}일)`}</Text>
+            >
+              {`다회차 클래스 (${period}일)`}
+            </Text>
           ) : (
             <Text style={stylesSingleSchedule.titleText}>원데이 클래스</Text>
           )}

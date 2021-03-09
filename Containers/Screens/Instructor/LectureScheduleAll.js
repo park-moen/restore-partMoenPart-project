@@ -63,15 +63,15 @@ export function LectureSchedule({
     console.log('selected day : ', day);
   },
 }) {
-  const [schedules2, setSchedules2] = useState({});
+  const [markedDates, setMarkedDates] = useState({});
 
   useEffect(() => {
     const getLectureDetail = async () => {
       const res = await axios.get(LectureDetailAPIFunc({ id: lectureId }));
-      const schedules = res.data.schedules;
+      const {schedules} = res.data;
       // console.log('getDetail : ', schedules);
 
-      schedules.forEach((element, index) => {
+      schedules.forEach(element => {
         // console.log('-----일정-----'); // 일정 하나 (일회차, 다회차 큰 틀에서 하나)
 
         // 랜덤 색상 설정
@@ -80,13 +80,13 @@ export function LectureSchedule({
         element.scheduleDetails.forEach(e => {
           // console.log('single schedule : ', e);
 
-          const tmpArray = schedules2[e.date] ? schedules2[e.date].periods : [];
+          const tmpArray = markedDates[e.date] ? markedDates[e.date].periods : [];
 
           tmpArray.push({ startingDay: false, endingDay: false, color });
-          const newObjs = Object.assign(schedules2, {
+          const newObjs = Object.assign(markedDates, {
             [e.date]: { periods: tmpArray },
           });
-          setSchedules2(JSON.parse(JSON.stringify(newObjs)));
+          setMarkedDates(JSON.parse(JSON.stringify(newObjs)));
         });
       });
     };
@@ -104,7 +104,7 @@ export function LectureSchedule({
         </View>
       )}
       <Calendar
-        markedDates={schedules2}
+        markedDates={markedDates}
         markingType="multi-period"
         onDayPress={onDayPress}
       />
