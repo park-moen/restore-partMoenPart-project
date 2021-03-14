@@ -1,41 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
 import { LectureSchedule } from '../LectureScheduleAll';
 import NMapModal from './NMapModal';
+// api
+import { GetLectureSchedule } from '../../../../config/strings';
+
 
 /**
  *
  * @component 구체적인 하루에 대한 컴포넌트
  */
-const EachDay = ({ schedule, order, array }) => {
+const EachDay = ({
+  schedule,
+  order,
+  array,
+  // maxNumber
+}) => {
   const [visible, setVisible] = useState(false);
   const [mapVisible, setMapVisible] = useState(false);
-  console.log('EachDay schedule : ', schedule);
+  // console.log('EachDay schedule : ', schedule);
 
-  const date = schedule.date;
-  const lectureTime = schedule.lectureTime;
+  const { date } = schedule; // 강의날짜
+  const { lectureTime } = schedule; // 소요시간
   const where = schedule.location.address;
   const gps = {
     latitude: schedule.location.latitude,
     longitude: schedule.location.longitude,
   };
-  const times = schedule.startTimes; // 예약가능시간 배열
-
-  console.log('date : ', date);
+  const times = schedule.scheduleTimeDtoList; // 예약가능시간 배열
+  // console.log('times : ', times);
 
   const TimesComponent = () => {
     const result = [];
 
-    times.forEach((element, i) => {
+    times.forEach((eachTime, i) => {
       result.push(
         <View
-          key={i}
+          // eslint-disable-next-line react/no-array-index-key
+          key={`eachTime${i}`}
           style={{ marginLeft: 10, flexDirection: 'row', alignItems: 'center' }}
         >
-          <Text style={stylesEachDay.text}>{`- ${element}`}</Text>
-          <Text style={stylesEachDay.text}>5명/10명</Text>
+          <Text style={stylesEachDay.text}>{`- ${eachTime.startTime}`}</Text>
+          <Text style={stylesEachDay.text}>
+            {`${eachTime.currentNumber}/10명`}
+          </Text>
         </View>,
       );
     });
@@ -152,26 +163,36 @@ const stylesEachDay = StyleSheet.create({
  *
  * @component 유저가 선택한 날짜와 관련된 일정 출력
  */
-const SchedulesUserSelected = ({ schedules }) => {
-  console.log('schedules', schedules);
+const SchedulesUserSelected = ({ schedules, maxNumber }) => {
   const result = [];
 
   schedules.forEach((singleSchedule, i) => {
     const singleScheduleComponents = [];
-    console.log('singleSchedule : ', singleSchedule);
+    // console.log('singleSchedule : ', singleSchedule);
 
-    const period = singleSchedule.period;
+    const { period } = singleSchedule;
 
     // 단일 일정 내의 구체적인 날짜와 시간 처리
     singleSchedule.scheduleDetails.forEach((singleDay, y, array) => {
       singleScheduleComponents.push(
-        <EachDay schedule={singleDay} order={y} array={array} />,
+        <EachDay
+          // eslint-disable-next-line react/no-array-index-key
+          key={`singleDay${y}`}
+          schedule={singleDay}
+          order={y}
+          array={array}
+          maxNumber={maxNumber}
+        />,
       );
     });
 
     result.push(
       // 단일 일정에 대한 컨테이너
-      <View key={i} style={stylesSingleSchedule.rootContainer}>
+      <View
+        // eslint-disable-next-line react/no-array-index-key
+        key={`singleSchedule${i}`}
+        style={stylesSingleSchedule.rootContainer}
+      >
         <View
           style={{
             ...stylesSingleSchedule.titleContainer,
@@ -180,9 +201,7 @@ const SchedulesUserSelected = ({ schedules }) => {
           }}
         >
           {period > 1 ? (
-            <Text
-              style={stylesSingleSchedule.titleText}
-            >
+            <Text style={stylesSingleSchedule.titleText}>
               {`다회차 클래스 (${period}일)`}
             </Text>
           ) : (
@@ -224,25 +243,72 @@ const stylesSingleSchedule = StyleSheet.create({
  *
  * @component 강의상세페이지 일정탭 컴포넌트
  */
-export default function When({ lectureInfo }) {
-  const schedules = lectureInfo.schedules; // 전체 일정 오브젝트 배열
+export default function When({ lectureId }) {
+  const [schedules, setSchedules] = useState([{}]); // 전체 일정 오브젝트 배열
+  // const [max, setMax] = useState(0); // 전체 일정 오브젝트 배열
+  // const lectureId = lectureInfo.id;
+
+  useEffect(() => {
+    const fetch = async () => {
+      if(lectureId !== undefined){
+      // 백엔드에서 일정 받아오기
+      const response = await axios.get(GetLectureSchedule, {
+        params: {lectureId}
+      });
+
+      console.log("일정좀 받아라", response);
+
+        // eslint-disable-next-line no-shadow
+        const { scheduleDtoList } = response.data._embedded;
+        // console.log('fetched schedules : ', scheduleDtoList);
+        // console.log('max : ', max, maxNumber);
+        setSchedules(scheduleDtoList);
+        // setMax(maxNumber);
+      }
+      
+
+        /* 
+        일정 파싱
+        scheduleDtoList.forEach(singleSchedule => {
+          // console.log('single schedule : ', singleSchedule);
+          const { scheduleDetails } = singleSchedule;
+          scheduleDetails.forEach(singleDay => {
+            // console.log('하루에 대한 일정 : ', singleDay);
+            // console.log('날짜: ', singleDay.date);
+            singleDay.scheduleTimeDtoList.forEach(eachTime => {
+              // console.log('startTime : ', eachTime.startTime);
+              // console.log('current number : ', eachTime.currentNumber);
+            });
+          });
+        }); 
+        */
+    };
+
+    if(lectureId !== undefined)
+      fetch();
+
+  }, [lectureId]);
 
   const [filteredSchedules, setFilteredSchedules] = useState([]);
 
   const onDayPress = selectedDay => {
-    const dayFilter = schedule => {
-      const scheduleDetails = schedule.scheduleDetails; // 단일 일정 상세정보 (날짜별 오브젝트 배열)
-      const filteredSchedules = scheduleDetails.filter(singleScheduleDetail => {
-        return singleScheduleDetail.date === selectedDay.dateString; // return T/F
+    const dayFilter = singleSchedule => {
+      // console.log('dayFilter singleSchedule : ', singleSchedule);
+      const { scheduleDetails } = singleSchedule; // 단일 일정 상세정보 (날짜별 오브젝트 배열)
+      // console.log('When : scheduleDetails : ', scheduleDetails);
+      const filteredScheduleDetails = scheduleDetails.filter(singleDay => {
+        return singleDay.date === selectedDay.dateString; // return T/F
       });
 
-      return filteredSchedules.length >= 1;
+      return filteredScheduleDetails.length >= 1;
     };
 
-    const filteredSchedules = schedules.filter(dayFilter);
-    setFilteredSchedules(filteredSchedules);
-
-    console.log('filteredSchedules : ', filteredSchedules);
+    if (schedules) {
+      // eslint-disable-next-line no-shadow
+      const filteredSchedules = schedules.filter(dayFilter); // 전체 일정에서 필터를 걺
+      // console.log('선택된 날짜와 관련된 일정들 : ', filteredSchedules);
+      setFilteredSchedules(filteredSchedules);
+    }
   };
 
   return (
@@ -251,7 +317,10 @@ export default function When({ lectureInfo }) {
       {/* 실제 강의 id랑 매칭 시키려면 lectureId={lectureInfo.id} */}
 
       {filteredSchedules.length !== 0 ? (
-        <SchedulesUserSelected schedules={filteredSchedules} />
+        <SchedulesUserSelected
+          schedules={filteredSchedules}
+          // maxNumber={maxNumber}
+        />
       ) : null}
     </View>
   );

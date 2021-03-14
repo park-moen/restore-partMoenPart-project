@@ -37,7 +37,7 @@ export default function LectureNew() {
         dropDownStyle={{ backgroundColor: '#fafafa' }}
         onChangeItem={item => {
           setCountry(item.value);
-          console.log('선택된 아이템 : ', item.value);
+          // // console.log('선택된 아이템 : ', item.value);
         }}
       />
     </SafeAreaView>

@@ -40,7 +40,7 @@ const styles1 = StyleSheet.create({
  * @screen 강의소개
  */
 export default function What({ lectureInfo }) {
-  console.log('schedules : ', lectureInfo);
+  // // console.log('schedules : ', lectureInfo);
   return (
     <View style={styles2.rootContainer}>
       <InstructorInfo instructorId={lectureInfo.instructorId} />

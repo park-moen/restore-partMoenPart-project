@@ -16,6 +16,9 @@ export default function LectureScheduleAdd({ navigation, route }) {
   const [locations, setLocations] = useState({}); // {"2021-02-17": {"latitude": 37.56249100503885, "longitude": 126.97587374338121, "name": "잠실수영장"}, ... }
   // 예약시간 지정하고 있는 현재 날짜 관리
   const [curDateIndex, setCurDateIndex] = useState(0);
+  // 최대 인원
+  const [max, setMax] = useState('');
+
   /**
    *
    * @function 날짜선택
@@ -120,16 +123,18 @@ export default function LectureScheduleAdd({ navigation, route }) {
         });
       });
 
+      // console.log('max : ', max);
       const res = await axios.post(LectureAddScheduleAPI, {
+        maxNumber: max,
         lectureId: route.params.id,
         period: selectedScheduleArray.length,
         detailReqList,
       });
 
-      console.log('일정 추가 결과 : ', res);
+      // // console.log('일정 추가 결과 : ', res);
       navigation.navigate('LectureScheduleAll');
     } catch (err) {
-      console.log('일정 추가에 실패하였습니다. ', err);
+      // // console.log('일정 추가에 실패하였습니다. ', err);
     }
   };
 
@@ -149,6 +154,8 @@ export default function LectureScheduleAdd({ navigation, route }) {
     <LectureScheduleAddComponent
       func={func}
       selectedScheduleArray={selectedScheduleArray}
+      max={max}
+      setMax={setMax}
     />
   );
 }

@@ -1,13 +1,13 @@
 // 강의 일정 생성
 POST /schedule HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDgsImV4cCI6MTYxNTIxOTU0OH0.9k_jZVoYWh1lZpMd4Ea7Mv1M0cax1cUKjvSPpIRYp0Y
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU0ODE5ODcsImV4cCI6MTYxNTQ4NTU4N30.qAjNe-w-Ql11fI9ZeuSmM_gFPDg0HNPWN7gnU8lMqkQ
 IsRefreshToken: false
 Content-Length: 752
 Host: localhost:8080
 
 {
-  "lectureId" : 1,
+  "lectureId" : 2,
   "period" : 3,
   "maxNumber" : 5,
   "detailReqList" : [ {
@@ -43,7 +43,7 @@ Host: localhost:8080
 ###
 
 // 강의 일정 목록 읽기
-GET /schedule?lectureId=2 HTTP/1.1
+GET /schedule?lectureId=53 HTTP/1.1
 Host: localhost:8080
 
 ###

@@ -32,7 +32,7 @@ export default function SignUpContainer({ navigation }) {
       email,
       chk_email: email.length !== 0,
     });
-    console.log('email 입력값 : ', email);
+    // // console.log('email 입력값 : ', email);
   };
 
   // name 입력
@@ -42,7 +42,7 @@ export default function SignUpContainer({ navigation }) {
       name,
       chk_name: name.length !== 0,
     });
-    console.log('name 입력값 : ', name);
+    // // console.log('name 입력값 : ', name);
   };
 
   // age 입력
@@ -52,7 +52,7 @@ export default function SignUpContainer({ navigation }) {
       age,
       chk_age: age.length !== 0,
     });
-    console.log('age 입력값 : ', age);
+    // // console.log('age 입력값 : ', age);
   };
 
   // gender 입력
@@ -62,7 +62,7 @@ export default function SignUpContainer({ navigation }) {
       gender,
       chk_gender: gender.length !== 0,
     });
-    console.log('gender 입력값 : ', gender);
+    // // console.log('gender 입력값 : ', gender);
   };
 
   // 패스워드 입력값 다루기
@@ -72,7 +72,7 @@ export default function SignUpContainer({ navigation }) {
       password: pw,
       chk_pw: pw.length !== 0,
     });
-    console.log('pw 입력값 : ', pw);
+    // // console.log('pw 입력값 : ', pw);
   };
 
   // 패스워드 확인값 다루기
@@ -81,7 +81,7 @@ export default function SignUpContainer({ navigation }) {
       ...data,
       confirmPassword: chk_pw,
     });
-    console.log('chk_pw 입력값 : ', chk_pw);
+    // // console.log('chk_pw 입력값 : ', chk_pw);
   };
 
   // 패스워드 보일지 말지 결정하는 상태 업데이트 함수
@@ -93,22 +93,16 @@ export default function SignUpContainer({ navigation }) {
   };
 
   const submitSingUP = () => {
-    if (data.password !== data.confirmPassword)
-      console.log('패스워드가 서로 일치하지 않습니다.');
-    else if (
+    if (data.password !== data.confirmPassword) {
+      // // console.log('패스워드가 서로 일치하지 않습니다.');
+    } else if (
       data.chk_email &&
       data.chk_pw &&
       data.chk_name &&
       data.chk_age &&
       data.chk_gender
     ) {
-      console.log(
-        data.email,
-        data.password,
-        data.userName,
-        data.age,
-        data.gender,
-      );
+      // console.log(data.email, data.password, data.name, data.age, data.gender);
       axios
         .post(URL.SignUp, {
           email: data.email,
@@ -118,18 +112,17 @@ export default function SignUpContainer({ navigation }) {
           gender: data.gender,
         })
         .then(res => {
-          console.log(res);
+           console.log(res);
           navigation.navigate('Login');
         })
-        .catch(err => console.log('회원가입 에러 : ', err.message));
+        .catch(err =>  console.log('회원가입 에러 : ', err.message));
     } else {
-      console.log('가입 정보를 다 채워주세요.');
-
-      console.log('data.chk_email ', data.chk_email);
-      console.log('data.chk_pw ', data.chk_pw);
-      console.log('data.chk_name ', data.chk_name);
-      console.log('data.chk_age ', data.chk_age);
-      console.log('data.chk_gender ', data.chk_gender);
+      // // console.log('가입 정보를 다 채워주세요.');
+      // // console.log('data.chk_email ', data.chk_email);
+      // // console.log('data.chk_pw ', data.chk_pw);
+      // // console.log('data.chk_name ', data.chk_name);
+      // // console.log('data.chk_age ', data.chk_age);
+      // // console.log('data.chk_gender ', data.chk_gender);
     }
   };
 

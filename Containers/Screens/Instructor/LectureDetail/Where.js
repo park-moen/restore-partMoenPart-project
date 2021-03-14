@@ -12,7 +12,7 @@ const SingleSchedule = ({ element, onButtonClick = () => {} }) => {
   const result = [];
 
   element.scheduleDetails.forEach((singleDay, y) => {
-    const {location} = singleDay;
+    const { location } = singleDay;
     result.push(
       <View key={singleDay.id} style={styles1.container}>
         <Text style={styles1.text}>{`${y + 1}회차`}</Text>
@@ -60,7 +60,7 @@ export default function Where({ lectureInfo }) {
   const [visible, setVisible] = useState(false);
   const [locName, setLocName] = useState('');
 
-  const {schedules} = lectureInfo;
+  const { schedules } = lectureInfo;
   if (schedules === undefined) return null;
 
   schedules.forEach(element => {
@@ -82,7 +82,7 @@ export default function Where({ lectureInfo }) {
       </View>,
     );
   });
-  console.log('장소를 알고싶다 : ', schedules);
+  // // console.log('장소를 알고싶다 : ', schedules);
 
   const onPressExit = () => {
     setVisible(false);

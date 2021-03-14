@@ -37,7 +37,7 @@ export default function LectureFeeAndEquipments({ navigation, route }) {
       type: 'application/json',
     });
 
-    console.log('image type : ', route.params.image.type);
+    // // console.log('image type : ', route.params.image.type);
     formdata.append('fileList', {
       name: 'hello.jpg',
       type: route.params.image.type,

@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 
 import { LectureDetailAPIFunc } from '../../../config/strings';
@@ -34,11 +28,7 @@ export default function LectureDetailContainer({ route }) {
       <ScrollView style={styles.rootContainer}>
         {/* 강의 이미지 슬라이드 */}
         <View style={styles.imageContainer}>
-          <Image
-            source={sampleImg}
-            resizeMode="cover"
-            style={styles.iamge}
-          />
+          <Image source={sampleImg} resizeMode="cover" style={styles.iamge} />
         </View>
 
         {/* 강의 기본내용 */}

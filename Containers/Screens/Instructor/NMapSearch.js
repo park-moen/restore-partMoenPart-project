@@ -21,10 +21,10 @@ const SearchedButtonList = ({ addresses = [], onPress = () => {} }) => {
   const result = [];
 
   addresses.forEach((element, index) => {
-    console.log('인덱스 : ', index, ' 값 :  ', element.roadAddress);
-    console.log('인덱스 : ', index, ' 값 :  ', element.jibunAddress);
-    console.log('인덱스 : ', index, ' 값 :  ', element.englishAddress);
-    console.log('인덱스 : ', index, ' 값 :  ', element.x, element.y);
+    // // console.log('인덱스 : ', index, ' 값 :  ', element.roadAddress);
+    // // console.log('인덱스 : ', index, ' 값 :  ', element.jibunAddress);
+    // // console.log('인덱스 : ', index, ' 값 :  ', element.englishAddress);
+    // // console.log('인덱스 : ', index, ' 값 :  ', element.x, element.y);
 
     result.push(
       <TouchableOpacity
@@ -69,10 +69,10 @@ export default function NMapSearch({ navigation, route }) {
         query: input,
       },
     });
-    // console.log("NMap API result : ", result.data);
+    // // // console.log("NMap API result : ", result.data);
     const searchedAddr = result.data.addresses; // 검색된 주소 오브젝트 배열
     setAddresses(searchedAddr);
-    console.log('addresses : ', searchedAddr);
+    // // console.log('addresses : ', searchedAddr);
   };
 
   const onSearchedItemPress = ({ longitude, latitude }) => {

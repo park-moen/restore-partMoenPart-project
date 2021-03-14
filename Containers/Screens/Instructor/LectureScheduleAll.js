@@ -3,8 +3,8 @@ import { View, Text, SafeAreaView } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 import axios from 'axios';
-import { LectureDetailAPIFunc } from '../../../config/strings';
 import Button from '../../common/Button';
+import { getLectureSchedule } from '../../../lib/api/Lecture';
 
 /**
  * 달력 환경 설정
@@ -60,31 +60,31 @@ export function LectureSchedule({
   lectureId,
   hideTitle = 'false',
   onDayPress = day => {
-    console.log('selected day : ', day);
+    // console.log('selected day : ', day);
   },
 }) {
   const [markedDates, setMarkedDates] = useState({});
 
   useEffect(() => {
     const getLectureDetail = async () => {
-      const res = await axios.get(LectureDetailAPIFunc({ id: lectureId }));
-      const {schedules} = res.data;
-      // console.log('getDetail : ', schedules);
+      const response = await getLectureSchedule({ lectureId });
+      const { scheduleDtoList } = response.data._embedded; // 강의의 전체 일정
 
-      schedules.forEach(element => {
-        // console.log('-----일정-----'); // 일정 하나 (일회차, 다회차 큰 틀에서 하나)
-
+      scheduleDtoList.forEach(singleSchedule => {
+        // 일정 하나
         // 랜덤 색상 설정
         const color = `hsl(${360 * Math.random()}, 70%, 60%)`;
+        const { scheduleDetails } = singleSchedule;
+        scheduleDetails.forEach(singleDay => {
+          // 일정 내부의 하루하루
 
-        element.scheduleDetails.forEach(e => {
-          // console.log('single schedule : ', e);
-
-          const tmpArray = markedDates[e.date] ? markedDates[e.date].periods : [];
+          const tmpArray = markedDates[singleDay.date]
+            ? markedDates[singleDay.date].periods
+            : [];
 
           tmpArray.push({ startingDay: false, endingDay: false, color });
           const newObjs = Object.assign(markedDates, {
-            [e.date]: { periods: tmpArray },
+            [singleDay.date]: { periods: tmpArray },
           });
           setMarkedDates(JSON.parse(JSON.stringify(newObjs)));
         });

@@ -11,12 +11,12 @@ export default function LectureLocationAdd({ navigation, route }) {
 
   const baseLocationChange = ({ latitude, longitude }) => {
     setBaseLocation({ latitude, longitude });
-    console.log('LectureLocation에서도 동기화 됨 : ', baseLocation);
+    // // console.log('LectureLocation에서도 동기화 됨 : ', baseLocation);
   };
 
   const pickerChange = ({ latitude, longitude }) => {
     setPicker({ latitude, longitude });
-    console.log('LectureLocation에서도 동기화 됨 : ', picker);
+    // // console.log('LectureLocation에서도 동기화 됨 : ', picker);
   };
 
   const onSearchbar = () => {

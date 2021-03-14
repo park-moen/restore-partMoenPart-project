@@ -2,7 +2,7 @@
 // 강의 생성
 POST /lecture/create HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDQsImV4cCI6MTYxNTIxOTU0NH0.JB-qtX-0ade84_1jryVyi6WFfgiswE4ROk7PzXFdxLo
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU0Nzg5MDcsImV4cCI6MTYxNTQ4MjUwN30.RObH4fufX-eNgCij23K6mOg-LZ4XpWTwzOLYOaC5wm0
 IsRefreshToken: false
 Host: localhost:8080
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 ###
 
 //강의 삭제
-DELETE /lecture/delete?id=1 HTTP/1.1
+DELETE /lecture/delete?id=2 HTTP/1.1
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDQsImV4cCI6MTYxNTIxOTU0NH0.JB-qtX-0ade84_1jryVyi6WFfgiswE4ROk7PzXFdxLo
 IsRefreshToken: false
 Host: localhost:8080
@@ -62,7 +62,7 @@ Host: localhost:8080
 // 강의 단건 상세조회
 GET /lecture/detail?id=2
 Content-Type: application/json;charset=UTF-8
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTUyMTczMDQsImV4cCI6MTYxNTIyMDkwNH0.1WAXEIyB31vEAIidyxKRUhV0WA9n_dfAy5dqh7ytdy0
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU0ODE5ODcsImV4cCI6MTYxNTQ4NTU4N30.qAjNe-w-Ql11fI9ZeuSmM_gFPDg0HNPWN7gnU8lMqkQ
 IsRefreshToken: false
 Host: localhost:8080
 
@@ -70,6 +70,6 @@ Host: localhost:8080
 
 // 지역별  강의 조회
 GET /lecture/list/region?region=%EC%84%9C%EC%9A%B8&page=1&size=5 HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiJdLCJpYXQiOjE2MTUyMTU5NDQsImV4cCI6MTYxNTIxOTU0NH0.JB-qtX-0ade84_1jryVyi6WFfgiswE4ROk7PzXFdxLo
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU0ODE5ODcsImV4cCI6MTYxNTQ4NTU4N30.qAjNe-w-Ql11fI9ZeuSmM_gFPDg0HNPWN7gnU8lMqkQ
 IsRefreshToken: false
 Host: localhost:8080

@@ -6,7 +6,7 @@ Content-Length: 117
 Host: localhost:8080
 
 {
-  "email" : "t@test.com",
+  "email" : "t2@test.com",
   "password" : "1234",
   "userName" : "엘빈",
   "age" : 24,
@@ -18,12 +18,10 @@ Host: localhost:8080
 // 유저 로그인
 POST /sign/signin
 Content-Type: application/json;charset=UTF-8
-refreshToken:aaa
-accessToken:aaa
 Host: localhost:8080
 
 {
-  "email" : "t7@tadsfadf.com",
+  "email" : "t2@test.com",
   "password" : "1234"
 }
 

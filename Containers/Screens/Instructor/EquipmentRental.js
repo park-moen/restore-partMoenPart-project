@@ -14,7 +14,7 @@ import TextInputContainer from '../../common/TextInputContainer';
 const RenderEquipments = ({ equipmentList, setEquipmentList }) => {
   const array = [];
 
-  for (let i = 0; i < equipmentList.length; i+=1) {
+  for (let i = 0; i < equipmentList.length; i += 1) {
     const onEquipmentNameInput = input =>
       setEquipmentList(
         equipmentList
@@ -65,8 +65,8 @@ const RenderEquipments = ({ equipmentList, setEquipmentList }) => {
 export default function EquipmentRental({ equipmentList, setEquipmentList }) {
   const initUser = { name: '', price: 0 };
 
-  console.log('장비 개수 : ', equipmentList.length);
-  console.log('장비 상태 : ', equipmentList);
+  // // console.log('장비 개수 : ', equipmentList.length);
+  // // console.log('장비 상태 : ', equipmentList);
 
   return (
     <View style={styles.container}>

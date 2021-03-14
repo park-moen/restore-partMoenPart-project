@@ -6,14 +6,14 @@ import { View, StyleSheet, Text } from 'react-native';
  * @component 대여장비 목록
  */
 export default function With({ lectureInfo }) {
-  const {equipmentList} = lectureInfo;
+  const { equipmentList } = lectureInfo;
 
   if (equipmentList === undefined) return null;
 
   const array = [];
-  equipmentList.forEach(element => {
+  equipmentList.forEach((element, i) => {
     array.push(
-      <View key={element.id} style={styles.equipmentContainer}>
+      <View key={i} style={styles.equipmentContainer}>
         <Text style={styles.text}>{element.name}</Text>
         <Text style={styles.text}>{`₩${element.price}`}</Text>
       </View>,

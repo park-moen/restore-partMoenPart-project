@@ -6,7 +6,7 @@ import TimeSelectorContainer from '../../../Containers/common/TimeSelector';
 import ButtomButtons from '../../../Containers/common/BottomButtons';
 import TextInputContainer from '../../../Containers/common/TextInputContainer';
 import Button from '../../../Containers/common/Button';
-
+import SelectButton from '../../../Containers/common/SelectButton';
 /**
  *
  * @component 장소 하나 선택 컴포넌트
@@ -109,7 +109,12 @@ const styels2 = StyleSheet.create({
 export default function LectureScheduleAddComponent({
   selectedScheduleArray,
   func,
+  max,
+  setMax,
 }) {
+  // 인원수 1부터 시작
+  const personNumber = Array.from({ length: 50 }, (v, i) => i + 1);
+
   return (
     <SafeAreaView style={styles3.SafeAreaView}>
       <ScrollView>
@@ -132,6 +137,16 @@ export default function LectureScheduleAddComponent({
                 onTextChange={func.onLectureTimeChange}
                 placeholder="예) 1시간30분이라면 90 입력"
                 style={{ padding: 10 }}
+              />
+
+              <SelectButton
+                placeholder="수업 최대 인원"
+                title="수업 최대 인원"
+                hideTitle={false}
+                data={personNumber}
+                choice={max}
+                setChoice={setMax}
+                style={{ marginBottom: 10, flex: 1 }}
               />
             </View>
             {/* 장소 지정 */}

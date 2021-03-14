@@ -62,14 +62,14 @@ export default function LectureCalendar({ onDateSelct = () => {} }) {
     /* --- 달력 컴포넌트 내부 상태 관리 --- */
     // 달력에 선택된 날짜 배열
     const dateArray = [date.dateString];
-    // console.log("dateArray : ", dateArray, " Range : ", dateArray.length);
+    // // // console.log("dateArray : ", dateArray, " Range : ", dateArray.length);
 
     // 달력 렌더링용 오브젝트로 변환
     const tmp = dateArray.reduce(
       (c, v) => Object.assign(c, { [v]: { selected: true, marked: true } }),
       {},
     );
-    // console.log("tmp : ", tmp);
+    // // // console.log("tmp : ", tmp);
 
     setDatesArray(dateArray);
     setMarkedDatesObjects(tmp);
@@ -86,7 +86,7 @@ export default function LectureCalendar({ onDateSelct = () => {} }) {
     tmp.forEach(val => {
       marked[val] = { selected: true };
     }),
-      // console.log("dateArray : ", tmp, " Range : ", tmp.length);
+      // // // console.log("dateArray : ", tmp, " Range : ", tmp.length);
 
       setDatesArray(tmp);
     setMarkedDatesObjects(marked);

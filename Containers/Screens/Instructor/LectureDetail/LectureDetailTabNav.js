@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import React from 'react';
 
 // Tab Navigatior
@@ -12,6 +13,7 @@ import With from './With';
 const Tab = createMaterialTopTabNavigator();
 
 export default function LectureDetailTabNav({ lectureInfo }) {
+  // console.log('내부 탭 네비임 lectureInfo : ', lectureInfo);
   return (
     <Tab.Navigator style={{ flex: 1 }}>
       <Tab.Screen
@@ -20,7 +22,7 @@ export default function LectureDetailTabNav({ lectureInfo }) {
       />
       <Tab.Screen
         name="일정"
-        children={() => <When lectureInfo={lectureInfo} />}
+        children={() => <When lectureId={lectureInfo.id} />}
       />
       {/* <Tab.Screen
         name="장소"
@@ -28,6 +30,7 @@ export default function LectureDetailTabNav({ lectureInfo }) {
       /> */}
       <Tab.Screen
         name="장비대여"
+        // eslint-disable-next-line react/no-children-prop
         children={() => <With lectureInfo={lectureInfo} />}
       />
     </Tab.Navigator>

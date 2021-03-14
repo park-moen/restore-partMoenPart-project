@@ -47,7 +47,7 @@ export default function NewLectureContainer({ navigation }) {
     category,
     association,
     certificate,
-    max,
+    // max,
     lectureTitle,
     lectureContent,
     image,
@@ -100,7 +100,7 @@ export default function NewLectureContainer({ navigation }) {
           style={{ marginBottom: 10 }}
         />
 
-        <View style={{ flexDirection: 'row' }}>
+        {/* <View style={{ flexDirection: 'row' }}>
           <SelectButton
             placeholder="수업 최소 인원"
             title="수업 최소 인원"
@@ -118,7 +118,7 @@ export default function NewLectureContainer({ navigation }) {
             setChoice={setMax}
             style={{ marginBottom: 10, flex: 1 }}
           />
-        </View>
+        </View> */}
 
         <TextInputContainer
           onTextChange={setLectureTitle}

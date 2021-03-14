@@ -23,7 +23,7 @@ function MakeButtonList({ data, visible, setVisible, setChoice }) {
         onPress={() => {
           setVisible(!visible);
 
-          console.log('choice element : ', element);
+          // // console.log('choice element : ', element);
           setChoice(element);
         }}
         key={index}

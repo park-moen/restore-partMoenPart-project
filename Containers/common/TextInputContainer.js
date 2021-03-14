@@ -57,7 +57,7 @@ export default function TextInputContainer({
           multiline={multiline}
           value={input}
           onChangeText={text => {
-            console.log('text : ', text);
+            // // console.log('text : ', text);
             setInput(text); // 내부 상태값 갱신
             onTextChange(text); // 부모 컴포넌트에도 전달
           }}

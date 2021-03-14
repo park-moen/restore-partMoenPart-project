@@ -26,7 +26,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import TagList from '../../../Components/common/Tags';
 import { LectureListRegionAPIFunc } from '../../../config/strings';
 
-
 const sampleImg = require('../../../asset/lecture1.jpg');
 const heartIcon = require('../../../asset/heart-mind.png');
 
@@ -46,7 +45,7 @@ export default function LectureListRegionContainer({ navigation }) {
         );
         setLectures(res.data._embedded.lectureByRegionResList);
       } catch (err) {
-        console.log('강의 리스트 조회 실패 : ', err);
+        // // console.log('강의 리스트 조회 실패 : ', err);
       }
     }
     getLectures();
@@ -54,21 +53,23 @@ export default function LectureListRegionContainer({ navigation }) {
 
   const onSearchInput = input => {
     setSearchText(input);
-    console.log('검색어 : ', input);
+    // // console.log('검색어 : ', input);
   };
 
   const PrintLectures = () => {
     const array = [];
 
-    for (let i = 0; i < lectures.length; i+=1) {
+    for (let i = 0; i < lectures.length; i += 1) {
+      // eslint-disable-next-line no-unused-vars
       const imageUri = lectures[i].imageURL[0];
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [heart, setHeart] = useState(false);
       array.push(
         <View style={styles.eachProductContainer} key={i}>
           <TouchableOpacity
             style={{ flex: 1 }}
             onPress={() => {
-              console.log('강의 누름');
+              // // console.log('강의 누름');
               navigation.navigate('LectureDetail', { id: lectures[i].id });
             }}
           >
@@ -115,13 +116,10 @@ export default function LectureListRegionContainer({ navigation }) {
                 <TouchableOpacity
                   onPress={() => {
                     setHeart(!heart);
-                    console.log('찜하기 눌렀다.');
+                    // // console.log('찜하기 눌렀다.');
                   }}
                 >
-                  <Image
-                    source={heartIcon}
-                    style={{ width: 30, height: 30 }}
-                  />
+                  <Image source={heartIcon} style={{ width: 30, height: 30 }} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -151,7 +149,7 @@ export default function LectureListRegionContainer({ navigation }) {
               {`₩${lectures[i].price}`}
             </Text>
           </TouchableOpacity>
-        </View>
+        </View>,
       );
     }
 
