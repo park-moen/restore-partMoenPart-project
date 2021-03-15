@@ -251,12 +251,10 @@ export default function When({ lectureId }) {
   useEffect(() => {
     const fetch = async () => {
       if(lectureId !== undefined){
-      // 백엔드에서 일정 받아오기
-      const response = await axios.get(GetLectureSchedule, {
-        params: {lectureId}
-      });
-
-      console.log("일정좀 받아라", response);
+        // 백엔드에서 일정 받아오기
+        const response = await axios.get(GetLectureSchedule, {
+          params: {lectureId}
+        });
 
         // eslint-disable-next-line no-shadow
         const { scheduleDtoList } = response.data._embedded;
@@ -268,7 +266,6 @@ export default function When({ lectureId }) {
       
 
         /* 
-        일정 파싱
         scheduleDtoList.forEach(singleSchedule => {
           // console.log('single schedule : ', singleSchedule);
           const { scheduleDetails } = singleSchedule;

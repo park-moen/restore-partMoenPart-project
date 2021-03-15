@@ -1,15 +1,15 @@
 // 강의 예약하기
 POST /reservation HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OCIsInJvbGVzIjpbIlNUVURFTlQiXSwiaWF0IjoxNjE1NTUzMTYyLCJleHAiOjE2MTU1NTY3NjJ9.YOhpXv8rmD1kbysM-vAKiixxzkyJD2nuvq23nUuT3vY
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU3NDI5NTMsImV4cCI6MTYxNTc0NjU1M30.PPrkLaATILYoy04tzeCTfqokjDsRmh_WBQYLoMoLqSg
 IsRefreshToken: false
 Content-Type: application/json;charset=UTF-8
 Content-Length: 213
 Host: localhost:8080
 
 {
-  "scheduleId" : 52,
+  "scheduleId" : 3,
   "reservationDateList" : [ {
-    "date" : "2021-03-25",
+    "date" : "2021-03-09",
     "time" : "05:00:00"
   } ],
   "equipmentList" : [ "오리발", "슈트" ],

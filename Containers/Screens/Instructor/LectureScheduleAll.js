@@ -60,7 +60,7 @@ export function LectureSchedule({
   lectureId,
   hideTitle = 'false',
   onDayPress = day => {
-    // console.log('selected day : ', day);
+    console.log('selected day : ', day);
   },
 }) {
   const [markedDates, setMarkedDates] = useState({});
@@ -68,30 +68,35 @@ export function LectureSchedule({
   useEffect(() => {
     const getLectureDetail = async () => {
       const response = await getLectureSchedule({ lectureId });
-      const { scheduleDtoList } = response.data._embedded; // 강의의 전체 일정
+      console.log("response : ", response);
+      if(response){
+        const { scheduleDtoList } = response.data._embedded; // 강의의 전체 일정
 
-      scheduleDtoList.forEach(singleSchedule => {
-        // 일정 하나
-        // 랜덤 색상 설정
-        const color = `hsl(${360 * Math.random()}, 70%, 60%)`;
-        const { scheduleDetails } = singleSchedule;
-        scheduleDetails.forEach(singleDay => {
-          // 일정 내부의 하루하루
+        scheduleDtoList.forEach(singleSchedule => {
+          // 일정 하나
+          // 랜덤 색상 설정
+          const color = `hsl(${360 * Math.random()}, 70%, 60%)`;
+          const { scheduleDetails } = singleSchedule;
+          scheduleDetails.forEach(singleDay => {
+            // 일정 내부의 하루하루
 
-          const tmpArray = markedDates[singleDay.date]
-            ? markedDates[singleDay.date].periods
-            : [];
+            const tmpArray = markedDates[singleDay.date]
+              ? markedDates[singleDay.date].periods
+              : [];
 
-          tmpArray.push({ startingDay: false, endingDay: false, color });
-          const newObjs = Object.assign(markedDates, {
-            [singleDay.date]: { periods: tmpArray },
+            tmpArray.push({ startingDay: false, endingDay: false, color });
+            const newObjs = Object.assign(markedDates, {
+              [singleDay.date]: { periods: tmpArray },
+            });
+            setMarkedDates(JSON.parse(JSON.stringify(newObjs)));
           });
-          setMarkedDates(JSON.parse(JSON.stringify(newObjs)));
         });
-      });
+      }
     };
 
-    getLectureDetail();
+    console.log("lectureId : ", lectureId);
+    if(lectureId !== undefined)
+      getLectureDetail();
   }, []);
 
   return (

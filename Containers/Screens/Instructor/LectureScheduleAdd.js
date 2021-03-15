@@ -63,6 +63,7 @@ export default function LectureScheduleAdd({ navigation, route }) {
         lectureTime,
       },
     });
+    console.log("강의시간 변경됨? : ", result);
     setLocations(result);
   };
 
@@ -111,10 +112,13 @@ export default function LectureScheduleAdd({ navigation, route }) {
     try {
       const detailReqList = [];
       selectedScheduleArray.forEach(date => {
+        const lectureTime = makeTimeFormat({ minute: parseInt(locations[date].lectureTime, 10) });
+        console.log("locations[date].lectureTime : ", locations[date].lectureTime);
+        console.log("lectureTime : ", lectureTime);
         detailReqList.push({
           date,
           startTimes: selectedScheduleObject[date],
-          lectureTime: makeTimeFormat({ minute: locations[date].lectureTime }), // 강의 소요시간 추가 필요
+          lectureTime, // 강의 소요시간
           location: {
             latitude: locations[date].latitude,
             longitude: locations[date].longitude,
@@ -123,18 +127,18 @@ export default function LectureScheduleAdd({ navigation, route }) {
         });
       });
 
-      // console.log('max : ', max);
+      console.log('max : ', max);
       const res = await axios.post(LectureAddScheduleAPI, {
-        maxNumber: max,
         lectureId: route.params.id,
         period: selectedScheduleArray.length,
+        maxNumber: max,
         detailReqList,
       });
 
-      // // console.log('일정 추가 결과 : ', res);
+      console.log('일정 추가 결과 : ', res);
       navigation.navigate('LectureScheduleAll');
     } catch (err) {
-      // // console.log('일정 추가에 실패하였습니다. ', err);
+      console.log('일정 추가에 실패하였습니다. ', err);
     }
   };
 

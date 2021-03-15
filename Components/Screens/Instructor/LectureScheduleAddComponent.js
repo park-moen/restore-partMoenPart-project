@@ -27,7 +27,7 @@ const SelectSingleLocation = ({
       <Text style={styles1.dayText}>{day}</Text>
       <TextInputContainer
         onTextChange={setInput}
-        hideTitle={true}
+        hideTitle
         placeholder="장소 이름을 지어주세요"
         style={styles1.textInputContainer}
       />
@@ -132,11 +132,14 @@ export default function LectureScheduleAddComponent({
                 schedules={selectedScheduleArray}
                 onDateIndexChange={func.onDateIndexChange}
               />
+            </View>
+            {/* 강의 소요시간, 수업 최대 인원 */}
+            <View style={styles3.container}>
               <TextInputContainer
                 title="강의 소요시간 (분)"
                 onTextChange={func.onLectureTimeChange}
                 placeholder="예) 1시간30분이라면 90 입력"
-                style={{ padding: 10 }}
+                style={{ padding: 10, }}
               />
 
               <SelectButton
@@ -146,7 +149,7 @@ export default function LectureScheduleAddComponent({
                 data={personNumber}
                 choice={max}
                 setChoice={setMax}
-                style={{ marginBottom: 10, flex: 1 }}
+                style={{ marginBottom: 10, padding:10 }}
               />
             </View>
             {/* 장소 지정 */}
