@@ -1,7 +1,7 @@
 // 강의 일정 생성
 POST /schedule HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU3NDAxODMsImV4cCI6MTYxNTc0Mzc4M30.-hGYX_u1bE5EOZoGFRG8p-ZRabXnd58gDI6O_kfR9n0
+Authorization: yJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU4MTE3MTgsImV4cCI6MTYxNTgxNTMxOH0.ZcYhz304XAD8HHOUDme1buptva1w9Jl6dx6iXSMfY70
 IsRefreshToken: false
 Content-Length: 752
 Host: localhost:8080
@@ -45,7 +45,7 @@ Host: localhost:8080
 // 강의 일정 목록 읽기
 GET /schedule?lectureId=3 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU3NDI5NTMsImV4cCI6MTYxNTc0NjU1M30.PPrkLaATILYoy04tzeCTfqokjDsRmh_WBQYLoMoLqSg
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTYyNDE5NjYsImV4cCI6MTYxNjI0NTU2Nn0.cMWKi-Habwram10JenxBxOGwmi7CL_wEE1m-pPmskxM
 IsRefreshToken: false
 Host: localhost:8080
 ###

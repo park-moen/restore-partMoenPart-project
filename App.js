@@ -19,6 +19,7 @@ import LectureDetailContainer from './Containers/Screens/Instructor/LectureDetai
 import LectureScheduleAll from './Containers/Screens/Instructor/LectureScheduleAll';
 import LectureScheduleAdd from './Containers/Screens/Instructor/LectureScheduleAdd';
 import LectureLocationAdd from './Containers/Screens/Instructor/LectureLocationAdd';
+import Reservation from './Containers/Screens/Instructor/Reservation';
 import NMapSearch from './Containers/Screens/Instructor/NMapSearch';
 
 const Stack = createStackNavigator();
@@ -93,6 +94,11 @@ function StackNavigator() {
         name="NMapSearch"
         component={NMapSearch}
         options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="Reservation"
+        component={Reservation}
+        options={{headerShown: true}}
       />
     </Stack.Navigator>
   );

@@ -60,9 +60,9 @@ Host: localhost:8080
 ###
 
 // 강의 단건 상세조회
-GET /lecture/detail?id=2
+GET /lecture/detail?id=3
 Content-Type: application/json;charset=UTF-8
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU0ODE5ODcsImV4cCI6MTYxNTQ4NTU4N30.qAjNe-w-Ql11fI9ZeuSmM_gFPDg0HNPWN7gnU8lMqkQ
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTYyNDE5NjYsImV4cCI6MTYxNjI0NTU2Nn0.cMWKi-Habwram10JenxBxOGwmi7CL_wEE1m-pPmskxM
 IsRefreshToken: false
 Host: localhost:8080
 

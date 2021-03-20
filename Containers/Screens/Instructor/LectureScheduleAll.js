@@ -68,8 +68,8 @@ export function LectureSchedule({
   useEffect(() => {
     const getLectureDetail = async () => {
       const response = await getLectureSchedule({ lectureId });
-      console.log("response : ", response);
-      if(response){
+      console.log('response : ', response);
+      if (response) {
         const { scheduleDtoList } = response.data._embedded; // 강의의 전체 일정
 
         scheduleDtoList.forEach(singleSchedule => {
@@ -94,9 +94,8 @@ export function LectureSchedule({
       }
     };
 
-    console.log("lectureId : ", lectureId);
-    if(lectureId !== undefined)
-      getLectureDetail();
+    console.log('lectureId : ', lectureId);
+    if (lectureId !== undefined) getLectureDetail();
   }, []);
 
   return (

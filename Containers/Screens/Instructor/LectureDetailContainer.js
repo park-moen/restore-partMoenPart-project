@@ -10,7 +10,7 @@ import BottomButtons from '../../common/BottomButtons';
 
 const sampleImg = require('../../../asset/lecture1.jpg');
 
-export default function LectureDetailContainer({ route }) {
+export default function LectureDetailContainer({ navigation, route }) {
   const [lectureInfo, setLectureInfo] = useState({});
 
   useEffect(() => {
@@ -22,6 +22,13 @@ export default function LectureDetailContainer({ route }) {
       })
       .catch(err => console.log('강의 상세 조회 실패 : ', err));
   }, []);
+
+  const onPressLeft = () => {
+    navigation.goBack();
+  };
+  const onPressRight = () => {
+    navigation.navigate('Reservation', { lectureId: route.params.id });
+  };
 
   return (
     <View style={{ backgroundColor: 'white', flex: 1 }}>
@@ -49,7 +56,12 @@ export default function LectureDetailContainer({ route }) {
         {/* 강의상세 내용 - 탭뷰 */}
         <LectureDetailTabNav lectureInfo={lectureInfo} />
       </ScrollView>
-      <BottomButtons TextLeft="이전" TextRight="강의신청" />
+      <BottomButtons
+        TextLeft="이전"
+        TextRight="강의신청"
+        onPressLeft={onPressLeft}
+        onPressRight={onPressRight}
+      />
     </View>
   );
 }

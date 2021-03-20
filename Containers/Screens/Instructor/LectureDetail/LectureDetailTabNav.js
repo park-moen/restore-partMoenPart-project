@@ -13,7 +13,7 @@ import With from './With';
 const Tab = createMaterialTopTabNavigator();
 
 export default function LectureDetailTabNav({ lectureInfo }) {
-  // console.log('내부 탭 네비임 lectureInfo : ', lectureInfo);
+  console.log('내부 탭 네비임 lectureInfo : ', lectureInfo.id);
   return (
     <Tab.Navigator style={{ flex: 1 }}>
       <Tab.Screen

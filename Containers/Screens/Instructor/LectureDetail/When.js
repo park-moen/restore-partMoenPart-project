@@ -8,36 +8,30 @@ import NMapModal from './NMapModal';
 // api
 import { GetLectureSchedule } from '../../../../config/strings';
 
-
 /**
  *
  * @component 구체적인 하루에 대한 컴포넌트
  */
-const EachDay = ({
-  schedule,
-  order,
-  array,
-  // maxNumber
-}) => {
+export const EachDay = ({ scheduleDetails, order, array, maxNumber }) => {
   const [visible, setVisible] = useState(false);
   const [mapVisible, setMapVisible] = useState(false);
-  // console.log('EachDay schedule : ', schedule);
+  // console.log('EachDay scheduleDetails : ', scheduleDetails);
 
-  const { date } = schedule; // 강의날짜
-  const { lectureTime } = schedule; // 소요시간
-  const where = schedule.location.address;
+  const { date } = scheduleDetails; // 강의날짜
+  const { lectureTime } = scheduleDetails; // 소요시간
+  const where = scheduleDetails.location.address;
   const gps = {
-    latitude: schedule.location.latitude,
-    longitude: schedule.location.longitude,
+    latitude: scheduleDetails.location.latitude,
+    longitude: scheduleDetails.location.longitude,
   };
-  const times = schedule.scheduleTimeDtoList; // 예약가능시간 배열
+  const times = scheduleDetails.scheduleTimeDtoList; // 예약가능시간 배열
   // console.log('times : ', times);
 
   const TimesComponent = () => {
-    const result = [];
+    const eachTimes = [];
 
     times.forEach((eachTime, i) => {
-      result.push(
+      eachTimes.push(
         <View
           // eslint-disable-next-line react/no-array-index-key
           key={`eachTime${i}`}
@@ -45,7 +39,7 @@ const EachDay = ({
         >
           <Text style={stylesEachDay.text}>{`- ${eachTime.startTime}`}</Text>
           <Text style={stylesEachDay.text}>
-            {`${eachTime.currentNumber}/10명`}
+            {`${eachTime.currentNumber}/${maxNumber}`}
           </Text>
         </View>,
       );
@@ -70,7 +64,7 @@ const EachDay = ({
           >
             <Text style={stylesEachDay.timeTitle}>예약 가능 시간</Text>
           </View>
-          {result}
+          {eachTimes}
         </View>
         <NMapModal
           picker={gps}
@@ -163,14 +157,13 @@ const stylesEachDay = StyleSheet.create({
  *
  * @component 유저가 선택한 날짜와 관련된 일정 출력
  */
-const SchedulesUserSelected = ({ schedules, maxNumber }) => {
+export const SchedulesUserSelected = ({ schedules }) => {
   const result = [];
-
   schedules.forEach((singleSchedule, i) => {
     const singleScheduleComponents = [];
     // console.log('singleSchedule : ', singleSchedule);
 
-    const { period } = singleSchedule;
+    const { period, maxNumber } = singleSchedule;
 
     // 단일 일정 내의 구체적인 날짜와 시간 처리
     singleSchedule.scheduleDetails.forEach((singleDay, y, array) => {
@@ -178,7 +171,7 @@ const SchedulesUserSelected = ({ schedules, maxNumber }) => {
         <EachDay
           // eslint-disable-next-line react/no-array-index-key
           key={`singleDay${y}`}
-          schedule={singleDay}
+          scheduleDetails={singleDay}
           order={y}
           array={array}
           maxNumber={maxNumber}
@@ -245,27 +238,22 @@ const stylesSingleSchedule = StyleSheet.create({
  */
 export default function When({ lectureId }) {
   const [schedules, setSchedules] = useState([{}]); // 전체 일정 오브젝트 배열
-  // const [max, setMax] = useState(0); // 전체 일정 오브젝트 배열
-  // const lectureId = lectureInfo.id;
 
   useEffect(() => {
     const fetch = async () => {
-      if(lectureId !== undefined){
+      if (lectureId !== undefined) {
         // 백엔드에서 일정 받아오기
         const response = await axios.get(GetLectureSchedule, {
-          params: {lectureId}
+          params: { lectureId },
         });
 
         // eslint-disable-next-line no-shadow
         const { scheduleDtoList } = response.data._embedded;
         // console.log('fetched schedules : ', scheduleDtoList);
-        // console.log('max : ', max, maxNumber);
         setSchedules(scheduleDtoList);
-        // setMax(maxNumber);
       }
-      
 
-        /* 
+      /* 
         scheduleDtoList.forEach(singleSchedule => {
           // console.log('single schedule : ', singleSchedule);
           const { scheduleDetails } = singleSchedule;
@@ -281,9 +269,7 @@ export default function When({ lectureId }) {
         */
     };
 
-    if(lectureId !== undefined)
-      fetch();
-
+    if (lectureId !== undefined) fetch();
   }, [lectureId]);
 
   const [filteredSchedules, setFilteredSchedules] = useState([]);
@@ -310,14 +296,17 @@ export default function When({ lectureId }) {
 
   return (
     <View style={styles.rootContainer}>
-      <LectureSchedule lectureId={2} hideTitle="true" onDayPress={onDayPress} />
+      {lectureId ? (
+        <LectureSchedule
+          lectureId={lectureId}
+          hideTitle="true"
+          onDayPress={onDayPress}
+        />
+      ) : null}
       {/* 실제 강의 id랑 매칭 시키려면 lectureId={lectureInfo.id} */}
 
       {filteredSchedules.length !== 0 ? (
-        <SchedulesUserSelected
-          schedules={filteredSchedules}
-          // maxNumber={maxNumber}
-        />
+        <SchedulesUserSelected schedules={filteredSchedules} />
       ) : null}
     </View>
   );
