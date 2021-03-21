@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import PLectureScheduleAdd from '../../../../Components/Screens/Instructor/Schedule/PLectureScheduleAdd';
-import { LectureAddScheduleAPI } from '../../../../config/strings';
-import { makeTimeFormat } from '../../../../lib/time';
+import PLectureScheduleAdd from 'Components/Screens/Instructor/Schedule/PLectureScheduleAdd';
+import { LectureAddScheduleAPI } from 'config/strings';
+import { makeTimeFormat } from 'lib/time';
 
 export default function LectureScheduleAdd({ navigation, route }) {
   // 달력 컴포넌트에서 선택된 날짜 배열 저장용 상태
@@ -63,7 +63,7 @@ export default function LectureScheduleAdd({ navigation, route }) {
         lectureTime,
       },
     });
-    console.log("강의시간 변경됨? : ", result);
+    console.log('강의시간 변경됨? : ', result);
     setLocations(result);
   };
 
@@ -112,9 +112,14 @@ export default function LectureScheduleAdd({ navigation, route }) {
     try {
       const detailReqList = [];
       selectedScheduleArray.forEach(date => {
-        const lectureTime = makeTimeFormat({ minute: parseInt(locations[date].lectureTime, 10) });
-        console.log("locations[date].lectureTime : ", locations[date].lectureTime);
-        console.log("lectureTime : ", lectureTime);
+        const lectureTime = makeTimeFormat({
+          minute: parseInt(locations[date].lectureTime, 10),
+        });
+        console.log(
+          'locations[date].lectureTime : ',
+          locations[date].lectureTime,
+        );
+        console.log('lectureTime : ', lectureTime);
         detailReqList.push({
           date,
           startTimes: selectedScheduleObject[date],
@@ -155,7 +160,7 @@ export default function LectureScheduleAdd({ navigation, route }) {
   };
 
   return (
-    <LectureScheduleAddComponent
+    <PLectureScheduleAdd
       func={func}
       selectedScheduleArray={selectedScheduleArray}
       max={max}

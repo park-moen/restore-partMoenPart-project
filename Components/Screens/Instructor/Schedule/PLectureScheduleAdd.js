@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, ScrollView, View, Text } from 'react-native';
 
-import LectureCalendar from '../../../../Containers/common/LectureCalendar';
-import TimeSelectorContainer from '../../../../Containers/common/TimeSelector';
-import ButtomButtons from '../../../../Containers/common/BottomButtons';
-import TextInputContainer from '../../../../Containers/common/TextInputContainer';
-import Button from '../../../../Containers/common/Button';
-import SelectButton from '../../../../Containers/common/SelectButton';
+import LectureCalendar from 'Containers/common/LectureCalendar';
+import TimeSelectorContainer from 'Containers/common/TimeSelector';
+import ButtomButtons from 'Containers/common/BottomButtons';
+import TextInputContainer from 'Containers/common/TextInputContainer';
+import Button from 'Containers/common/Button';
+import SelectButton from 'Containers/common/SelectButton';
 /**
  *
  * @component 장소 하나 선택 컴포넌트
@@ -139,7 +139,7 @@ export default function PLectureScheduleAdd({
                 title="강의 소요시간 (분)"
                 onTextChange={func.onLectureTimeChange}
                 placeholder="예) 1시간30분이라면 90 입력"
-                style={{ padding: 10, }}
+                style={{ padding: 10 }}
               />
 
               <SelectButton
@@ -149,7 +149,7 @@ export default function PLectureScheduleAdd({
                 data={personNumber}
                 choice={max}
                 setChoice={setMax}
-                style={{ marginBottom: 10, padding:10 }}
+                style={{ marginBottom: 10, padding: 10 }}
               />
             </View>
             {/* 장소 지정 */}

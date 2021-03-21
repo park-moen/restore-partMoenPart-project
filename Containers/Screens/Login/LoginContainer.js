@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-native';
 
-import LoginComponent from '../../../Components/Screens/Login/LoginComponent';
+import LoginComponent from 'Components/Screens/Login/LoginComponent';
 
 import { Login } from '../../../lib/api/TokenActivity';
 import { getLectureSchedule } from '../../../lib/api/Lecture';

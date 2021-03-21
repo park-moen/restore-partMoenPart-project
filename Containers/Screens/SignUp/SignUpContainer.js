@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import SignUpComponent from '../../../Components/Screens/SingUp/SignUpComponent';
-import * as URL from '../../../config/strings';
+import SignUpComponent from 'Components/Screens/SingUp/SignUpComponent';
+import * as URL from 'config/strings';
 
 export default function SignUpContainer({ navigation }) {
   // 입력값, 버튼 상태 체크용도

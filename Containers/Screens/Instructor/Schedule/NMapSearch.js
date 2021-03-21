@@ -15,7 +15,7 @@ import {
   NMapGeocodingAPI,
   NMapClientID,
   NMapClientSecret,
-} from '../../../../config/strings';
+} from 'config/strings';
 
 const SearchedButtonList = ({ addresses = [], onPress = () => {} }) => {
   const result = [];

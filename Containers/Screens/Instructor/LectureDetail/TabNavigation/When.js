@@ -6,7 +6,7 @@ import axios from 'axios';
 import { LectureSchedule } from '../../Schedule/LectureScheduleAll';
 import NMapModal from './NMapModal';
 // api
-import { GetLectureSchedule } from '../../../../../config/strings';
+import { GetLectureSchedule } from 'config/strings';
 
 /**
  *

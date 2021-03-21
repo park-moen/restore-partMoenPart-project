@@ -3,6 +3,8 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
+const logoImage = require('images/logo1.png');
+
 export default function Logo() {
   return (
     <Animatable.View
@@ -10,10 +12,7 @@ export default function Logo() {
       direction="alternate"
       style={styles.LogoContainer}
     >
-      <Image
-        style={styles.LogoSize}
-        source={require('../../../images/logo1.png')}
-      />
+      <Image style={styles.LogoSize} source={logoImage} />
     </Animatable.View>
   );
 }

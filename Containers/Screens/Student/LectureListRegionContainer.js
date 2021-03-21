@@ -14,8 +14,8 @@ import axios from 'axios';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import TagList from '../../../Components/common/Tags';
-import { LectureListRegionAPIFunc } from '../../../config/strings';
+import TagList from 'Components/common/Tags';
+import { LectureListRegionAPIFunc } from 'config/strings';
 
 const sampleImg = require('../../../asset/lecture1.jpg');
 const heartIcon = require('../../../asset/heart-mind.png');

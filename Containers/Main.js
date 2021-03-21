@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, SafeAreaView } from 'react-native';
 
-// import PopAlert from '../Components/common/PopAlert';
+// import PopAlert from 'Components/common/PopAlert';
 import { makeTimeFormat } from '../lib/time';
 import { Logout, RefreshToken } from '../lib/api/TokenActivity';
 

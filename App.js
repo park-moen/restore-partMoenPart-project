@@ -5,22 +5,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // import Screens
-import SignUpContainer from './Containers/Screens/SignUp/SignUpContainer';
-import LoginContainer from './Containers/Screens/Login/LoginContainer';
-import Loading from './Containers/Loading';
-import Main from './Containers/Main';
+import SignUpContainer from 'Containers/Screens/SignUp/SignUpContainer';
+import LoginContainer from 'Containers/Screens/Login/LoginContainer';
+import Loading from 'Containers/Loading';
+import Main from 'Containers/Main';
 
-import NewLectureContainer from './Containers/Screens/Instructor/LectureCreate/NewLectureContainer';
-import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureCreate/LectureFeeAndEquipments';
+import NewLectureContainer from 'Containers/Screens/Instructor/LectureCreate/NewLectureContainer';
+import LectureFeeAndEquipments from 'Containers/Screens/Instructor/LectureCreate/LectureFeeAndEquipments';
 
-import LectureListRegionContainer from './Containers/Screens/Student/LectureListRegionContainer';
-import LectureDetailContainer from './Containers/Screens/Instructor/LectureDetail/LectureDetailContainer';
+import LectureListRegionContainer from 'Containers/Screens/Student/LectureListRegionContainer';
+import LectureDetailContainer from 'Containers/Screens/Instructor/LectureDetail/LectureDetailContainer';
 
-import LectureScheduleAll from './Containers/Screens/Instructor/Schedule/LectureScheduleAll';
-import LectureScheduleAdd from './Containers/Screens/Instructor/Schedule/LectureScheduleAdd';
-import LectureLocationAdd from './Containers/Screens/Instructor/Schedule/LectureLocationAdd';
-import NMapSearch from './Containers/Screens/Instructor/Schedule/NMapSearch';
-import CReservation from './Containers/Screens/Instructor/Reservation/CReservation';
+import LectureScheduleAll from 'Containers/Screens/Instructor/Schedule/LectureScheduleAll';
+import LectureScheduleAdd from 'Containers/Screens/Instructor/Schedule/LectureScheduleAdd';
+import LectureLocationAdd from 'Containers/Screens/Instructor/Schedule/LectureLocationAdd';
+import NMapSearch from 'Containers/Screens/Instructor/Schedule/NMapSearch';
+import CReservation from 'Containers/Screens/Instructor/Reservation/CReservation';
 
 const Stack = createStackNavigator();
 

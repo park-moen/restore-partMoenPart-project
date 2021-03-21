@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 
-import PReservation from '../../../../Components/Screens/Instructor/Reservation/PReservation';
+import PReservation from 'Components/Screens/Instructor/Reservation/PReservation';
 import CEquipment from './CEquipment';
 
 export default function CReservation({

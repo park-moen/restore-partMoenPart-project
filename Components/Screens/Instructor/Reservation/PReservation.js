@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 
-import ButtomButtons from '../../../../Containers/common/BottomButtons';
-import When from '../../../../Containers/Screens/Instructor/LectureDetail/TabNavigation/When';
-import CEquipment from '../../../../Containers/Screens/Instructor/Reservation/CEquipment';
+import ButtomButtons from 'Containers/common/BottomButtons';
+import When from 'Containers/Screens/Instructor/LectureDetail/TabNavigation/When';
+import CEquipment from 'Containers/Screens/Instructor/Reservation/CEquipment';
 
 export default function PReservation({
   navigation,
   lectureId,
   lectureInfo,
-  onPressLeft = ()=>{},
+  onPressLeft = () => {},
   onPressRight = () => {},
 }) {
   return (
