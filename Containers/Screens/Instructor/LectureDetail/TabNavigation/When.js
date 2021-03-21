@@ -3,10 +3,10 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
 
-import { LectureSchedule } from '../LectureScheduleAll';
+import { LectureSchedule } from '../../Schedule/LectureScheduleAll';
 import NMapModal from './NMapModal';
 // api
-import { GetLectureSchedule } from '../../../../config/strings';
+import { GetLectureSchedule } from '../../../../../config/strings';
 
 /**
  *

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import axios from 'axios';
 
-import TextInputContainer from '../../common/TextInputContainer';
-import BottomButtons from '../../common/BottomButtons';
+import TextInputContainer from '../../../common/TextInputContainer';
+import BottomButtons from '../../../common/BottomButtons';
 import EquipmentRental from './EquipmentRental';
-import * as URL from '../../../config/strings';
+import * as URL from '../../../../config/strings';
 
 export default function LectureFeeAndEquipments({ navigation, route }) {
   const [lectureFee, setLectureFee] = useState('');

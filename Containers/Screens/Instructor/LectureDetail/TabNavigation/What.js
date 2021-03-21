@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { Avatar } from 'react-native-paper';
 
-import TagList from '../../../../Components/common/Tags';
+import TagList from '../../../../../Components/common/Tags';
 
-const sampleProfile = require('../../../../asset/person.jpeg');
+const sampleProfile = require('../../../../../asset/person.jpeg');
 
 /**
  * 강사 프로필 간략 소개

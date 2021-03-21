@@ -9,7 +9,7 @@ import {
 
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import TextInputContainer from '../../common/TextInputContainer';
+import TextInputContainer from '../../../common/TextInputContainer';
 
 const RenderEquipments = ({ equipmentList, setEquipmentList }) => {
   const array = [];

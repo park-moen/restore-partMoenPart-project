@@ -1,12 +1,3 @@
-// app.js
-// import LectureListRegionContainer from './Containers/Screens/Instructor/LectureListRegionContainer';
-//--------------
-// strings.js
-// export const LectureListRegionAPI = Server+"/lecture/list/region";
-// export const LectureDetailAPI = Server+"/lecture/detail";
-// export const LectureListRegionAPIFunc = ({region, page, size})=>{return LectureListRegionAPI+`?region=${region}&page=${page}&size=${size}`};
-// export const LectureDetailAPIFunc = ({id})=>{return LectureDetailAPI+`?id=${id}`};
-//--------------
 
 import React, { useEffect, useState } from 'react';
 import {

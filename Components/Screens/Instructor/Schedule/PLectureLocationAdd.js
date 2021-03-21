@@ -1,11 +1,11 @@
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
-import NaverMap from '../../../Containers/common/NaverMap';
+import NaverMap from '../../../../Containers/common/NaverMap';
 
-import ButtomButtons from '../../../Containers/common/BottomButtons';
-import { TextInputStatic } from '../../../Containers/common/TextInputContainer';
+import ButtomButtons from '../../../../Containers/common/BottomButtons';
+import { TextInputStatic } from '../../../../Containers/common/TextInputContainer';
 
-export default function LectureLocationAddComponent({ center, picker, func }) {
+export default function PLectureLocationAdd({ center, picker, func }) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <TextInputStatic

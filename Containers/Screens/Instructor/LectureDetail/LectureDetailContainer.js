@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 
-import { LectureDetailAPIFunc } from '../../../config/strings';
-import TagList from '../../../Components/common/Tags';
+import { LectureDetailAPIFunc } from '../../../../config/strings';
+import TagList from '../../../../Components/common/Tags';
 
-import LectureDetailTabNav from './LectureDetail/LectureDetailTabNav';
-import BottomButtons from '../../common/BottomButtons';
+import LectureDetailTabNav from './TabNavigation/LectureDetailTabNav';
+import BottomButtons from '../../../common/BottomButtons';
 
-const sampleImg = require('../../../asset/lecture1.jpg');
+const sampleImg = require('../../../../asset/lecture1.jpg');
 
 export default function LectureDetailContainer({ navigation, route }) {
   const [lectureInfo, setLectureInfo] = useState({});
@@ -27,7 +27,7 @@ export default function LectureDetailContainer({ navigation, route }) {
     navigation.goBack();
   };
   const onPressRight = () => {
-    navigation.navigate('Reservation', { lectureId: route.params.id });
+    navigation.navigate('Reservation', { lectureInfo });
   };
 
   return (

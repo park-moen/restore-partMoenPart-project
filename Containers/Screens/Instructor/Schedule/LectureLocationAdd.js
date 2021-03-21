@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import LectureLocationAddComponent from '../../../Components/Screens/Instructor/LectureLocationAddComponent';
+import LectureLocationAddComponent from '../../../../Components/Screens/Instructor/Schedule/PLectureLocationAdd';
 
 export default function LectureLocationAdd({ navigation, route }) {
   const [baseLocation, setBaseLocation] = useState({

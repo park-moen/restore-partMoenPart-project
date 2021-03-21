@@ -10,17 +10,17 @@ import LoginContainer from './Containers/Screens/Login/LoginContainer';
 import Loading from './Containers/Loading';
 import Main from './Containers/Main';
 
-import NewLectureContainer from './Containers/Screens/Instructor/NewLectureContainer';
-import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureFeeAndEquipments';
+import NewLectureContainer from './Containers/Screens/Instructor/LectureCreate/NewLectureContainer';
+import LectureFeeAndEquipments from './Containers/Screens/Instructor/LectureCreate/LectureFeeAndEquipments';
 
-import LectureListRegionContainer from './Containers/Screens/Instructor/LectureListRegionContainer';
-import LectureDetailContainer from './Containers/Screens/Instructor/LectureDetailContainer';
+import LectureListRegionContainer from './Containers/Screens/Student/LectureListRegionContainer';
+import LectureDetailContainer from './Containers/Screens/Instructor/LectureDetail/LectureDetailContainer';
 
-import LectureScheduleAll from './Containers/Screens/Instructor/LectureScheduleAll';
-import LectureScheduleAdd from './Containers/Screens/Instructor/LectureScheduleAdd';
-import LectureLocationAdd from './Containers/Screens/Instructor/LectureLocationAdd';
-import Reservation from './Containers/Screens/Instructor/Reservation';
-import NMapSearch from './Containers/Screens/Instructor/NMapSearch';
+import LectureScheduleAll from './Containers/Screens/Instructor/Schedule/LectureScheduleAll';
+import LectureScheduleAdd from './Containers/Screens/Instructor/Schedule/LectureScheduleAdd';
+import LectureLocationAdd from './Containers/Screens/Instructor/Schedule/LectureLocationAdd';
+import NMapSearch from './Containers/Screens/Instructor/Schedule/NMapSearch';
+import CReservation from './Containers/Screens/Instructor/Reservation/CReservation';
 
 const Stack = createStackNavigator();
 
@@ -97,8 +97,8 @@ function StackNavigator() {
       />
       <Stack.Screen
         name="Reservation"
-        component={Reservation}
-        options={{headerShown: true}}
+        component={CReservation}
+        options={{ headerShown: true }}
       />
     </Stack.Navigator>
   );
