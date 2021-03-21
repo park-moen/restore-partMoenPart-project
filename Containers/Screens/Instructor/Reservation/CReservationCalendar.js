@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { GetLectureSchedule } from 'config/strings';
-import PWhen, {
+import PReservationCalendar, {
   PTimesComponent,
   PEachDay,
-} from 'Components/Screens/Instructor/LectureDetail/TabNavigation/PWhen';
+} from 'Components/Screens/Instructor/Reservation/PReservationCalendar';
 
 /**
  *
@@ -62,7 +62,7 @@ export const CEachDay = ({ scheduleDetails, order, array, maxNumber }) => {
  *
  * @component 강의상세페이지 일정탭 컴포넌트
  */
-export default function When({ lectureId }) {
+export default function CReservationCalendar({ lectureId }) {
   const [schedules, setSchedules] = useState([{}]); // 전체 일정 오브젝트 배열
   const [filteredSchedules, setFilteredSchedules] = useState([]);
 
@@ -102,7 +102,7 @@ export default function When({ lectureId }) {
   };
 
   return (
-    <PWhen
+    <PReservationCalendar
       lectureId={lectureId}
       onDayPress={onDayPress}
       filteredSchedules={filteredSchedules}
