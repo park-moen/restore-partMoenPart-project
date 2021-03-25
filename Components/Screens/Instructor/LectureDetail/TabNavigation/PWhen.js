@@ -7,7 +7,7 @@ import NMapModal from 'Containers/common/NMapModal';
 import {
   CTimesComponent,
   CEachDay,
-} from 'Containers/Screens/Instructor/Reservation/CReservationCalendar';
+} from 'Containers/Screens/Instructor/LectureDetail/TabNavigation/When';
 
 /**
  *
@@ -172,7 +172,7 @@ const stylesEachDay = StyleSheet.create({
  *
  * @component 유저가 선택한 날짜와 관련된 일정 출력
  */
-export const SchedulesUserSelected = ({ schedules }) => {
+const SchedulesUserSelected = ({ schedules }) => {
   const result = [];
   schedules.forEach((singleSchedule, i) => {
     const singleScheduleComponents = [];

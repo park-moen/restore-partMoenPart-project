@@ -2,61 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { GetLectureSchedule } from 'config/strings';
-import PReservationCalendar, {
-  PTimesComponent,
-  PEachDay,
-} from 'Components/Screens/Instructor/Reservation/PReservationCalendar';
-
-/**
- *
- * @component 예약 시간별 컴포넌트
- */
-export const CTimesComponent = ({ times, maxNumber, gps, where }) => {
-  const [mapVisible, setMapVisible] = useState(false);
-
-  const onMapExit = () => {
-    setMapVisible(false);
-  };
-
-  const onMapView = () => {
-    setMapVisible(true);
-  };
-
-  return (
-    <PTimesComponent
-      times={times}
-      maxNumber={maxNumber}
-      gps={gps}
-      where={where}
-      onMapExit={onMapExit}
-      onMapView={onMapView}
-      mapVisible={mapVisible}
-    />
-  );
-};
-
-/**
- *
- * @component 구체적인 하루에 대한 컴포넌트
- */
-export const CEachDay = ({ scheduleDetails, order, array, maxNumber }) => {
-  const [visible, setVisible] = useState(false);
-
-  const onPressMore = () => {
-    setVisible(!visible);
-  };
-
-  return (
-    <PEachDay
-      scheduleDetails={scheduleDetails}
-      order={order}
-      array={array}
-      maxNumber={maxNumber}
-      onPressMore={onPressMore}
-      visible={visible}
-    />
-  );
-};
+import PReservationCalendar from 'Components/Screens/Instructor/Reservation/PReservationCalendar';
 
 /**
  *
