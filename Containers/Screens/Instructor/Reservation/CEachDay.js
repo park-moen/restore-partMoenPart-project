@@ -5,12 +5,18 @@ import PEachDay from 'Components/Screens/Instructor/Reservation/PEachDay';
  *
  * @component 구체적인 하루에 대한 컴포넌트
  */
-export default function CEachDay({ scheduleDetails, order, array, maxNumber }) {
-  const [visible, setVisible] = useState(false);
+export default function CEachDay({
+  scheduleDetails,
+  order,
+  array,
+  maxNumber,
+  visible,
+}) {
+  // const [visible, setVisible] = useState(false);
 
-  const onPressMore = () => {
-    setVisible(!visible);
-  };
+  // const onPressMore = () => {
+  //   setVisible(!visible);
+  // };
 
   return (
     <PEachDay
@@ -18,7 +24,7 @@ export default function CEachDay({ scheduleDetails, order, array, maxNumber }) {
       order={order}
       array={array}
       maxNumber={maxNumber}
-      onPressMore={onPressMore}
+      // onPressMore={onPressMore}
       visible={visible}
     />
   );

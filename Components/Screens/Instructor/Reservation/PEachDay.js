@@ -14,7 +14,7 @@ export default function PEachDay({
   array,
   maxNumber,
   visible,
-  onPressMore,
+  // onPressMore,
 }) {
   const { date, lectureTime, scheduleTimeDtoList: times } = scheduleDetails;
   const { address: where, latitude, longitude } = scheduleDetails.location;
@@ -31,7 +31,7 @@ export default function PEachDay({
         </View>
         <Text style={stylesEachDay.text}>{lectureTime}</Text>
         <Text style={stylesEachDay.text}>{where}</Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={stylesEachDay.moreButtonConatiner}
           onPress={onPressMore}
         >
@@ -39,7 +39,7 @@ export default function PEachDay({
             <Text>더보기</Text>
             <MaterialCommunityIcons name="menu-down" size={15} />
           </>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       {visible ? (
         <CTimesComponent
