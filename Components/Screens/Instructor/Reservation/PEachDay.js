@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, StyleSheet, Text } from 'react-native';
 
 import CTimesComponent from 'Containers/Screens/Instructor/Reservation/CTimesComponent';
 
@@ -14,7 +13,6 @@ export default function PEachDay({
   array,
   maxNumber,
   visible,
-  // onPressMore,
 }) {
   const { date, lectureTime, scheduleTimeDtoList: times } = scheduleDetails;
   const { address: where, latitude, longitude } = scheduleDetails.location;
@@ -31,15 +29,6 @@ export default function PEachDay({
         </View>
         <Text style={stylesEachDay.text}>{lectureTime}</Text>
         <Text style={stylesEachDay.text}>{where}</Text>
-        {/* <TouchableOpacity
-          style={stylesEachDay.moreButtonConatiner}
-          onPress={onPressMore}
-        >
-          <>
-            <Text>더보기</Text>
-            <MaterialCommunityIcons name="menu-down" size={15} />
-          </>
-        </TouchableOpacity> */}
       </View>
       {visible ? (
         <CTimesComponent
@@ -47,6 +36,7 @@ export default function PEachDay({
           maxNumber={maxNumber}
           gps={gps}
           where={where}
+          date={date}
         />
       ) : null}
     </>
