@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import CTimesComponent from 'Containers/Screens/Instructor/Reservation/CTimesComponent';
 
@@ -12,11 +13,15 @@ export default function PEachDay({
   order,
   array,
   maxNumber,
-  visible,
+  scheduleId,
 }) {
   const { date, lectureTime, scheduleTimeDtoList: times } = scheduleDetails;
   const { address: where, latitude, longitude } = scheduleDetails.location;
   const gps = { latitude, longitude };
+
+  const { selectedScheduleId } = useSelector(state => ({
+    selectedScheduleId: state.reservationReducer.scheduleId,
+  }));
 
   return (
     <>
@@ -30,7 +35,7 @@ export default function PEachDay({
         <Text style={stylesEachDay.text}>{lectureTime}</Text>
         <Text style={stylesEachDay.text}>{where}</Text>
       </View>
-      {visible ? (
+      {selectedScheduleId === scheduleId ? (
         <CTimesComponent
           times={times}
           maxNumber={maxNumber}

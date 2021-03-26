@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PEachDay from 'Components/Screens/Instructor/Reservation/PEachDay';
 
 /**
@@ -10,7 +10,7 @@ export default function CEachDay({
   order,
   array,
   maxNumber,
-  visible,
+  scheduleId,
 }) {
   return (
     <PEachDay
@@ -18,7 +18,7 @@ export default function CEachDay({
       order={order}
       array={array}
       maxNumber={maxNumber}
-      visible={visible}
+      scheduleId={scheduleId}
     />
   );
 }

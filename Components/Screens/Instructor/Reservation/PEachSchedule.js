@@ -4,13 +4,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import CEachDay from 'Containers/Screens/Instructor/Reservation/CEachDay';
 
-export default function PEachSchedule({
-  singleSchedule,
-  onPressMore,
-  visible,
-}) {
+export default function PEachSchedule({ singleSchedule, onPressMore }) {
   const singleScheduleComponents = [];
-  const { period, maxNumber } = singleSchedule;
+  const { period, maxNumber, scheduleId } = singleSchedule;
 
   // 단일 일정 내의 구체적인 날짜와 시간 처리
   singleSchedule.scheduleDetails.forEach((singleDay, y, array) => {
@@ -22,7 +18,8 @@ export default function PEachSchedule({
         order={y}
         array={array}
         maxNumber={maxNumber}
-        visible={visible}
+        // visible={visible}
+        scheduleId={scheduleId}
       />,
     );
   });

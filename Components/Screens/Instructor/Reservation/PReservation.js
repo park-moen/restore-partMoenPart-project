@@ -8,7 +8,6 @@ import CEquipment from 'Containers/Screens/Instructor/Reservation/CEquipment';
 
 export default function PReservation({
   lectureId,
-  lectureInfo,
   onPressLeft = () => {},
   onPressRight = () => {},
 }) {
@@ -16,13 +15,12 @@ export default function PReservation({
     <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
         <CReservationCalendar lectureId={lectureId} />
-        <CEquipment lectureInfo={lectureInfo} />
       </ScrollView>
 
       {/* 하단 버튼 */}
       <ButtomButtons
         TextLeft="이전"
-        TextRight="등록 완료"
+        TextRight="다음"
         onPressLeft={onPressLeft}
         onPressRight={onPressRight}
       />

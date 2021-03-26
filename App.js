@@ -25,6 +25,7 @@ import LectureScheduleAdd from 'Containers/Screens/Instructor/Schedule/LectureSc
 import LectureLocationAdd from 'Containers/Screens/Instructor/Schedule/LectureLocationAdd';
 import NMapSearch from 'Containers/Screens/Instructor/Schedule/NMapSearch';
 import CReservation from 'Containers/Screens/Instructor/Reservation/CReservation';
+import CEquipment from 'Containers/Screens/Instructor/Reservation/CEquipment';
 
 const store = initStore();
 const Stack = createStackNavigator();
@@ -103,6 +104,11 @@ function StackNavigator() {
       <Stack.Screen
         name="Reservation"
         component={CReservation}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="CEquipment"
+        component={CEquipment}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>

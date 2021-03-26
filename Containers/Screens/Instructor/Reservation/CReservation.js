@@ -1,6 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { reservationInit } from 'lib/redux/actions/reservationAction';
+import {
+  reservationInit,
+  scheduleIdInit,
+} from 'lib/redux/actions/reservationAction';
 
 import PReservation from 'Components/Screens/Instructor/Reservation/PReservation';
 
@@ -13,13 +16,15 @@ export default function CReservation({ route, navigation }) {
 
   const onPressLeft = () => {
     dispatch(reservationInit());
+    dispatch(scheduleIdInit());
     navigation.goBack();
   };
-  const onPressRight = () => {};
+  const onPressRight = () => {
+    navigation.navigate('CEquipment', { lectureInfo });
+  };
 
   return (
     <PReservation
-      lectureInfo={lectureInfo}
       lectureId={id}
       onPressLeft={onPressLeft}
       onPressRight={onPressRight}

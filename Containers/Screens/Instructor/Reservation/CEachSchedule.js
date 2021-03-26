@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import PEachSchedule from 'Components/Screens/Instructor/Reservation/PEachSchedule';
+import { setScheduleId } from 'lib/redux/actions/reservationAction';
 
 export default function CEachSchedule({ singleSchedule }) {
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
+  const { scheduleId } = singleSchedule;
 
   useEffect(() => {
     setVisible(false);
+    console.log('singleSchedule : ', singleSchedule);
   }, [singleSchedule]);
 
   const onPressMore = () => {
-    setVisible(!visible);
+    dispatch(setScheduleId({ scheduleId }));
   };
 
   return (
@@ -17,6 +23,7 @@ export default function CEachSchedule({ singleSchedule }) {
       singleSchedule={singleSchedule}
       onPressMore={onPressMore}
       visible={visible}
+      scheduleId={scheduleId}
     />
   );
 }

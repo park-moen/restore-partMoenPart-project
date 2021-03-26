@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { reservationInit } from 'lib/redux/actions/reservationAction';
+import {
+  reservationInit,
+  scheduleIdInit,
+} from 'lib/redux/actions/reservationAction';
 import { GetLectureSchedule } from 'config/strings';
 import PReservationCalendar from 'Components/Screens/Instructor/Reservation/PReservationCalendar';
 
@@ -34,6 +37,7 @@ export default function CReservationCalendar({ lectureId }) {
   // 선택한 날짜와 관련된 일정만 추려냄
   const onDayPress = selectedDay => {
     dispatch(reservationInit());
+    dispatch(scheduleIdInit());
 
     const dayFilter = singleSchedule => {
       const { scheduleDetails } = singleSchedule; // 단일 일정 상세정보 (날짜별 오브젝트 배열)

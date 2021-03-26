@@ -1,84 +1,103 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { reservationAPI } from 'lib/api/Lecture';
+
+import PEquipment, {
+  PEachEquipment,
+} from 'Components/Screens/Instructor/Reservation/PEquipment';
+
+import {
+  equipmentSelect,
+  equipmentInit,
+  descriptionChange,
+  descriptionInit,
+} from 'lib/redux/actions/reservationAction';
 
 /**
  *
  * @component 단일장비 컴포넌트
  */
 export function CEachEquipment({ name, price }) {
+  const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
 
   const onCheckboxPress = () => {
-    setIsChecked(!isChecked);
+    const newChecked = !isChecked;
+    dispatch(equipmentSelect({ equipment: name, isChecked: newChecked }));
+    setIsChecked(newChecked);
   };
 
   return (
-    <View style={stylesEach.container}>
-      <CheckBox checked={isChecked} containerStyle={{ padding: 0 }} />
-      <TouchableOpacity
-        style={stylesEach.equipmentContainer}
-        onPress={onCheckboxPress}
-      >
-        <Text style={stylesEach.text}>{name}</Text>
-        <Text style={stylesEach.text}>{`+ ₩${price}`}</Text>
-      </TouchableOpacity>
-    </View>
+    <PEachEquipment
+      name={name}
+      price={price}
+      isChecked={isChecked}
+      onCheckboxPress={onCheckboxPress}
+    />
   );
 }
-const stylesEach = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  equipmentContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    borderWidth: 0.3,
-    borderRadius: 10,
-    margin: 5,
-    justifyContent: 'space-between',
-    backgroundColor: '#9DE8FF',
-  },
-  text: {
-    padding: 7,
-    fontSize: 18,
-    fontWeight: '500',
-  },
-});
 
 /**
  *
  * @component 대여장비 목록
  */
-export default function CEquipment({ lectureInfo }) {
-  const { equipmentList } = lectureInfo;
+export default function CEquipment({ route, navigation }) {
+  const dispatch = useDispatch();
+  const { lectureInfo } = route.params;
 
-  if (equipmentList === undefined) return null;
+  const {
+    scheduleId,
+    reservationDateList,
+    equipmentList,
+    description,
+  } = useSelector(state => state.reservationReducer);
 
-  const array = [];
-  equipmentList.forEach((element, i) => {
-    const { name, price } = element;
-    array.push(<CEachEquipment key={i} name={name} price={price} />);
-  });
+  const onPressLeft = () => {
+    dispatch(equipmentInit());
+    dispatch(descriptionInit());
+    navigation.goBack();
+  };
+
+  const onPressRight = async () => {
+    console.log(
+      '신청하기 전에 확인 : ',
+      scheduleId,
+      reservationDateList,
+      equipmentList,
+      description,
+    );
+
+    const result = [];
+    // eslint-disable-next-line no-unused-vars
+    for (const [key, value] of Object.entries(reservationDateList)) {
+      result.push(value);
+    }
+    console.log('날짜,시간 오브젝트->배열 변환 : ', result);
+
+    await reservationAPI({
+      scheduleId,
+      equipmentList,
+      description,
+      reservationDateList: result,
+      navigation,
+    });
+  };
+
+  // eslint-disable-next-line no-shadow
+  const onTextChange = description => {
+    dispatch(descriptionChange({ description }));
+  };
 
   return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>장비 대여</Text>
-      {array}
-    </View>
+    <>
+      <PEquipment
+        lectureInfo={lectureInfo}
+        onPressLeft={onPressLeft}
+        onPressRight={onPressRight}
+        onTextChange={onTextChange}
+      />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-    padding: 10,
-  },
-  title: {
-    padding: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
