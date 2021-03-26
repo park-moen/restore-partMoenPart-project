@@ -1,27 +1,33 @@
 import React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { useDispatch } from 'react-redux';
+import {
+  reservationInit,
+  scheduleIdInit,
+} from 'lib/redux/actions/reservationAction';
 
 import PReservation from 'Components/Screens/Instructor/Reservation/PReservation';
-import CEquipment from './CEquipment';
 
-export default function CReservation({
-  route,
-  navigation,
-}) {
+export default function CReservation({ route, navigation }) {
+  const dispatch = useDispatch();
   const { lectureInfo } = route.params;
-  const {id} = lectureInfo;
+  const { id } = lectureInfo;
 
-  console.log("강의신청에서 받은 lectureInfo : ", lectureInfo);
+  console.log('강의신청에서 받은 lectureInfo : ', lectureInfo);
 
-  const onPressLeft = ()=>navigation.goBack();
-  const onPressRight = ()=>{};
+  const onPressLeft = () => {
+    dispatch(reservationInit());
+    dispatch(scheduleIdInit());
+    navigation.goBack();
+  };
+  const onPressRight = () => {
+    navigation.navigate('CEquipment', { lectureInfo });
+  };
 
   return (
-      <PReservation
-        lectureInfo={lectureInfo}
-        lectureId={id}
-        onPressLeft={onPressLeft}
-        onPressRight={onPressRight}
-      />
+    <PReservation
+      lectureId={id}
+      onPressLeft={onPressLeft}
+      onPressRight={onPressRight}
+    />
   );
 }

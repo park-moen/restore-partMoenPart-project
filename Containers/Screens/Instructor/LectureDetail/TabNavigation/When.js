@@ -1,236 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
 
-import { LectureSchedule } from '../../Schedule/LectureScheduleAll';
-import NMapModal from './NMapModal';
-// api
 import { GetLectureSchedule } from 'config/strings';
+import PWhen, {
+  PTimesComponent,
+  PEachDay,
+} from 'Components/Screens/Instructor/LectureDetail/TabNavigation/PWhen';
+
+/**
+ *
+ * @component 예약 시간별 컴포넌트
+ */
+export const CTimesComponent = ({ times, maxNumber, gps, where }) => {
+  const [mapVisible, setMapVisible] = useState(false);
+
+  const onMapExit = () => {
+    setMapVisible(false);
+  };
+
+  const onMapView = () => {
+    setMapVisible(true);
+  };
+
+  return (
+    <PTimesComponent
+      times={times}
+      maxNumber={maxNumber}
+      gps={gps}
+      where={where}
+      onMapExit={onMapExit}
+      onMapView={onMapView}
+      mapVisible={mapVisible}
+    />
+  );
+};
 
 /**
  *
  * @component 구체적인 하루에 대한 컴포넌트
  */
-export const EachDay = ({ scheduleDetails, order, array, maxNumber }) => {
+export const CEachDay = ({ scheduleDetails, order, array, maxNumber }) => {
   const [visible, setVisible] = useState(false);
-  const [mapVisible, setMapVisible] = useState(false);
-  // console.log('EachDay scheduleDetails : ', scheduleDetails);
 
-  const { date } = scheduleDetails; // 강의날짜
-  const { lectureTime } = scheduleDetails; // 소요시간
-  const where = scheduleDetails.location.address;
-  const gps = {
-    latitude: scheduleDetails.location.latitude,
-    longitude: scheduleDetails.location.longitude,
-  };
-  const times = scheduleDetails.scheduleTimeDtoList; // 예약가능시간 배열
-  // console.log('times : ', times);
-
-  const TimesComponent = () => {
-    const eachTimes = [];
-
-    times.forEach((eachTime, i) => {
-      eachTimes.push(
-        <View
-          // eslint-disable-next-line react/no-array-index-key
-          key={`eachTime${i}`}
-          style={{ marginLeft: 10, flexDirection: 'row', alignItems: 'center' }}
-        >
-          <Text style={stylesEachDay.text}>{`- ${eachTime.startTime}`}</Text>
-          <Text style={stylesEachDay.text}>
-            {`${eachTime.currentNumber}/${maxNumber}`}
-          </Text>
-        </View>,
-      );
-    });
-
-    const onPressExit = () => {
-      setMapVisible(false);
-    };
-
-    return (
-      <View
-        style={{
-          padding: 5,
-          flexDirection: 'row',
-          flex: 1,
-          justifyContent: 'space-between',
-        }}
-      >
-        <View>
-          <View
-            style={{ justifyContent: 'space-between', flexDirection: 'row' }}
-          >
-            <Text style={stylesEachDay.timeTitle}>예약 가능 시간</Text>
-          </View>
-          {eachTimes}
-        </View>
-        <NMapModal
-          picker={gps}
-          visible={mapVisible}
-          onPressExit={onPressExit}
-          title={where}
-        />
-        <View
-          style={{
-            height: 35,
-            alignSelf: 'flex-end',
-            alignItems: 'flex-end',
-            flex: 1,
-          }}
-        >
-          <TouchableOpacity
-            style={stylesEachDay.mapButtonContainer}
-            onPress={() => {
-              setMapVisible(true);
-            }}
-          >
-            <Text>지도보기</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
+  const onPressMore = () => {
+    setVisible(!visible);
   };
 
   return (
-    <>
-      <View style={stylesEachDay.rootContainer}>
-        <View style={stylesEachDay.dateContainer}>
-          <Text style={stylesEachDay.text}>{date}</Text>
-          {array.length !== 1 ? (
-            <Text style={stylesEachDay.text}>{`(${order + 1}회차)`}</Text>
-          ) : null}
-        </View>
-        <Text style={stylesEachDay.text}>{lectureTime}</Text>
-        <Text style={stylesEachDay.text}>{where}</Text>
-        <TouchableOpacity
-          style={stylesEachDay.moreButtonConatiner}
-          onPress={() => {
-            setVisible(!visible);
-          }}
-        >
-          <>
-            <Text>더보기</Text>
-            <MaterialCommunityIcons name="menu-down" size={15} />
-          </>
-        </TouchableOpacity>
-      </View>
-      {visible ? <TimesComponent /> : null}
-    </>
+    <PEachDay
+      scheduleDetails={scheduleDetails}
+      order={order}
+      array={array}
+      maxNumber={maxNumber}
+      onPressMore={onPressMore}
+      visible={visible}
+    />
   );
 };
-const stylesEachDay = StyleSheet.create({
-  rootContainer: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 2,
-    borderWidth: 0.3,
-  },
-  dateContainer: { flexDirection: 'row' },
-  text: { padding: 5 },
-  moreButtonConatiner: {
-    flexDirection: 'row',
-    borderRadius: 5,
-    backgroundColor: '#5EBAF2',
-    padding: 5,
-    alignItems: 'center',
-  },
-  timeTitle: {
-    fontWeight: '600',
-    fontSize: 15,
-    padding: 5,
-  },
-  mapButtonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    borderRadius: 7,
-    padding: 8,
-    backgroundColor: '#3CC83B',
-    alignItems: 'center',
-  },
-});
-
-/**
- *
- * @component 유저가 선택한 날짜와 관련된 일정 출력
- */
-export const SchedulesUserSelected = ({ schedules }) => {
-  const result = [];
-  schedules.forEach((singleSchedule, i) => {
-    const singleScheduleComponents = [];
-    // console.log('singleSchedule : ', singleSchedule);
-
-    const { period, maxNumber } = singleSchedule;
-
-    // 단일 일정 내의 구체적인 날짜와 시간 처리
-    singleSchedule.scheduleDetails.forEach((singleDay, y, array) => {
-      singleScheduleComponents.push(
-        <EachDay
-          // eslint-disable-next-line react/no-array-index-key
-          key={`singleDay${y}`}
-          scheduleDetails={singleDay}
-          order={y}
-          array={array}
-          maxNumber={maxNumber}
-        />,
-      );
-    });
-
-    result.push(
-      // 단일 일정에 대한 컨테이너
-      <View
-        // eslint-disable-next-line react/no-array-index-key
-        key={`singleSchedule${i}`}
-        style={stylesSingleSchedule.rootContainer}
-      >
-        <View
-          style={{
-            ...stylesSingleSchedule.titleContainer,
-            backgroundColor:
-              period > 1 ? 'rgba(0,200,250,0.3)' : 'rgba(255,0,204,0.3)',
-          }}
-        >
-          {period > 1 ? (
-            <Text style={stylesSingleSchedule.titleText}>
-              {`다회차 클래스 (${period}일)`}
-            </Text>
-          ) : (
-            <Text style={stylesSingleSchedule.titleText}>원데이 클래스</Text>
-          )}
-          <View style={stylesSingleSchedule.possibleContainer}>
-            <Text>예약가능</Text>
-          </View>
-        </View>
-        {singleScheduleComponents}
-      </View>,
-    );
-  });
-
-  return result;
-};
-const stylesSingleSchedule = StyleSheet.create({
-  rootContainer: { borderWidth: 2, margin: 2 },
-  titleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 2,
-  },
-  titleText: {
-    fontSize: 15,
-    fontWeight: '600',
-    padding: 2,
-  },
-  possibleContainer: {
-    padding: 5,
-    borderWidth: 1,
-    borderRadius: 10,
-    backgroundColor: '#33CC00',
-  },
-});
 
 /**
  *
@@ -238,47 +64,29 @@ const stylesSingleSchedule = StyleSheet.create({
  */
 export default function When({ lectureId }) {
   const [schedules, setSchedules] = useState([{}]); // 전체 일정 오브젝트 배열
+  const [filteredSchedules, setFilteredSchedules] = useState([]);
 
+  // 백엔드에서 일정 받아오기
   useEffect(() => {
     const fetch = async () => {
       if (lectureId !== undefined) {
-        // 백엔드에서 일정 받아오기
         const response = await axios.get(GetLectureSchedule, {
           params: { lectureId },
         });
 
         // eslint-disable-next-line no-shadow
         const { scheduleDtoList } = response.data._embedded;
-        // console.log('fetched schedules : ', scheduleDtoList);
         setSchedules(scheduleDtoList);
       }
-
-      /* 
-        scheduleDtoList.forEach(singleSchedule => {
-          // console.log('single schedule : ', singleSchedule);
-          const { scheduleDetails } = singleSchedule;
-          scheduleDetails.forEach(singleDay => {
-            // console.log('하루에 대한 일정 : ', singleDay);
-            // console.log('날짜: ', singleDay.date);
-            singleDay.scheduleTimeDtoList.forEach(eachTime => {
-              // console.log('startTime : ', eachTime.startTime);
-              // console.log('current number : ', eachTime.currentNumber);
-            });
-          });
-        }); 
-        */
     };
 
     if (lectureId !== undefined) fetch();
   }, [lectureId]);
 
-  const [filteredSchedules, setFilteredSchedules] = useState([]);
-
+  // 선택한 날짜와 관련된 일정만 추려냄
   const onDayPress = selectedDay => {
     const dayFilter = singleSchedule => {
-      // console.log('dayFilter singleSchedule : ', singleSchedule);
       const { scheduleDetails } = singleSchedule; // 단일 일정 상세정보 (날짜별 오브젝트 배열)
-      // console.log('When : scheduleDetails : ', scheduleDetails);
       const filteredScheduleDetails = scheduleDetails.filter(singleDay => {
         return singleDay.date === selectedDay.dateString; // return T/F
       });
@@ -288,32 +96,16 @@ export default function When({ lectureId }) {
 
     if (schedules) {
       // eslint-disable-next-line no-shadow
-      const filteredSchedules = schedules.filter(dayFilter); // 전체 일정에서 필터를 걺
-      // console.log('선택된 날짜와 관련된 일정들 : ', filteredSchedules);
+      const filteredSchedules = schedules.filter(dayFilter);
       setFilteredSchedules(filteredSchedules);
     }
   };
 
   return (
-    <View style={styles.rootContainer}>
-      {lectureId ? (
-        <LectureSchedule
-          lectureId={lectureId}
-          hideTitle="true"
-          onDayPress={onDayPress}
-        />
-      ) : null}
-      {/* 실제 강의 id랑 매칭 시키려면 lectureId={lectureInfo.id} */}
-
-      {filteredSchedules.length !== 0 ? (
-        <SchedulesUserSelected schedules={filteredSchedules} />
-      ) : null}
-    </View>
+    <PWhen
+      lectureId={lectureId}
+      onDayPress={onDayPress}
+      filteredSchedules={filteredSchedules}
+    />
   );
 }
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-    padding: 10,
-  },
-});

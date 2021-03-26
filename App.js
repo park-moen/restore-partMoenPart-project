@@ -1,8 +1,12 @@
 import 'react-native-gesture-handler'; // navigator, production 시 필수.
 
 import React from 'react';
+import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+// redux
+import initStore from 'lib/redux/store';
 
 // import Screens
 import SignUpContainer from 'Containers/Screens/SignUp/SignUpContainer';
@@ -21,7 +25,9 @@ import LectureScheduleAdd from 'Containers/Screens/Instructor/Schedule/LectureSc
 import LectureLocationAdd from 'Containers/Screens/Instructor/Schedule/LectureLocationAdd';
 import NMapSearch from 'Containers/Screens/Instructor/Schedule/NMapSearch';
 import CReservation from 'Containers/Screens/Instructor/Reservation/CReservation';
+import CEquipment from 'Containers/Screens/Instructor/Reservation/CEquipment';
 
+const store = initStore();
 const Stack = createStackNavigator();
 
 function StackNavigator() {
@@ -100,14 +106,21 @@ function StackNavigator() {
         component={CReservation}
         options={{ headerShown: true }}
       />
+      <Stack.Screen
+        name="CEquipment"
+        component={CEquipment}
+        options={{ headerShown: true }}
+      />
     </Stack.Navigator>
   );
 }
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StackNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
