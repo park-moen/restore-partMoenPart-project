@@ -1,14 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { reservationInit } from 'lib/redux/actions/reservationAction';
 
 import PReservation from 'Components/Screens/Instructor/Reservation/PReservation';
 
 export default function CReservation({ route, navigation }) {
+  const dispatch = useDispatch();
   const { lectureInfo } = route.params;
   const { id } = lectureInfo;
 
   console.log('강의신청에서 받은 lectureInfo : ', lectureInfo);
 
-  const onPressLeft = () => navigation.goBack();
+  const onPressLeft = () => {
+    dispatch(reservationInit());
+    navigation.goBack();
+  };
   const onPressRight = () => {};
 
   return (

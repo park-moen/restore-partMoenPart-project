@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import PTimesComponent from 'Components/Screens/Instructor/Reservation/PTimesComponent';
+import { reservationSelect } from 'lib/redux/actions/reservationAction';
 
 /**
  *
  * @component 예약 시간별 컴포넌트
  */
-export default function CTimesComponent({ times, maxNumber, gps, where }) {
-  console.log('CTimesComponent :  ', times, maxNumber, gps, where);
+export default function CTimesComponent({
+  times,
+  maxNumber,
+  gps,
+  where,
+  date,
+}) {
+  const dispatch = useDispatch();
+
   const [mapVisible, setMapVisible] = useState(false);
 
   const onMapExit = () => {
@@ -16,6 +24,13 @@ export default function CTimesComponent({ times, maxNumber, gps, where }) {
 
   const onMapView = () => {
     setMapVisible(true);
+  };
+
+  const onDateSelect = label => {
+    const time = label.label.split(' ')[0];
+    console.log(time);
+
+    dispatch(reservationSelect({ date, time }));
   };
 
   return (
@@ -27,6 +42,7 @@ export default function CTimesComponent({ times, maxNumber, gps, where }) {
       onMapExit={onMapExit}
       onMapView={onMapView}
       mapVisible={mapVisible}
+      onDateSelect={onDateSelect}
     />
   );
 }

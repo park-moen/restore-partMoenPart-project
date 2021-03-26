@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import RadioButtonRN from 'radio-buttons-react-native';
 // import { Checkbox } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements';
 import NMapModal from 'Containers/common/NMapModal';
@@ -16,32 +17,37 @@ export default function PTimesComponent({
   mapVisible,
   onMapExit,
   onMapView,
+  onDateSelect,
 }) {
-  const eachTimes = [];
+  const radioProps = [];
 
   times.forEach((eachTime, i) => {
-    eachTimes.push(
-      <View
-        // eslint-disable-next-line react/no-array-index-key
-        key={`eachTime${i}`}
-        style={stylesEachTime.container}
-      >
-        <CheckBox checked={false} containerStyle={{ padding: 0 }} />
-        <Text style={stylesEachTime.text}>{`- ${eachTime.startTime}`}</Text>
-        <Text style={stylesEachTime.text}>
-          {`${eachTime.currentNumber}/${maxNumber}`}
-        </Text>
-      </View>,
-    );
+    radioProps.push({
+      label: `${eachTime.startTime}   ${eachTime.currentNumber}/${maxNumber}`,
+    });
   });
 
   return (
     <View style={stylesEachTime.rootContainer}>
-      <View>
+      <View style={{ flex: 1, width: '100%' }}>
         <View style={stylesEachTime.timesContainer}>
           <Text style={stylesEachTime.timeTitle}>예약 가능 시간</Text>
         </View>
-        {eachTimes}
+        <RadioButtonRN
+          box
+          data={radioProps}
+          animationTypes={['pulse']}
+          selectedBtn={onDateSelect}
+          boxActiveBgColor="#e1f5fe33"
+        />
+        <View style={stylesEachTime.buttonContainer}>
+          <TouchableOpacity
+            style={stylesEachTime.mapButton}
+            onPress={onMapView}
+          >
+            <Text>지도보기</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <NMapModal
         picker={gps}
@@ -49,11 +55,6 @@ export default function PTimesComponent({
         onPressExit={onMapExit}
         title={where}
       />
-      <View style={stylesEachTime.buttonContainer}>
-        <TouchableOpacity style={stylesEachTime.mapButton} onPress={onMapView}>
-          <Text>지도보기</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -73,7 +74,8 @@ const stylesEachTime = StyleSheet.create({
   container: { marginLeft: 10, flexDirection: 'row', alignItems: 'center' },
   text: { padding: 5 },
   buttonContainer: {
-    height: 35,
+    paddingTop: 10,
+    paddingBottom: 10,
     alignSelf: 'flex-end',
     alignItems: 'flex-end',
     flex: 1,

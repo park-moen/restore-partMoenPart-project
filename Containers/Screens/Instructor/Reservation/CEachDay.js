@@ -12,19 +12,12 @@ export default function CEachDay({
   maxNumber,
   visible,
 }) {
-  // const [visible, setVisible] = useState(false);
-
-  // const onPressMore = () => {
-  //   setVisible(!visible);
-  // };
-
   return (
     <PEachDay
       scheduleDetails={scheduleDetails}
       order={order}
       array={array}
       maxNumber={maxNumber}
-      // onPressMore={onPressMore}
       visible={visible}
     />
   );
