@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, SafeAreaView } from 'react-native';
 
-// import PopAlert from '../Components/common/PopAlert';
-
+// import PopAlert from 'Components/common/PopAlert';
+import { makeTimeFormat } from '../lib/time';
 import { Logout, RefreshToken } from '../lib/api/TokenActivity';
+
+const testLectureId = 3;
 
 export default function Main({ navigation }) {
   const btnLogout = () => {
@@ -19,11 +21,11 @@ export default function Main({ navigation }) {
   };
 
   const btnLectureDetail = () => {
-    navigation.navigate('LectureDetail', { id: 2 });
+    navigation.navigate('LectureDetail', { id: testLectureId });
   };
 
   const btnShowSchedule = () => {
-    navigation.navigate('LectureScheduleAll', { id: 2 });
+    navigation.navigate('LectureScheduleAll', { id: testLectureId });
   };
 
   const btnAddLocation = () => {
@@ -43,7 +45,7 @@ export default function Main({ navigation }) {
       <Button title="강의 상세 조회" onPress={btnLectureDetail} />
 
       <Button title="일정 조회" onPress={btnShowSchedule} />
-      <Button title="위치 추갸" onPress={btnAddLocation} />
+      <Button title="위치 추가" onPress={btnAddLocation} />
     </SafeAreaView>
   );
 }

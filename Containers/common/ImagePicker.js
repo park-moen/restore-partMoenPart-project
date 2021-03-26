@@ -45,7 +45,6 @@ export default function ImagePicker({ title = 'test', images, setImages }) {
                   maxWidth: 200,
                 },
                 async response => {
-                  console.log('hi', response.type, response.uri);
                   setImagedata(
                     `data:${response.type};base64,${response.base64}`,
                   );

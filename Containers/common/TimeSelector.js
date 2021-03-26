@@ -22,8 +22,8 @@ export function TimeSelector({
     const [clicked, setClicked] = useState(initState);
 
     useEffect(() => {
-      // console.log("개별 시간 요소의 on/off 상태 : ", initState);
-      // console.log("버튼 상태 : ", clicked);
+      // // // console.log("개별 시간 요소의 on/off 상태 : ", initState);
+      // // // console.log("버튼 상태 : ", clicked);
     }, []);
 
     const onPressed = () => {
@@ -57,10 +57,10 @@ export function TimeSelector({
     );
   };
 
-  // console.log("이 날짜의 버튼 상태 : ", initButtonStates);
+  // // // console.log("이 날짜의 버튼 상태 : ", initButtonStates);
 
   let tmpTime = moment({ hour: startHour, minute: startMinute });
-  for (let i = 0; i < 48; i++) {
+  for (let i = 0; i < 48; i += 1) {
     const resultHour = tmpTime.hours().toString();
     const resultMinutes = tmpTime.minutes().toString();
 
@@ -70,7 +70,7 @@ export function TimeSelector({
     )}`;
 
     const test = initButtonStates.find(e => e === displayTime);
-    // console.log("test : ", test, " clicked : ", test != undefined);
+    // // // console.log("test : ", test, " clicked : ", test != undefined);
     times.push(
       <SelectTime
         displayTime={displayTime}
@@ -103,7 +103,7 @@ export default function TimeSelectorContainer({
   const timesInitOrBack = changedIndex => {
     const tmpTimes = final[schedules[changedIndex]]; // 해당 날짜에 대한 예약시간배열
 
-    tmpTimes == undefined || tmpTimes == []
+    tmpTimes === undefined || tmpTimes === []
       ? setSelectedTimes([]) // 초기화
       : setSelectedTimes(tmpTimes); // 되돌리기
   };
@@ -115,7 +115,7 @@ export default function TimeSelectorContainer({
 
     dateNowPrintedIndex > 0
       ? setDateNowPrintedIndex(changedIndex)
-      : console.log('끝에 도달했습니다.');
+      : // // console.log('끝에 도달했습니다.');
 
     timesInitOrBack(changedIndex); // 날짜 바뀌었으니 배열 초기화 or 해당날짜에 대한 시간으로 복구
   };
@@ -127,15 +127,15 @@ export default function TimeSelectorContainer({
 
     dateNowPrintedIndex < schedules.length - 1
       ? setDateNowPrintedIndex(changedIndex)
-      : console.log('끝에 도달했습니다.');
+      : // // console.log('끝에 도달했습니다.');
 
     timesInitOrBack(changedIndex); // 날짜 바뀌었으니 배열 초기화 or 해당날짜에 대한 시간으로 복구
   };
 
   const onSelectTimeFunc = ({ clicked, displayTime }) => {
-    // console.log("선택된 시간 : ", displayTime);
+    // // // console.log("선택된 시간 : ", displayTime);
 
-    console.log('selectedTimes 배열 : ', selectedTimes);
+    // // console.log('selectedTimes 배열 : ', selectedTimes);
 
     let result = [];
     // on->off : 취소, off->on : 선택
@@ -143,16 +143,16 @@ export default function TimeSelectorContainer({
       // 시간 선택 해제
       result = selectedTimes.filter(words => words !== displayTime); // 배열 반환
       setSelectedTimes(result);
-      console.log('시간 선택 배열 현황 : ', result);
+      // // console.log('시간 선택 배열 현황 : ', result);
 
       // 오브젝트화
-      // console.log("날짜 배열 : ", schedules, " 현재 선택 : ", schedules[dateNowPrintedIndex]);
+      // // // console.log("날짜 배열 : ", schedules, " 현재 선택 : ", schedules[dateNowPrintedIndex]);
       const copyObjs = { ...final };
       const newObjs = Object.assign(copyObjs, {
         [schedules[dateNowPrintedIndex]]: result,
       });
       setFinal(newObjs);
-      console.log('오브젝트 : ', newObjs);
+      // // console.log('오브젝트 : ', newObjs);
 
       // 부모 컴포넌트에 동기화
       onScheduleObjChange(newObjs);
@@ -160,16 +160,16 @@ export default function TimeSelectorContainer({
       // 시간 선택 (추가)
       result = selectedTimes.concat(displayTime);
       setSelectedTimes(result);
-      console.log('시간 선택 배열 현황 : ', result);
+      // // console.log('시간 선택 배열 현황 : ', result);
 
       // 오브젝트화
-      // console.log("날짜 배열 : ", schedules, " 현재 선택 : ", schedules[dateNowPrintedIndex]);
+      // // // console.log("날짜 배열 : ", schedules, " 현재 선택 : ", schedules[dateNowPrintedIndex]);
       const copyObjs = { ...final };
       const newObjs = Object.assign(copyObjs, {
         [schedules[dateNowPrintedIndex]]: result,
       });
       setFinal(newObjs);
-      console.log('오브젝트 : ', newObjs);
+      // // console.log('오브젝트 : ', newObjs);
 
       // 부모 컴포넌트에 동기화
       onScheduleObjChange(newObjs);

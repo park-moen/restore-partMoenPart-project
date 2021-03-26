@@ -9,6 +9,10 @@ export const Tag = ({ tagName }) => {
   );
 };
 
+/**
+ *
+ * @param {tags} 태그 텍스트 배열
+ */
 const MakeTags = ({ tags }) => {
   const array = [];
   for (let i = 0; i < tags.length; i++) {
@@ -18,6 +22,12 @@ const MakeTags = ({ tags }) => {
   return array;
 };
 
+/**
+ *
+ * @component TagList
+ * @param {Tags} 태그 텍스트 배열
+ * @param {containerStyle} 태그 컨테이너 스타일
+ */
 export default function TagList({ tags, containerStyle }) {
   return (
     <View style={{ flexDirection: 'row', ...containerStyle }}>

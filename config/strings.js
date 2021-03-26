@@ -1,4 +1,5 @@
 // API URL
+// export const Server = 'http://localhost:8080';
 export const Server = 'http://localhost:8080';
 
 // auth API
@@ -17,7 +18,9 @@ export const LectureDetailAPI = `${Server}/lecture/detail`;
 export const LectureDetailAPIFunc = ({ id }) => {
   return `${LectureDetailAPI}?id=${id}`;
 };
-export const LectureAddScheduleAPI = `${Server}/schedule`;
+export const LectureAddScheduleAPI = `${Server}/schedule`; // post 요청용
+export const GetLectureSchedule = `${Server}/schedule`; // get 요청용
+export const ReservationAPI = `${Server}/reservation`;
 
 // NaverMap API
 // !---- 전송 시 헤더에 아래의 인증정보 추가 필요.

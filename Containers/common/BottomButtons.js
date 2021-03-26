@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 
-export default function LectureFeeAndEquipment({
+export default function BottomButtons({
   onPressLeft,
   onPressRight,
   TextLeft,
