@@ -1,6 +1,7 @@
 // API URL
 // export const Server = 'http://localhost:8080';
-export const Server = 'http://localhost:8080';
+// export const Server = 'http://localhost:8080';
+export const Server = 'http://192.168.43.21:8080';
 
 // auth API
 export const Login = `${Server}/sign/signin`;
@@ -10,16 +11,10 @@ export const TokenRefresh = `${Server}/sign/refresh`;
 
 // Lecture API
 export const NewLectureAPI = `${Server}/lecture/create`;
-export const LectureListRegionAPI = `${Server}/lecture/list/region`;
-export const LectureListRegionAPIFunc = ({ region, page, size }) => {
-  return `${LectureListRegionAPI}?region=${region}&page=${page}&size=${size}`;
-};
+export const LectureListAPI = `${Server}/lecture/list`;
 export const LectureDetailAPI = `${Server}/lecture/detail`;
-export const LectureDetailAPIFunc = ({ id }) => {
-  return `${LectureDetailAPI}?id=${id}`;
-};
 export const LectureAddScheduleAPI = `${Server}/schedule`; // post 요청용
-export const GetLectureSchedule = `${Server}/schedule`; // get 요청용
+export const GetLectureScheduleAPI = `${Server}/schedule`; // get 요청용
 export const ReservationAPI = `${Server}/reservation`;
 
 // NaverMap API

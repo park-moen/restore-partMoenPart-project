@@ -1,0 +1,81 @@
+import React, { useEffect, useState } from 'react';
+import { LectureListAPIFunc } from 'lib/api/Lecture';
+
+import PLectureList, {
+  PCardLecture,
+} from 'Components/Screens/Student/PLectureList';
+
+export const CCardLecture = ({ lecture, onPressLecture }) => {
+  const [heart, setHeart] = useState(false);
+  const onPressHeart = () => {
+    setHeart(!heart);
+  };
+
+  return (
+    <PCardLecture
+      lecture={lecture}
+      onPressLecture={onPressLecture}
+      heart={heart}
+      onPressHeart={onPressHeart}
+    />
+  );
+};
+
+export default function LectureListContainer({ route, navigation }) {
+  const [searchText, setSearchText] = useState('');
+  const [lectures, setLectures] = useState([]);
+  const [filter, setFilter] = useState({
+    region: '',
+    costCondition: { max: 0, min: 0 },
+    certificateKind: '',
+    groupName: '',
+  });
+
+  // 화면 첫 진입 시 초기값.
+  useEffect(() => {
+    const { region, costCondition, certificateKind, groupName } = route.params;
+
+    setFilter({
+      region,
+      costCondition,
+      certificateKind,
+      groupName,
+    });
+  }, []);
+
+  // 필터 변동 시마다 리렌더링
+  useEffect(() => {
+    async function getLectures() {
+      const { region, costCondition, certificateKind, groupName } = filter;
+      const lectureByRegionResList = await LectureListAPIFunc({
+        region,
+        costCondition,
+        certificateKind,
+        groupName,
+        page: 0,
+        size: 5,
+      });
+
+      setLectures(lectureByRegionResList);
+    }
+    getLectures();
+  }, [filter]);
+
+  const onSearchInput = input => {
+    setSearchText(input);
+    console.log("input : ", input);
+  };
+
+  const onPressLecture = ({ id }) => {
+    navigation.navigate('LectureDetail', { id });
+  };
+
+  return (
+    <PLectureList
+      lectures={lectures}
+      searchText={searchText}
+      onSearchInput={onSearchInput}
+      onPressLecture={onPressLecture}
+    />
+  );
+}

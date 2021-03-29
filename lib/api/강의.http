@@ -60,16 +60,25 @@ Host: localhost:8080
 ###
 
 // 강의 단건 상세조회
-GET /lecture/detail?id=3
+GET /lecture/detail?id=8
 Content-Type: application/json;charset=UTF-8
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTYyNDE5NjYsImV4cCI6MTYxNjI0NTU2Nn0.cMWKi-Habwram10JenxBxOGwmi7CL_wEE1m-pPmskxM
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiSU5TVFJVQ1RPUiIsIlNUVURFTlQiXSwiaWF0IjoxNjE2ODYxODgwLCJleHAiOjE2MTY4NjU0ODB9.1UQAMFYfw6BkSxO9ep6uI4tP28Zp4zvqORkpc5LO4DQ
 IsRefreshToken: false
 Host: localhost:8080
 
 ###
 
 // 지역별  강의 조회
-GET /lecture/list/region?region=%EC%84%9C%EC%9A%B8&page=1&size=5 HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE2MTU0ODE5ODcsImV4cCI6MTYxNTQ4NTU4N30.qAjNe-w-Ql11fI9ZeuSmM_gFPDg0HNPWN7gnU8lMqkQ
-IsRefreshToken: false
+GET /lecture/list?page=0&size=5 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 121
 Host: localhost:8080
+
+{
+  "certificateKind" : "level1",
+  "region" : "서울",
+  "costCondition" : {
+    "max" : 200000,
+    "min" : 10000
+  }
+}
