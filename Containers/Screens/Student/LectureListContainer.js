@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -10,37 +9,41 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import axios from 'axios';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import TagList from 'Components/common/Tags';
-import { LectureListRegionAPIFunc } from 'config/strings';
+import { LectureListAPIFunc } from 'lib/api/Lecture';
 
 const sampleImg = require('../../../asset/lecture1.jpg');
 const heartIcon = require('../../../asset/heart-mind.png');
 
-export default function LectureListRegionContainer({ navigation }) {
+export default function LectureListContainer({ route, navigation }) {
   const [searchText, setSearchText] = useState('');
   const [lectures, setLectures] = useState([]);
 
   useEffect(() => {
     async function getLectures() {
-      try {
-        const res = await axios.get(
-          LectureListRegionAPIFunc({ region: '서울', page: 0, size: 5 }),
-        );
-        console.log(
-          '강의 리스트 조회 성공 : ',
-          res.data._embedded.lectureByRegionResList,
-        );
-        setLectures(res.data._embedded.lectureByRegionResList);
-      } catch (err) {
-        // // console.log('강의 리스트 조회 실패 : ', err);
-      }
+      const {
+        region,
+        costCondition,
+        certificateKind,
+        groupName,
+      } = route.params;
+
+      const lectureByRegionResList = await LectureListAPIFunc({
+        region,
+        costCondition,
+        certificateKind,
+        groupName,
+        page: 0,
+        size: 5,
+      });
+
+      setLectures(lectureByRegionResList);
     }
     getLectures();
-  }, []);
+  }, [route.params]);
 
   const onSearchInput = input => {
     setSearchText(input);
