@@ -3,18 +3,18 @@ import {
   View,
   Text,
   SafeAreaView,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
   Image,
 } from 'react-native';
-import {Searchbar} from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import TagList from 'Components/common/Tags';
 import { CCardLecture } from 'Containers/Screens/Student/LectureListContainer';
+import CModal from 'Containers/common/CModal';
 
-const sampleImg = require('../../../asset/lecture1.jpg');
+// const sampleImg = require('../../../asset/lecture1.jpg');
 const heartIcon = require('../../../asset/heart-mind.png');
 
 export const PCardLecture = ({
@@ -23,12 +23,12 @@ export const PCardLecture = ({
   heart,
   onPressHeart,
 }) => {
-  const {imageURL, id, title, groupName, certificateKind, price} = lecture;
+  const { imageURL, id, title, groupName, certificateKind, price } = lecture;
   const representativeImage = imageURL[0];
 
   return (
     <View style={cardStyles.cardContainer}>
-      <TouchableOpacity onPress={onPressLecture} >
+      <TouchableOpacity onPress={() => onPressLecture({ id })}>
         <View style={cardStyles.imageContainer}>
           <Image
             source={{ uri: representativeImage }} // source={sampleImg} // 샘플이미지
@@ -101,12 +101,19 @@ export default function PLectureList({
   searchText,
   onSearchInput,
   onPressLecture,
+  modalOpen,
+  modalClose,
+  modalVisible,
 }) {
   const array = [];
 
   for (let i = 0; i < lectures.length; i += 1) {
     array.push(
-      <CCardLecture key={i} lecture={lectures[i]} onPressLecture={onPressLecture} />,
+      <CCardLecture
+        key={i}
+        lecture={lectures[i]}
+        onPressLecture={onPressLecture}
+      />,
     );
   }
 
@@ -118,9 +125,16 @@ export default function PLectureList({
           placeholder="검색"
           onChangeText={onSearchInput}
           value={searchText}
+          style={styles.searchBar}
+        />
+        <FontAwesome
+          name="filter"
+          style={{ alignSelf: 'center', padding: 5 }}
+          size={25}
+          color="blue"
+          onPress={modalOpen}
         />
       </View>
-
 
       {/* 상품 리스트 출력 */}
       <ScrollView style={styles.heightScroll}>
@@ -154,6 +168,13 @@ export default function PLectureList({
           ) : null}
         </View>
       </ScrollView>
+      <CModal
+        modalClose={modalClose}
+        modalVisible={modalVisible}
+        title="필터 선택"
+      >
+        <Text>zzzzzz</Text>
+      </CModal>
     </SafeAreaView>
   );
 }
@@ -162,17 +183,19 @@ const styles = StyleSheet.create({
   rootContainer: { backgroundColor: 'white', flex: 1 },
   searchBarContainer: {
     width: '100%',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     padding: 10,
     backgroundColor: '#00BCD4',
+    flexDirection: 'row',
   },
   heightScroll: { height: '100%' },
   searchBar: {
     height: 40,
-    width: '80%',
+    flex: 1,
     borderRadius: 10,
     backgroundColor: '#F5F8FD',
     padding: 10,
+    marginRight: 7,
   },
   searchButton: {
     borderWidth: 1,
@@ -180,7 +203,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 5,
   },
-
   saleContainer: {
     height: 280,
     borderWidth: 0,

@@ -30,6 +30,7 @@ export default function LectureListContainer({ route, navigation }) {
     certificateKind: '',
     groupName: '',
   });
+  const [modalVisible, setModalVisible] = useState(false);
 
   // 화면 첫 진입 시 초기값.
   useEffect(() => {
@@ -63,11 +64,20 @@ export default function LectureListContainer({ route, navigation }) {
 
   const onSearchInput = input => {
     setSearchText(input);
-    console.log("input : ", input);
+    console.log('input : ', input);
   };
 
   const onPressLecture = ({ id }) => {
+    console.log('id : ', id);
     navigation.navigate('LectureDetail', { id });
+  };
+
+  const modalClose = () => {
+    setModalVisible(false);
+  };
+
+  const modalOpen = () => {
+    setModalVisible(true);
   };
 
   return (
@@ -76,6 +86,9 @@ export default function LectureListContainer({ route, navigation }) {
       searchText={searchText}
       onSearchInput={onSearchInput}
       onPressLecture={onPressLecture}
+      modalOpen={modalOpen}
+      modalClose={modalClose}
+      modalVisible={modalVisible}
     />
   );
 }
