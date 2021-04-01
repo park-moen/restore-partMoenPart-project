@@ -26,7 +26,7 @@ export default function LectureListContainer({ route, navigation }) {
   const [lectures, setLectures] = useState([]);
   const [filter, setFilter] = useState({
     region: '',
-    costCondition: { max: 0, min: 0 },
+    costCondition: {}, // { max: 0, min: 0 }형식
     certificateKind: '',
     groupName: '',
   });
@@ -36,7 +36,7 @@ export default function LectureListContainer({ route, navigation }) {
   useEffect(() => {
     const { region, costCondition, certificateKind, groupName } = route.params;
 
-    setFilter({
+    updateFilter({
       region,
       costCondition,
       certificateKind,
@@ -47,6 +47,7 @@ export default function LectureListContainer({ route, navigation }) {
   // 필터 변동 시마다 리렌더링
   useEffect(() => {
     async function getLectures() {
+      console.log('API 보내기 전에 확인 ', filter);
       const { region, costCondition, certificateKind, groupName } = filter;
       const lectureByRegionResList = await LectureListAPIFunc({
         region,
@@ -61,6 +62,15 @@ export default function LectureListContainer({ route, navigation }) {
     }
     getLectures();
   }, [filter]);
+
+  const updateFilter = ({
+    region,
+    costCondition,
+    certificateKind,
+    groupName,
+  }) => {
+    setFilter({ ...filter, region, costCondition, certificateKind, groupName });
+  };
 
   const onSearchInput = input => {
     setSearchText(input);
@@ -89,6 +99,7 @@ export default function LectureListContainer({ route, navigation }) {
       modalOpen={modalOpen}
       modalClose={modalClose}
       modalVisible={modalVisible}
+      updateFilter={updateFilter}
     />
   );
 }

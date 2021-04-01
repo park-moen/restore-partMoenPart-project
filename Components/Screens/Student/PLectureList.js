@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-shadow */
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +10,11 @@ import {
   Image,
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from 'react-native-simple-radio-button';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import TagList from 'Components/common/Tags';
 import { CCardLecture } from 'Containers/Screens/Student/LectureListContainer';
@@ -96,6 +102,67 @@ const cardStyles = StyleSheet.create({
   },
 });
 
+const EachFilter = ({
+  radioProps = [{ label: 'test' }],
+  onDateSelect = () => {},
+}) => {
+  const [selected, setSelected] = useState(0);
+  const onPress = num => {
+    setSelected(num);
+    onDateSelect(num);
+  };
+  return (
+    <View style={stylesEachFilter.container}>
+      {radioProps.map((obj, i) => (
+        <RadioButton
+          labelHorizontal
+          key={i}
+          style={stylesEachFilter.buttonContainer}
+        >
+          <RadioButtonInput
+            obj={obj}
+            index={i}
+            isSelected={selected === i}
+            onPress={onPress}
+            borderWidth={2}
+            buttonInnerColor="#2295FF"
+            buttonOuterColor={selected === i ? '#2196f3' : '#000'}
+            buttonSize={20}
+            buttonOuterSize={23}
+            buttonStyle={{}}
+            buttonWrapStyle={{}}
+          />
+          <RadioButtonLabel
+            obj={obj}
+            index={i}
+            labelHorizontal
+            onPress={onPress}
+            labelStyle={{
+              fontSize: 20,
+              color: 'black',
+            }}
+            labelWrapStyle={{}}
+          />
+        </RadioButton>
+      ))}
+    </View>
+  );
+};
+const stylesEachFilter = StyleSheet.create({
+  container: {
+    width: '100%',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    marginTop: 2,
+    marginBottom: 20,
+    padding: 5,
+    borderWidth: 0.3,
+    borderRadius: 20,
+    backgroundColor: '#F1F1F1',
+  },
+  buttonContainer: { margin: 10 },
+});
+
 export default function PLectureList({
   lectures,
   searchText,
@@ -104,9 +171,10 @@ export default function PLectureList({
   modalOpen,
   modalClose,
   modalVisible,
+  updateFilter,
 }) {
   const array = [];
-
+  const [selectedFilter, setSelectedFilter] = useState({});
   for (let i = 0; i < lectures.length; i += 1) {
     array.push(
       <CCardLecture
@@ -116,6 +184,74 @@ export default function PLectureList({
       />,
     );
   }
+
+  const region = [
+    { label: '서울', value: 0 },
+    { label: '경기', value: 1 },
+    { label: '인천', value: 2 },
+    { label: '부산', value: 3 },
+    { label: '경상, 대구, 울산', value: 4 },
+    { label: '대전, 충청', value: 5 },
+    { label: '강원', value: 6 },
+    { label: '광주, 전라, 제주', value: 7 },
+    { label: '온라인', value: 8 },
+  ];
+
+  const certificateKind = [
+    { label: 'level1', value: 0 },
+    { label: 'level2', value: 1 },
+    { label: 'level3', value: 2 },
+    { label: 'level4', value: 3 },
+  ];
+
+  const groupName = [
+    { label: 'AIDA', value: 0 },
+    { label: 'PADI', value: 1 },
+    { label: 'SSI', value: 2 },
+  ];
+
+  const onRegionSelect = num => {
+    const { label } = region[num];
+    const newSelectedFilter = Object.assign(selectedFilter, {
+      region: label,
+    });
+    setSelectedFilter(newSelectedFilter);
+    console.log('필터현황', selectedFilter);
+  };
+
+  const onCertificateKindSelect = num => {
+    const { label } = certificateKind[num];
+    const newSelectedFilter = Object.assign(selectedFilter, {
+      certificateKind: label,
+    });
+    setSelectedFilter(newSelectedFilter);
+    console.log('필터현황', selectedFilter);
+  };
+
+  const onGroupNameSelect = num => {
+    const { label } = groupName[num];
+    const newSelectedFilter = Object.assign(selectedFilter, {
+      groupName: label,
+    });
+    setSelectedFilter(newSelectedFilter);
+    console.log('필터현황', selectedFilter);
+  };
+
+  const onFilterOk = () => {
+    const {
+      region,
+      costCondition,
+      certificateKind,
+      groupName,
+    } = selectedFilter;
+    updateFilter({
+      region,
+      costCondition,
+      certificateKind,
+      groupName,
+    });
+    modalClose();
+  };
 
   return (
     <SafeAreaView style={styles.rootContainer}>
@@ -172,8 +308,25 @@ export default function PLectureList({
         modalClose={modalClose}
         modalVisible={modalVisible}
         title="필터 선택"
+        animation="fadeInDown"
       >
-        <Text>zzzzzz</Text>
+        <>
+          <Text style={styles.filterTitle}>지역선택</Text>
+          {EachFilter({ radioProps: region, onDateSelect: onRegionSelect })}
+          <Text style={styles.filterTitle}>자격증 종류</Text>
+          {EachFilter({
+            radioProps: certificateKind,
+            onDateSelect: onCertificateKindSelect,
+          })}
+          <Text style={styles.filterTitle}>자격 단체</Text>
+          {EachFilter({
+            radioProps: groupName,
+            onDateSelect: onGroupNameSelect,
+          })}
+        </>
+        <TouchableOpacity style={styles.filterOkButton} onPress={onFilterOk}>
+          <Text style={styles.filterOkButtonText}>확인</Text>
+        </TouchableOpacity>
       </CModal>
     </SafeAreaView>
   );
@@ -219,4 +372,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     padding: 3,
   },
+  filterTitle: {
+    padding: 5,
+    fontSize: 18,
+    fontWeight: '500',
+    marginLeft: 3,
+  },
+  filterOkButton: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    padding: 10,
+    marginBottom: -10,
+    borderBottomEndRadius: 15,
+    borderBottomStartRadius: 15,
+    backgroundColor: 'lightblue',
+  },
+  filterOkButtonText: { fontSize: 17 },
 });

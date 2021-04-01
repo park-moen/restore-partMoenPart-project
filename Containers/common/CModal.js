@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 5,
     paddingBottom: 15,
+    flexWrap: 'wrap',
     // alignItems: 'center',
   },
   // 닫기 버튼
