@@ -8,6 +8,7 @@ import { reservationSelect } from 'lib/redux/actions/reservationAction';
  * @component 예약 시간별 컴포넌트
  */
 export default function CTimesComponent({
+  scheduleDetailId,
   times,
   maxNumber,
   gps,
@@ -26,11 +27,14 @@ export default function CTimesComponent({
     setMapVisible(true);
   };
 
-  const onDateSelect = label => {
-    const time = label.label.split(' ')[0];
-    console.log(time);
+  const onDateSelect = selectedTime => {
+    const { scheduleTimeId } = selectedTime;
+    const time = selectedTime.label.split(' ')[0];
+    // console.log('시간을 선택했다', time);
 
-    dispatch(reservationSelect({ date, time }));
+    dispatch(
+      reservationSelect({ date, time, scheduleDetailId, scheduleTimeId }),
+    );
   };
 
   return (

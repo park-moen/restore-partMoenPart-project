@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { GetLectureSchedule } from 'config/strings';
+import { GetLectureScheduleAPI } from 'config/strings';
 import PWhen, {
   PTimesComponent,
   PEachDay,
@@ -70,7 +70,7 @@ export default function When({ lectureId }) {
   useEffect(() => {
     const fetch = async () => {
       if (lectureId !== undefined) {
-        const response = await axios.get(GetLectureSchedule, {
+        const response = await axios.get(GetLectureScheduleAPI, {
           params: { lectureId },
         });
 

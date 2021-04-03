@@ -15,7 +15,12 @@ export default function PEachDay({
   maxNumber,
   scheduleId,
 }) {
-  const { date, lectureTime, scheduleTimeDtoList: times } = scheduleDetails;
+  const {
+    date,
+    lectureTime,
+    scheduleTimeDtoList: times,
+    scheduleDetailId,
+  } = scheduleDetails;
   const { address: where, latitude, longitude } = scheduleDetails.location;
   const gps = { latitude, longitude };
 
@@ -37,6 +42,7 @@ export default function PEachDay({
       </View>
       {selectedScheduleId === scheduleId ? (
         <CTimesComponent
+          scheduleDetailId={scheduleDetailId}
           times={times}
           maxNumber={maxNumber}
           gps={gps}

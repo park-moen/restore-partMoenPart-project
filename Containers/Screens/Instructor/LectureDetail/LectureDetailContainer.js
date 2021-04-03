@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 
-import { LectureDetailAPIFunc } from 'config/strings';
+import { LectureDetailAPIFunc } from 'lib/api/Lecture';
 import TagList from 'Components/common/Tags';
 
 import LectureDetailTabNav from './TabNavigation/LectureDetailTabNav';

@@ -5,7 +5,7 @@ import {
   reservationInit,
   scheduleIdInit,
 } from 'lib/redux/actions/reservationAction';
-import { GetLectureSchedule } from 'config/strings';
+import { GetLectureScheduleAPI } from 'config/strings';
 import PReservationCalendar from 'Components/Screens/Instructor/Reservation/PReservationCalendar';
 
 /**
@@ -21,7 +21,7 @@ export default function CReservationCalendar({ lectureId }) {
   useEffect(() => {
     const fetch = async () => {
       if (lectureId !== undefined) {
-        const response = await axios.get(GetLectureSchedule, {
+        const response = await axios.get(GetLectureScheduleAPI, {
           params: { lectureId },
         });
 

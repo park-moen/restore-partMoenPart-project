@@ -5,7 +5,7 @@ import { Button, SafeAreaView } from 'react-native';
 import { makeTimeFormat } from '../lib/time';
 import { Logout, RefreshToken } from '../lib/api/TokenActivity';
 
-const testLectureId = 3;
+const testLectureId = 8;
 
 export default function Main({ navigation }) {
   const btnLogout = () => {
@@ -16,8 +16,16 @@ export default function Main({ navigation }) {
     navigation.navigate('NewLecture');
   };
 
-  const btnLectureListRegion = () => {
-    navigation.navigate('LectureListRegion');
+  const btnLectureList = () => {
+    navigation.navigate('LectureList', {
+      certificateKind: 'level1',
+      region: '서울',
+      costCondition: {
+        max: 200000,
+        min: 10000,
+      },
+      groupName: 'AIDA',
+    });
   };
 
   const btnLectureDetail = () => {
@@ -41,7 +49,7 @@ export default function Main({ navigation }) {
 
       <Button title="강의 등록" onPress={btnNewLecture} />
 
-      <Button title="강의 목록 조회" onPress={btnLectureListRegion} />
+      <Button title="강의 목록 조회" onPress={btnLectureList} />
       <Button title="강의 상세 조회" onPress={btnLectureDetail} />
 
       <Button title="일정 조회" onPress={btnShowSchedule} />
