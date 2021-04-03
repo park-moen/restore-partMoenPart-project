@@ -24,6 +24,7 @@ export default function PTimesComponent({
   times.forEach((eachTime, i) => {
     radioProps.push({
       label: `${eachTime.startTime}   ${eachTime.currentNumber}/${maxNumber}`,
+      scheduleTimeId: eachTime.scheduleTimeId,
     });
   });
 
