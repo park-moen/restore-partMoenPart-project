@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { LectureSchedule } from 'Containers/Screens/Instructor/Schedule/LectureScheduleAll';
-import CSchedulesUserSelected from 'Containers/Screens/Instructor/Reservation/CSchedulesUserSelected';
+import { LectureSchedule } from '@cSchedule/LectureScheduleAll';
+import CSchedulesUserSelected from '@cReservation/CSchedulesUserSelected';
 
 /**
  *

@@ -9,7 +9,7 @@ import {
 
 import Feather from 'react-native-vector-icons/Feather';
 
-import NaverMap from './NaverMap';
+import NaverMap from '@cCommon/NaverMap';
 
 export default function NMapModal({
   picker,

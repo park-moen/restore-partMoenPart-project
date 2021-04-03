@@ -2,18 +2,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { reservationAPI } from 'lib/api/Lecture';
+import { reservationAPI } from '@lib/api/Lecture';
 
 import PEquipment, {
   PEachEquipment,
-} from 'Components/Screens/Instructor/Reservation/PEquipment';
+} from '@pReservation/PEquipment';
 
 import {
   equipmentSelect,
   equipmentInit,
   descriptionChange,
   descriptionInit,
-} from 'lib/redux/actions/reservationAction';
+} from '@lib/redux/actions/reservationAction';
 
 /**
  *

@@ -2,14 +2,14 @@ import React from 'react';
 import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-import Header from './Header';
-import InputEmail from './InputEmail';
-import InputPwd from './InputPwd';
-import InputPwdChk from './InputPwdChk';
-import InputName from './InputName';
-import InputAge from './InputAge';
-import InputGender from './InputGender';
-import Buttons from './Buttons';
+import Header from '@pSignUp/Header';
+import InputEmail from '@pSignUp/InputEmail';
+import InputPwd from '@pSignUp/InputPwd';
+import InputPwdChk from '@pSignUp/InputPwdChk';
+import InputName from '@pSignUp/InputName';
+import InputAge from '@pSignUp/InputAge';
+import InputGender from '@pSignUp/InputGender';
+import Buttons from '@pSignUp/Buttons';
 
 export default function SignUpComponent({
   navigation,

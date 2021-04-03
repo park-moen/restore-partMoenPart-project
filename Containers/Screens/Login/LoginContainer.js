@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button } from 'react-native';
 
-import LoginComponent from 'Components/Screens/Login/LoginComponent';
+import LoginComponent from '@pLogin/LoginComponent';
 
-import { Login } from '../../../lib/api/TokenActivity';
-import { getLectureSchedule } from '../../../lib/api/Lecture';
+import { Login } from '@lib/api/TokenActivity';
+import { getLectureSchedule } from '@lib/api/Lecture';
 
 export default function LoginContainer({ navigation }) {
   const [data, setData] = useState({

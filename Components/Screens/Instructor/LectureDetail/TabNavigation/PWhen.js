@@ -2,12 +2,12 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { LectureSchedule } from 'Containers/Screens/Instructor/Schedule/LectureScheduleAll';
-import NMapModal from 'Containers/common/NMapModal';
+import { LectureSchedule } from '@cSchedule/LectureScheduleAll';
+import NMapModal from '@cCommon/NMapModal';
 import {
   CTimesComponent,
   CEachDay,
-} from 'Containers/Screens/Instructor/LectureDetail/TabNavigation/When';
+} from '@cLectureDetail/TabNavigation/When';
 
 /**
  *

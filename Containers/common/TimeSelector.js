@@ -9,7 +9,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 
-import { fillZero } from '../../lib/common';
+import { fillZero } from '@lib/common';
 
 export function TimeSelector({
   startHour = 0,

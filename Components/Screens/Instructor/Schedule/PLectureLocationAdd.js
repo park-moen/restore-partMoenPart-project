@@ -1,9 +1,9 @@
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
-import NaverMap from 'Containers/common/NaverMap';
+import NaverMap from '@cCommon/NaverMap';
 
-import ButtomButtons from 'Containers/common/BottomButtons';
-import { TextInputStatic } from 'Containers/common/TextInputContainer';
+import ButtomButtons from '@cCommon/BottomButtons';
+import { TextInputStatic } from '@cCommon/TextInputContainer';
 
 export default function PLectureLocationAdd({ center, picker, func }) {
   return (

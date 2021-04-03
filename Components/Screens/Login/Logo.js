@@ -3,7 +3,7 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-const logoImage = require('images/logo1.png');
+const logoImage = require('@images/logo1.png');
 
 export default function Logo() {
   return (

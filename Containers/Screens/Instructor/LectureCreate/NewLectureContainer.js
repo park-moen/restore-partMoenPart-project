@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 
-import SelectButton from '../../../common/SelectButton';
-import TextInputContainer from '../../../common/TextInputContainer';
-import ImagePicker from '../../../common/ImagePicker';
+import SelectButton from '@cCommon/SelectButton';
+import TextInputContainer from '@cCommon/TextInputContainer';
+import ImagePicker from '@cCommon/ImagePicker';
 
-import BottomButtons from '../../../common/BottomButtons';
+import BottomButtons from '@cCommon/BottomButtons';
 
 export default function NewLectureContainer({ navigation }) {
   const [area, setArea] = useState('');

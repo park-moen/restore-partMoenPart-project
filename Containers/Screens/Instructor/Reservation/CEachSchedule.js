@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import PEachSchedule from 'Components/Screens/Instructor/Reservation/PEachSchedule';
-import { setScheduleId } from 'lib/redux/actions/reservationAction';
+import PEachSchedule from '@pReservation/PEachSchedule';
+import { setScheduleId } from '@lib/redux/actions/reservationAction';
 
 export default function CEachSchedule({ singleSchedule }) {
   const dispatch = useDispatch();

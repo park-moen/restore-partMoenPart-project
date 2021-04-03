@@ -8,9 +8,9 @@ import {
   ScrollView,
 } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import ButtomButtons from 'Containers/common/BottomButtons';
-import { CEachEquipment } from 'Containers/Screens/Instructor/Reservation/CEquipment';
-import TextInputContainer from 'Containers/common/TextInputContainer';
+import ButtomButtons from '@cCommon/BottomButtons';
+import { CEachEquipment } from '@cReservation/CEquipment';
+import TextInputContainer from '@cCommon/TextInputContainer';
 
 /**
  *

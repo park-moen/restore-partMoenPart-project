@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 
-import Logo from './Logo';
-import InputEmail from './InputEmail';
-import InputPwd from './InputPwd';
-import Buttons from './Buttons';
+import Logo from '@pLogin/Logo';
+import InputEmail from '@pLogin/InputEmail';
+import InputPwd from '@pLogin/InputPwd';
+import Buttons from '@pLogin/Buttons';
 
 export default function LoginComponents({
   navigation,

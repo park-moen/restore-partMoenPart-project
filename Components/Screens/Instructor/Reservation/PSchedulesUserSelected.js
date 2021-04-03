@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CEachSchedule from 'Containers/Screens/Instructor/Reservation/CEachSchedule';
+import CEachSchedule from '@cReservation/CEachSchedule';
 
 /**
  *

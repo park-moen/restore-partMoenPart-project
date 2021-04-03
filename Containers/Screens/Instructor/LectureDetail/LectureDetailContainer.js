@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 
-import { LectureDetailAPIFunc } from 'lib/api/Lecture';
-import TagList from 'Components/common/Tags';
+import { LectureDetailAPIFunc } from '@lib/api/Lecture';
+import TagList from '@pCommon/Tags';
 
-import LectureDetailTabNav from './TabNavigation/LectureDetailTabNav';
-import BottomButtons from '../../../common/BottomButtons';
+import LectureDetailTabNav from '@cLectureTabNav/LectureDetailTabNav';
+import BottomButtons from '@cCommon/BottomButtons';
 
-const sampleImg = require('../../../../asset/lecture1.jpg');
+const sampleImg = require('@asset/lecture1.jpg');
 
 export default function LectureDetailContainer({ navigation, route }) {
   const [lectureInfo, setLectureInfo] = useState({});

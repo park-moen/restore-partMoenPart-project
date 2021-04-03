@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import {
   reservationInit,
   scheduleIdInit,
-} from 'lib/redux/actions/reservationAction';
-import { GetLectureScheduleAPI } from 'config/strings';
-import PReservationCalendar from 'Components/Screens/Instructor/Reservation/PReservationCalendar';
+} from '@lib/redux/actions/reservationAction';
+import { GetLectureScheduleAPI } from '@config/strings';
+import PReservationCalendar from '@pReservation/PReservationCalendar';
 
 /**
  *

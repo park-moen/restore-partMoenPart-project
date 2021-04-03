@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import ModalComponent from 'Components/common/ModalComponent';
+import ModalComponent from '@pCommon/ModalComponent';
 
 export default function SelectButton({
   placeholder = '골라골라',
