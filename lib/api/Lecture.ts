@@ -4,7 +4,24 @@ import {
   ReservationAPI,
   LectureListAPI,
   LectureDetailAPI,
+  StudentMyLectureAPI,
 } from '@config/strings';
+import {
+  Region,
+  CostCondition,
+  CertificateKind,
+  GroupName,
+  ClassKind,
+} from '@/@types/common';
+
+type Props = {
+  region: Region;
+  costCondition: CostCondition;
+  certificateKind: CertificateKind;
+  groupName: GroupName;
+  page: number;
+  size: number;
+};
 
 export const LectureListAPIFunc = async ({
   region,
@@ -13,7 +30,7 @@ export const LectureListAPIFunc = async ({
   groupName,
   page,
   size,
-}) => {
+}: Props) => {
   try {
     const url = `${LectureListAPI}?page=${page}&size=${size}`;
     const res = await axios.post(url, {
@@ -32,11 +49,11 @@ export const LectureListAPIFunc = async ({
   }
 };
 
-export const LectureDetailAPIFunc = ({ id }) => {
+export const LectureDetailAPIFunc = (id: number): string => {
   return `${LectureDetailAPI}?id=${id}`;
 };
 
-export const getLectureSchedule = async ({ lectureId }) => {
+export const getLectureSchedule = async (lectureId: number) => {
   try {
     const response = await axios.get(GetLectureScheduleAPI, {
       params: {
@@ -51,13 +68,20 @@ export const getLectureSchedule = async ({ lectureId }) => {
   }
 };
 
+type reservationParams = {
+  scheduleId: number;
+  reservationDateList: any;
+  equipmentList: any;
+  description: string;
+  navigation: any;
+};
 export const reservationAPI = async ({
   scheduleId,
   reservationDateList,
   equipmentList,
   description,
   navigation,
-}) => {
+}: reservationParams) => {
   try {
     const res = await axios.post(ReservationAPI, {
       scheduleId,
@@ -74,4 +98,18 @@ export const reservationAPI = async ({
   } catch (e) {
     console.log('강의등록 에러', e);
   }
+};
+
+export const studentMyLectureAPI = async (
+  page: number,
+  size: number,
+): Promise<Object> => {
+  const res = await axios.get(StudentMyLectureAPI, {
+    params: {
+      page,
+      size,
+    },
+  });
+
+  return res.data._embedded;
 };

@@ -3,8 +3,8 @@ import { Button } from 'react-native';
 
 import LoginComponent from '@pLogin/LoginComponent';
 
-import { Login } from '@lib/api/TokenActivity';
-import { getLectureSchedule } from '@lib/api/Lecture';
+import { Login } from '@api/TokenActivity';
+import { getLectureSchedule } from '@api/Lecture';
 
 export default function LoginContainer({ navigation }) {
   const [data, setData] = useState({
@@ -81,7 +81,7 @@ export default function LoginContainer({ navigation }) {
       <Button
         title="스케줄 얻기"
         onPress={async () => {
-          const result = await getLectureSchedule({ lectureId: 2 });
+          const result = await getLectureSchedule(2);
           // console.log('result : ', result);
           // console.log('schedules : ', result.data._embedded.scheduleDtoList);
           console.log(

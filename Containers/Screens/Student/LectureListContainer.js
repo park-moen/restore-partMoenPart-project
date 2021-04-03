@@ -13,7 +13,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import TagList from '@pCommon/Tags';
-import { LectureListAPIFunc } from '@lib/api/Lecture';
+import { LectureListAPIFunc } from '@api/Lecture';
 
 const sampleImg = require('@asset/lecture1.jpg');
 const heartIcon = require('@asset/heart-mind.png');

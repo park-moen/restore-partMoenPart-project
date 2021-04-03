@@ -1,20 +1,25 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./@types"],
     "paths": {
-      "*": ["./src/*"],
-      "test/*": ["./test/*"],
+      // "*": ["./src/*"],
+      // "test/*": ["./test/*"],
+      "@/*": ["./*"],
       "@components/*": ["./Components/*"],
       "@containers/*": ["./Containers/*"],
       "@config/*": ["./config/*"],
       "@lib/*": ["./lib/*"],
+      "@api/*": ["./lib/api/*"],
       "@images/*": ["./images/*"],
       "@pCommon/*": ["./Components/common/*"],
       "@pScreens/*": ["./Components/Screens/*"],
       "@pInstructor/*": ["./Components/Screens/Instructor/*"],
       "@pLectureCreate/*": ["./Components/Screens/Instructor/LectureCreate/*"],
       "@pLectureDetail/*": ["./Components/Screens/Instructor/LectureDetail/*"],
-      "@pLectureTabNav/*": ["./Components/Screens/Instructor/LectureDetail/TabNavigation"],
+      "@pLectureTabNav/*": [
+        "./Components/Screens/Instructor/LectureDetail/TabNavigation"
+      ],
       "@pRegister/*": ["./Components/Screens/Instructor/Register/*"],
       "@pReservation/*": ["./Components/Screens/Instructor/Reservation/*"],
       "@pSchedule/*": ["./Components/Screens/Instructor/Schedule/*"],
@@ -26,7 +31,9 @@
       "@cInstructor/*": ["./Containers/Screens/Instructor/*"],
       "@cLectureCreate/*": ["./Containers/Screens/Instructor/LectureCreate/*"],
       "@cLectureDetail/*": ["./Containers/Screens/Instructor/LectureDetail/*"],
-      "@cLectureTabNav/*": ["./Containers/Screens/Instructor/LectureDetail/TabNavigation"],
+      "@cLectureTabNav/*": [
+        "./Containers/Screens/Instructor/LectureDetail/TabNavigation"
+      ],
       "@cRegister/*": ["./Containers/Screens/Instructor/Register/*"],
       "@cReservation/*": ["./Containers/Screens/Instructor/Reservation/*"],
       "@cSchedule/*": ["./Containers/Screens/Instructor/Schedule/*"],

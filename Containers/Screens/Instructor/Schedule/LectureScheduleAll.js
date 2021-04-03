@@ -4,7 +4,7 @@ import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 import axios from 'axios';
 import Button from '@cCommon/Button';
-import { getLectureSchedule } from '@lib/api/Lecture';
+import { getLectureSchedule } from '@api/Lecture';
 
 /**
  * 달력 환경 설정
@@ -67,7 +67,7 @@ export function LectureSchedule({
 
   useEffect(() => {
     const getLectureDetail = async () => {
-      const response = await getLectureSchedule({ lectureId });
+      const response = await getLectureSchedule(lectureId);
       console.log('response : ', response);
       if (response) {
         const { scheduleDtoList } = response.data._embedded; // 강의의 전체 일정

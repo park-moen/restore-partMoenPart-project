@@ -3,7 +3,7 @@ import { Button, SafeAreaView } from 'react-native';
 
 // import PopAlert from '@pCommon/PopAlert';
 import { makeTimeFormat } from '@lib/time';
-import { Logout, RefreshToken } from '@lib/api/TokenActivity';
+import { Logout, RefreshToken } from '@api/TokenActivity';
 
 const testLectureId = 8;
 
@@ -40,6 +40,10 @@ export default function Main({ navigation }) {
     navigation.navigate('LectureLocationAdd');
   };
 
+  const btnStudentMyLecture = () => {
+    navigation.navigate('StudentMyLecture', { name: 'hdafsdfasdfai' });
+  };
+
   return (
     <SafeAreaView
       style={{ flex: 1, justifyContent: 'center', backgroundColor: '#FFF' }}
@@ -54,6 +58,8 @@ export default function Main({ navigation }) {
 
       <Button title="일정 조회" onPress={btnShowSchedule} />
       <Button title="위치 추가" onPress={btnAddLocation} />
+
+      <Button title="수강생 강의목록" onPress={btnStudentMyLecture} />
     </SafeAreaView>
   );
 }
