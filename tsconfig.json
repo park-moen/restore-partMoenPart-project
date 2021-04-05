@@ -11,6 +11,8 @@
       "@config/*": ["./config/*"],
       "@lib/*": ["./lib/*"],
       "@api/*": ["./lib/api/*"],
+      "@redux/*": ["./lib/redux/*"],
+      "@hooks/*": ["./lib/hooks/*"],
       "@images/*": ["./images/*"],
       "@pCommon/*": ["./Components/common/*"],
       "@pScreens/*": ["./Components/Screens/*"],

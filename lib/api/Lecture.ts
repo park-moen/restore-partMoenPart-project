@@ -113,3 +113,10 @@ export const studentMyLectureAPI = async (
 
   return res.data._embedded;
 };
+
+export const studentMyLectureDetailAPI = async (
+  reservationId: number,
+): Promise<Object> => {
+  const res = await axios.get(`${ReservationAPI}/${reservationId}`);
+  return res.data;
+};

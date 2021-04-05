@@ -41,6 +41,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.3",
     "redux": "^4.0.5",
+    "typesafe-actions": "^5.1.0",
     "url-search-params-polyfill": "^8.1.0"
   },
   "devDependencies": {

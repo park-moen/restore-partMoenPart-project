@@ -51,6 +51,8 @@ const pathPlugin = [
         '@asset': './asset',
         '@lib': './lib',
         '@api': './lib/api',
+        '@redux': './lib/redux',
+        '@hooks': './lib/hooks',
       },
     },
   ],

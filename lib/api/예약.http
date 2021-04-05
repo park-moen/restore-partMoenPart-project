@@ -15,3 +15,21 @@ Host: localhost:8080
   "equipmentList" : [ "오리발", "슈트" ],
   "description" : "발 사이즈 260, 옷 사이즈 L"
 }
+
+###
+
+// 나의 강의 예약목록 보기
+GET /reservation/list?page=0&size=5 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiU1RVREVOVCIsIklOU1RSVUNUT1IiXSwiaWF0IjoxNjE3NTUxODg1LCJleHAiOjE2MTc1NTU0ODV9.Uso1clZoPeMraty6O24Gbsi4GkLDBZw1bDYaKQo6MOQ
+IsRefreshToken: false
+Content-Type: application/json;charset=UTF-8
+Host: localhost:8080
+
+###
+
+// 나의 강의 예약상세 보기
+GET /reservation/44 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiU1RVREVOVCIsIklOU1RSVUNUT1IiXSwiaWF0IjoxNjE3NTUxODg1LCJleHAiOjE2MTc1NTU0ODV9.Uso1clZoPeMraty6O24Gbsi4GkLDBZw1bDYaKQo6MOQ
+IsRefreshToken: false
+Content-Type: application/json;charset=UTF-8
+Host: localhost:8080
