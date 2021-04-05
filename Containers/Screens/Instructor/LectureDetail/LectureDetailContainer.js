@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 
-import { LectureDetailAPIFunc } from '@lib/api/Lecture';
+import { LectureDetailAPIFunc } from '@api/Lecture';
 import TagList from '@pCommon/Tags';
 
 import LectureDetailTabNav from '@cLectureTabNav/LectureDetailTabNav';
@@ -15,7 +15,7 @@ export default function LectureDetailContainer({ navigation, route }) {
 
   useEffect(() => {
     axios
-      .get(LectureDetailAPIFunc({ id: route.params.id }))
+      .get(LectureDetailAPIFunc(route.params.id))
       .then(res => {
         console.log('강의 상세 조회 성공 : ', res.data);
         setLectureInfo(res.data);

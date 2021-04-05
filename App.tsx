@@ -26,9 +26,45 @@ import LectureLocationAdd from '@cSchedule/LectureLocationAdd';
 import NMapSearch from '@cSchedule/NMapSearch';
 import CReservation from '@cReservation/CReservation';
 import CEquipment from '@cReservation/CEquipment';
+import CMyLecture from '@cStudent/CMyLecture';
+import {
+  CertificateKind,
+  Region,
+  GroupName,
+  CostCondition,
+} from './@types/common';
 
 const store = initStore();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<StackParams>();
+
+type LectureListParams = {
+  certificateKind: CertificateKind;
+  region: Region;
+  costCondition: CostCondition;
+  groupName: GroupName;
+};
+type IdParams = {
+  id: number;
+};
+export type StackParams = {
+  Loading: undefined;
+  Login: undefined;
+  SignUp: undefined;
+  Main: undefined;
+  NewLecture: undefined;
+  LectureFeeAndEquipments: undefined;
+  LectureList: LectureListParams;
+  LectureDetail: IdParams;
+  LectureScheduleAll: IdParams;
+  LectureScheduleAdd: undefined;
+  LectureLocationAdd: undefined;
+  NMapSearch: undefined;
+  Reservation: undefined;
+  CEquipment: undefined;
+  StudentMyLecture: {
+    name: string;
+  };
+};
 
 function StackNavigator() {
   return (
@@ -109,6 +145,11 @@ function StackNavigator() {
       <Stack.Screen
         name="CEquipment"
         component={CEquipment}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="StudentMyLecture"
+        component={CMyLecture}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>

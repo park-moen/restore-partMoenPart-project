@@ -2,11 +2,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { reservationAPI } from '@lib/api/Lecture';
+import { reservationAPI } from '@api/Lecture';
 
-import PEquipment, {
-  PEachEquipment,
-} from '@pReservation/PEquipment';
+import PEquipment, { PEachEquipment } from '@pReservation/PEquipment';
 
 import {
   equipmentSelect,

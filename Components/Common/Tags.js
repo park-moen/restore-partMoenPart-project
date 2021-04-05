@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export const Tag = ({ tagName }) => {
+export const Tag = ({ tagName, containerStyle }) => {
   return (
-    <View style={styles.tagContainer}>
+    <View style={[styles.tagContainer, { ...containerStyle }]}>
       <Text style={styles.tagText}>{`#${tagName}`}</Text>
     </View>
   );
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     marginLeft: 5,
+    alignSelf: 'baseline',
   },
   tagText: {
     color: 'white',
