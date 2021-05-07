@@ -1,7 +1,7 @@
 // API URL
 // export const Server = 'http://localhost:8080';
 // export const Server = 'http://localhost:8080';
-export const Server = 'http://192.168.43.21:8080';
+export const Server = 'http://192.168.0.51:8080';
 
 // auth API
 export const Login = `${Server}/sign/signin`;
