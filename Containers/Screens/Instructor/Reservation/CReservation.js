@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import {
   reservationInit,
   scheduleIdInit,
-} from 'lib/redux/actions/reservationAction';
+} from '@lib/redux/actions/reservationAction';
 
-import PReservation from 'Components/Screens/Instructor/Reservation/PReservation';
+import PReservation from '@pReservation/PReservation';
 
 export default function CReservation({ route, navigation }) {
   const dispatch = useDispatch();

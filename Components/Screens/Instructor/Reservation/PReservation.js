@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 
-import ButtomButtons from 'Containers/common/BottomButtons';
-// import When from 'Containers/Screens/Instructor/LectureDetail/TabNavigation/When';
-import CReservationCalendar from 'Containers/Screens/Instructor/Reservation/CReservationCalendar';
-import CEquipment from 'Containers/Screens/Instructor/Reservation/CEquipment';
+import ButtomButtons from '@cCommon/BottomButtons';
+// import When from '@cLectureDetail/TabNavigation/When';
+import CReservationCalendar from '@cReservation/CReservationCalendar';
+import CEquipment from '@cReservation/CEquipment';
 
 export default function PReservation({
   lectureId,

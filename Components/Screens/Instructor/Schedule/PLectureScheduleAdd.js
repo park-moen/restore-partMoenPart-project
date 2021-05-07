@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, ScrollView, View, Text } from 'react-native';
 
-import LectureCalendar from 'Containers/common/LectureCalendar';
-import TimeSelectorContainer from 'Containers/common/TimeSelector';
-import ButtomButtons from 'Containers/common/BottomButtons';
-import TextInputContainer from 'Containers/common/TextInputContainer';
-import Button from 'Containers/common/Button';
-import SelectButton from 'Containers/common/SelectButton';
+import LectureCalendar from '@cCommon/LectureCalendar';
+import TimeSelectorContainer from '@cCommon/TimeSelector';
+import ButtomButtons from '@cCommon/BottomButtons';
+import TextInputContainer from '@cCommon/TextInputContainer';
+import Button from '@cCommon/Button';
+import SelectButton from '@cCommon/SelectButton';
 /**
  *
  * @component 장소 하나 선택 컴포넌트

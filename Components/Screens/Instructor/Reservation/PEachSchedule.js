@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import CEachDay from 'Containers/Screens/Instructor/Reservation/CEachDay';
+import CEachDay from '@cReservation/CEachDay';
 
 export default function PEachSchedule({ singleSchedule, onPressMore }) {
   const singleScheduleComponents = [];

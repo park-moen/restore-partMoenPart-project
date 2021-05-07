@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { GetLectureScheduleAPI } from 'config/strings';
+import { GetLectureScheduleAPI } from '@config/strings';
 import PWhen, {
   PTimesComponent,
   PEachDay,
-} from 'Components/Screens/Instructor/LectureDetail/TabNavigation/PWhen';
+} from '@pLectureTabNav/PWhen';
 
 /**
  *

@@ -1,5 +1,5 @@
 import React from 'react';
-import PEachDay from 'Components/Screens/Instructor/Reservation/PEachDay';
+import PEachDay from '@pReservation/PEachDay';
 
 /**
  *

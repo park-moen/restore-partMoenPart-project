@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import RadioButtonRN from 'radio-buttons-react-native';
 // import { Checkbox } from 'react-native-paper';
 import { CheckBox } from 'react-native-elements';
-import NMapModal from 'Containers/common/NMapModal';
+import NMapModal from '@cCommon/NMapModal';
 
 /**
  *

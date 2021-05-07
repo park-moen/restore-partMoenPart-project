@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import PLectureScheduleAdd from 'Components/Screens/Instructor/Schedule/PLectureScheduleAdd';
-import { LectureAddScheduleAPI } from 'config/strings';
-import { makeTimeFormat } from 'lib/time';
+import PLectureScheduleAdd from '@pSchedule/PLectureScheduleAdd';
+import { LectureAddScheduleAPI } from '@config/strings';
+import { makeTimeFormat } from '@lib/time';
 
 export default function LectureScheduleAdd({ navigation, route }) {
   // 달력 컴포넌트에서 선택된 날짜 배열 저장용 상태

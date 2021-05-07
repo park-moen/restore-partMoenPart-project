@@ -10,12 +10,12 @@ import { View } from 'react-native-animatable';
 import axios from 'axios';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import TextInputContainer from '../../../common/TextInputContainer';
+import TextInputContainer from '@cCommon/TextInputContainer';
 import {
   NMapGeocodingAPI,
   NMapClientID,
   NMapClientSecret,
-} from 'config/strings';
+} from '@config/strings';
 
 const SearchedButtonList = ({ addresses = [], onPress = () => {} }) => {
   const result = [];

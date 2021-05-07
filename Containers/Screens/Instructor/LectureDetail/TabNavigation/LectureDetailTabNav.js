@@ -5,10 +5,10 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // Tab Screens
-import What from './What';
-import When from './When';
-import With from './With';
-// import Where from './Where';
+import What from '@cLectureDetail/TabNavigation/What';
+import When from '@cLectureDetail/TabNavigation//When';
+import With from '@cLectureDetail/TabNavigation//With';
+// import Where from '@cLectureDetail/TabNavigation/Where';
 
 const Tab = createMaterialTopTabNavigator();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PSchedulesUserSelected from 'Components/Screens/Instructor/Reservation/PSchedulesUserSelected';
+import PSchedulesUserSelected from '@pReservation/PSchedulesUserSelected';
 
 /**
  *

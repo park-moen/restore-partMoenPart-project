@@ -6,29 +6,65 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // redux
-import initStore from 'lib/redux/store';
+import initStore from '@lib/redux/store';
 
 // import Screens
-import SignUpContainer from 'Containers/Screens/SignUp/SignUpContainer';
-import LoginContainer from 'Containers/Screens/Login/LoginContainer';
-import Loading from 'Containers/Loading';
-import Main from 'Containers/Main';
+import SignUpContainer from '@cSignUp/SignUpContainer';
+import LoginContainer from '@cLogin/LoginContainer';
+import Loading from '@containers/Loading';
+import Main from '@containers/Main';
 
-import NewLectureContainer from 'Containers/Screens/Instructor/LectureCreate/NewLectureContainer';
-import LectureFeeAndEquipments from 'Containers/Screens/Instructor/LectureCreate/LectureFeeAndEquipments';
+import NewLectureContainer from '@cLectureCreate/NewLectureContainer';
+import LectureFeeAndEquipments from '@cLectureCreate/LectureFeeAndEquipments';
 
-import LectureListContainer from 'Containers/Screens/Student/LectureListContainer';
-import LectureDetailContainer from 'Containers/Screens/Instructor/LectureDetail/LectureDetailContainer';
+import LectureListContainer from '@cStudent/LectureListContainer';
+import LectureDetailContainer from '@cLectureDetail/LectureDetailContainer';
 
-import LectureScheduleAll from 'Containers/Screens/Instructor/Schedule/LectureScheduleAll';
-import LectureScheduleAdd from 'Containers/Screens/Instructor/Schedule/LectureScheduleAdd';
-import LectureLocationAdd from 'Containers/Screens/Instructor/Schedule/LectureLocationAdd';
-import NMapSearch from 'Containers/Screens/Instructor/Schedule/NMapSearch';
-import CReservation from 'Containers/Screens/Instructor/Reservation/CReservation';
-import CEquipment from 'Containers/Screens/Instructor/Reservation/CEquipment';
+import LectureScheduleAll from '@cSchedule/LectureScheduleAll';
+import LectureScheduleAdd from '@cSchedule/LectureScheduleAdd';
+import LectureLocationAdd from '@cSchedule/LectureLocationAdd';
+import NMapSearch from '@cSchedule/NMapSearch';
+import CReservation from '@cReservation/CReservation';
+import CEquipment from '@cReservation/CEquipment';
+import CMyLecture from '@cStudent/CMyLecture';
+import {
+  CertificateKind,
+  Region,
+  GroupName,
+  CostCondition,
+} from './@types/common';
 
 const store = initStore();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<StackParams>();
+
+type LectureListParams = {
+  certificateKind: CertificateKind;
+  region: Region;
+  costCondition: CostCondition;
+  groupName: GroupName;
+};
+type IdParams = {
+  id: number;
+};
+export type StackParams = {
+  Loading: undefined;
+  Login: undefined;
+  SignUp: undefined;
+  Main: undefined;
+  NewLecture: undefined;
+  LectureFeeAndEquipments: undefined;
+  LectureList: LectureListParams;
+  LectureDetail: IdParams;
+  LectureScheduleAll: IdParams;
+  LectureScheduleAdd: undefined;
+  LectureLocationAdd: undefined;
+  NMapSearch: undefined;
+  Reservation: undefined;
+  CEquipment: undefined;
+  StudentMyLecture: {
+    name: string;
+  };
+};
 
 function StackNavigator() {
   return (
@@ -109,6 +145,11 @@ function StackNavigator() {
       <Stack.Screen
         name="CEquipment"
         component={CEquipment}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="StudentMyLecture"
+        component={CMyLecture}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>

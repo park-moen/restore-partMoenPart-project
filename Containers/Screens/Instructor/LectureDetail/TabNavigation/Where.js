@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
 import { useState } from 'react/cjs/react.development';
 
-import NMapModal from '../../../../common/NMapModal';
+import NMapModal from '@cCommon/NMapModal';
 
 /**
  *

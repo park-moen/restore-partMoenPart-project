@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import CTimesComponent from 'Containers/Screens/Instructor/Reservation/CTimesComponent';
+import CTimesComponent from '@cReservation/CTimesComponent';
 
 /**
  *

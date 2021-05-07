@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { IconButton } from 'Containers/common/Button';
+import { IconButton } from '@cCommon/Button';
 
 export default function CModal({
   modalVisible = false,

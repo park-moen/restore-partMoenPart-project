@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import PTimesComponent from 'Components/Screens/Instructor/Reservation/PTimesComponent';
-import { reservationSelect } from 'lib/redux/actions/reservationAction';
+import PTimesComponent from '@pReservation/PTimesComponent';
+import { reservationSelect } from '@lib/redux/actions/reservationAction';
 
 /**
  *
