@@ -589,10 +589,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DiveInto-DiveIntoTests/Pods-DiveInto-DiveIntoTests-frameworks.sh",
 				"${PODS_ROOT}/NMapsMap/framework/NMapsMap.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMapsMap.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -607,10 +609,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DiveInto/Pods-DiveInto-frameworks.sh",
 				"${PODS_ROOT}/NMapsMap/framework/NMapsMap.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMapsMap.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

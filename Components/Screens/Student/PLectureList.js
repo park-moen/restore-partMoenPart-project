@@ -16,12 +16,12 @@ import RadioForm, {
   RadioButtonLabel,
 } from 'react-native-simple-radio-button';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import TagList from '@pCommon/Tags';
+import TagList from '@/Components/common/Tags';
 import { CCardLecture } from '@cStudent/LectureListContainer';
 import CModal from '@cCommon/CModal';
 
 // const sampleImg = require('@asset/lecture1.jpg');
-const heartIcon = require('@assest/heart-mind.png');
+const heartIcon = require('@asset/heart-mind.png');
 
 export const PCardLecture = ({
   lecture,
