@@ -1,44 +1,52 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { createStackNavigator } from '@react-navigation/stack';
-import { fadeEffectProp, RootLoginStack } from './types';
+import { RootLoginStack } from './types';
 
-// import Screens
-import LoginScreen from '@screens/Login';
-import SignUpScreen from '@screens/SignUp';
+import LoginScreen from '../../screens/Login';
+import LoginWithEmailScreen from '@/src/screens/LoginWithEmail';
+import ProfileWithoutLogin from '@/src/components/ProfileWithoutLogin';
+// d
 
 const Stack = createStackNavigator<RootLoginStack>();
 
 export default function LoginStack() {
-  const fadeEffect = ({ current: { progress } }: fadeEffectProp) => ({
-    cardStyle: {
-      opacity: progress.interpolate({
-        inputRange: [0, 0.5, 0.9, 1],
-        outputRange: [0, 0.25, 0.7, 1],
-      }),
-    },
-    overlayStyle: {
-      opacity: progress.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 0.5],
-        extrapolate: 'clamp',
-      }),
-    },
-  });
-
   return (
     <RecoilRoot>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
-          cardStyle: { backgroundColor: 'transparent' },
-          cardOverlayEnabled: true,
-          cardStyleInterpolator: fadeEffect,
+          headerStyle: {
+            backgroundColor: '#50CAD2',
+            height: 88,
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 18,
+            height: 21,
+          },
+          headerBackTitle: '뒤로',
+          headerBackTitleStyle: {
+            fontWeight: 'bold',
+            backgroundColor: '#50CAD2',
+          },
+          headerTintColor: '#fefefe',
         }}
-        mode="modal"
       >
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            title: '로그인/회원가입',
+          }}
+        />
+        <Stack.Screen
+          name="LoginWithEmail"
+          component={LoginWithEmailScreen}
+          options={{
+            title: '이메일로 로그인',
+          }}
+        />
+        {/* <Stack.Screen name="SignUp" component={SignUpScreen} /> */}
       </Stack.Navigator>
     </RecoilRoot>
   );
