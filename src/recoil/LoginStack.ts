@@ -1,13 +1,13 @@
 import { atom } from 'recoil';
 
-export type IsValid = 'normal' | 'false' | 'true';
+export type IsValid = undefined | boolean;
 
 export const isEmailValid = atom<IsValid>({
   key: 'isEmailValid',
-  default: 'normal',
+  default: undefined,
 });
 
 export const isPWValid = atom<IsValid>({
   key: 'isPWValid',
-  default: 'normal',
+  default: undefined,
 });

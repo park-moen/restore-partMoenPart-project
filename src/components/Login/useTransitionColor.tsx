@@ -37,7 +37,7 @@ const useTransitionColor = ({
 
   useEffect(() => {
     // isValid에 따라 transitionColor의 값이 변화한다.
-    const toValue = isValid === 'true' ? 1 : 0;
+    const toValue = isValid ? 1 : 0;
     Animated.timing(transitionColor, {
       toValue,
       duration: 300,

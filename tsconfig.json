@@ -65,11 +65,11 @@
       "@legacy_hooks/*": ["./src/legacy/lib/hooks/*"],
 
       "@assets/*": ["./src/assets/*"],
-      "@components": ["./src/components/*"],
-      "@config": ["./src/config/*"],
-      "@navigators": ["./src/navigators/*"],
-      "@recoil": ["./src/recoil/*"],
-      "@screens": ["./src/screens/*"]
+      "@components/*": ["./src/components/*"],
+      "@config/*": ["./src/config/*"],
+      "@navigators/*": ["./src/navigators/*"],
+      "@recoil/*": ["./src/recoil/*"],
+      "@screens/*": ["./src/screens/*"]
     },
     "allowJs": true,
     "allowSyntheticDefaultImports": true,

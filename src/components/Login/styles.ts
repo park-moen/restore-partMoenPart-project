@@ -1,11 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fefefe',
-    paddingHorizontal: 18,
-  },
   transitionPressable: {
     borderWidth: 1,
     borderRadius: 10,
@@ -89,6 +84,10 @@ const styles = StyleSheet.create({
   },
   guideTextValid: { marginTop: 3, color: '#38D1A8', height: 15 },
   guideTextInvalid: { marginTop: 3, color: '#E93A55', height: 15 },
+  checkboxContainer: {
+    width: 20,
+    height: 20,
+  },
 });
 
 export default styles;

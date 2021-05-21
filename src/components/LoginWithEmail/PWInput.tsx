@@ -13,12 +13,12 @@ export default function LoginWithEmail() {
 
   // 패스워드 입력값은 화면이 생성될 때마다 초기화되므로 아톰 값도 초기화
   useEffect(() => {
-    setIsValid('normal');
+    setIsValid(undefined);
   }, []);
 
   const onPasswordInput = (text: string) => {
     setInput(text);
-    setIsValid(input.length > 3 ? 'true' : 'false');
+    setIsValid(input.length > 3 ? true : false);
   };
 
   const onPWVisiblePress = () => setIsPWVisible(!isPWVisible);

@@ -10,7 +10,9 @@ export type RootLoginStack = {
 };
 
 // 스크린 컴포넌트가 전달받을 navigation, route 프롭을 정의한다.
-export type LoginProps = StackScreenProps<RootLoginStack, 'Login'>;
+export type LoginProps = {
+  navigation: StackNavigationProp<RootLoginStack, 'Login'>;
+};
 export type LoginWithEmailProps = {
   navigation: StackNavigationProp<RootLoginStack, 'LoginWithEmail'>;
 };
