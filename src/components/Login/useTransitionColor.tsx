@@ -1,21 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
+import { useRecoilState } from 'recoil';
 
-type IsValid = 'normal' | 'false' | 'true';
+import { isEmailValid, isPWValid, IsValid } from '@recoil/LoginStack';
 
 type InterpolationObj = {
   colorInterpolation: Animated.AnimatedInterpolation;
   backgroundColorInterpolation: Animated.AnimatedInterpolation;
 };
 
-const useTransitionColor = (): [
+type useTransitionColorProps = {
+  screen?: 'Login' | 'PwInput';
+};
+
+const useTransitionColor = ({
+  screen = 'Login',
+}: useTransitionColorProps): [
   IsValid,
   (param: IsValid) => void,
   InterpolationObj,
 ] => {
   const transitionColor = useRef(new Animated.Value(0)).current;
 
-  const [isValid, setIsValid] = useState<IsValid>('normal');
+  const [isValid, setIsValid] = useRecoilState<IsValid>(
+    screen === 'Login' ? isEmailValid : isPWValid,
+  );
 
   const backgroundColorInterpolation = transitionColor.interpolate({
     inputRange: [0, 1],
@@ -27,19 +36,13 @@ const useTransitionColor = (): [
   });
 
   useEffect(() => {
-    if (isValid === 'true') {
-      Animated.timing(transitionColor, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(transitionColor, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    }
+    // isValid에 따라 transitionColor의 값이 변화한다.
+    const toValue = isValid ? 1 : 0;
+    Animated.timing(transitionColor, {
+      toValue,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
   }, [isValid, transitionColor]);
 
   return [

@@ -1,12 +1,27 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import Login from '../../components/Login';
+import { View } from 'react-native';
+import {
+  HeaderText,
+  LoginProblem,
+  SocialLogin,
+  EmailInput,
+} from '@components/Login';
 
-const LoginScreen = () => {
+import { LoginProps } from '@navigators/LoginStack/types';
+import styles from './styles';
+
+const LoginScreen = ({ navigation }: LoginProps) => {
+  const onLoginPress = () => {
+    navigation.navigate('LoginWithEmail');
+  };
+
   return (
-    <>
-      <Login />
-    </>
+    <View style={styles.container}>
+      <HeaderText />
+      <EmailInput onLoginPress={onLoginPress} />
+      <SocialLogin />
+      <LoginProblem />
+    </View>
   );
 };
 
