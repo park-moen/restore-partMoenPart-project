@@ -1,19 +1,28 @@
-import React, { ReactElement } from 'react';
-import { View, Text, Button, SafeAreaView } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
+import {
+  HeaderText,
+  LoginProblem,
+  SocialLogin,
+  EmailInput,
+} from '@components/Login';
+
 import { LoginProps } from '@navigators/LoginStack/types';
+import styles from './styles';
 
-// import style
-import { styles } from './styles';
-
-// import components
-import Login from '@components/Login';
-
-export default function LoginScreen({ navigation }: LoginProps): ReactElement {
-  const onPress = () => navigation.navigate('SignUp', { testId: 3 });
+const LoginScreen = ({ navigation }: LoginProps) => {
+  const onLoginPress = () => {
+    navigation.navigate('LoginWithEmail');
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Login onPress={onPress} />
-    </SafeAreaView>
+    <View style={styles.container}>
+      <HeaderText />
+      <EmailInput onLoginPress={onLoginPress} />
+      <SocialLogin />
+      <LoginProblem />
+    </View>
   );
-}
+};
+
+export default LoginScreen;
