@@ -1,6 +1,0 @@
-module Pods_DiveInto {
-  umbrella header "Pods-DiveInto-umbrella.h"
-
-  export *
-  module * { export * }
-}
