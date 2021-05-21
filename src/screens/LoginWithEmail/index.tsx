@@ -1,9 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import LoginWithEmail from '../../components/LoginWithEmail';
+import { View } from 'react-native';
+import { LoginWithEmailProps } from '@navigators/LoginStack/types';
+import { PwForgot, LoginButton, PWInput } from '@components/LoginWithEmail';
+import styles from './styles';
 
-const LoginWithEmailScreen = () => {
-  return <LoginWithEmail />;
+const LoginWithEmailScreen = ({ navigation }: LoginWithEmailProps) => {
+  return (
+    <View style={styles.container}>
+      <PWInput />
+      <LoginButton />
+      <PwForgot />
+    </View>
+  );
 };
-
 export default LoginWithEmailScreen;

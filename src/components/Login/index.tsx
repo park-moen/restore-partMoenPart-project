@@ -21,7 +21,9 @@ export default function Login() {
   const TransitionText = Animated.createAnimatedComponent(Text);
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [isValid, setIsValid, interpolations] = useTransitionColor();
+  const [isValid, setIsValid, interpolations] = useTransitionColor({
+    screen: 'Login',
+  });
 
   useEffect(() => {
     return () => setIsValid('normal');
@@ -139,7 +141,6 @@ export default function Login() {
 
 function checkEmailValidation(email: string): boolean {
   // const regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  const regex =
-    /^([a-zA-Z0-9\-._]+)@([a-zA-Z0-9-_]+).([a-z]{2,20})(.[a-z]{2,10})$/;
+  const regex = /^([a-zA-Z0-9\-._]+)@([a-zA-Z0-9-_]+).([a-z]{2,20})(.[a-z]{2,10})$/;
   return regex.test(email);
 }
